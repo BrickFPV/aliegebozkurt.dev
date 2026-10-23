@@ -32,146 +32,186 @@
     <!-- Google Fonts & FontAwesome -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .bg-grid-pattern {
+            background-size: 32px 32px;
+            background-image: 
+                linear-gradient(to right, rgba(148, 163, 184, 0.07) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(148, 163, 184, 0.07) 1px, transparent 1px);
+        }
+        .dark .bg-grid-pattern {
+            background-image: 
+                linear-gradient(to right, rgba(51, 65, 85, 0.15) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(51, 65, 85, 0.15) 1px, transparent 1px);
+        }
         .glass-panel {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
         }
         .dark .glass-panel {
-            background: rgba(15, 23, 42, 0.85) !important;
-            backdrop-filter: blur(12px);
+            background: rgba(15, 23, 42, 0.75) !important;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+        .glow-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glow-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px -10px rgba(2, 132, 199, 0.15);
+        }
+        .dark .glow-card:hover {
+            box-shadow: 0 12px 30px -10px rgba(56, 189, 248, 0.12);
+        }
+        /* Custom Terminal Scrollbar */
+        .term-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+        .term-scroll::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .term-scroll::-webkit-scrollbar-thumb {
+            background: rgba(148, 163, 184, 0.3);
+            border-radius: 9999px;
+        }
+        .dark .term-scroll::-webkit-scrollbar-thumb {
+            background: rgba(51, 65, 85, 0.5);
         }
     </style>
 </head>
-<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 font-sans antialiased min-h-screen flex flex-col transition-colors duration-200">
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 font-sans antialiased min-h-screen flex flex-col transition-colors duration-300 bg-grid-pattern">
 
     <!-- Header Navigation -->
-    <header class="sticky top-0 z-40 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200/80 dark:border-slate-800">
+    <header class="sticky top-0 z-40 bg-white/70 dark:bg-slate-950/70 backdrop-blur-xl border-b border-slate-200/60 dark:border-slate-800/60 transition-colors">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-        <a href="#about" class="flex items-center space-x-3 group">
-          <div class="w-8 h-8 rounded-lg bg-brand-600 text-white flex items-center justify-center font-bold text-sm shadow-sm group-hover:bg-brand-700 transition">
-            <i class="fa-solid fa-code text-sm"></i>
+        <a href="#about" class="flex items-center space-x-2.5 group">
+          <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-brand-600 to-sky-400 text-white flex items-center justify-center font-bold text-sm shadow-md shadow-brand-500/20 group-hover:scale-105 transition-transform">
+            <i class="fa-solid fa-code text-xs"></i>
           </div>
-          <span class="font-bold text-slate-900 dark:text-white text-lg tracking-tight">aliegebozkurt<span class="text-brand-600">.dev</span></span>
+          <span class="font-extrabold text-slate-900 dark:text-white text-lg tracking-tight">aliegebozkurt<span class="text-brand-500">.dev</span></span>
         </a>
         
         <!-- Desktop Nav -->
-        <nav class="hidden md:flex items-center space-x-1 font-medium text-sm text-slate-600 dark:text-slate-300">
-          <a href="#about" data-i18n="nav.about" class="px-3 py-1.5 rounded-lg hover:text-brand-600 dark:hover:text-brand-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">About</a>
-          <a href="#projects" data-i18n="nav.projects" class="px-3 py-1.5 rounded-lg hover:text-brand-600 dark:hover:text-brand-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">Projects</a>
-          <a href="#awards" data-i18n="nav.awards" class="px-3 py-1.5 rounded-lg hover:text-brand-600 dark:hover:text-brand-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">Awards</a>
-          <a href="#terminal" data-i18n="nav.terminal" class="px-3 py-1.5 rounded-lg hover:text-brand-600 dark:hover:text-brand-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">Terminal</a>
-          <a href="#contact" data-i18n="nav.contact" class="px-3 py-1.5 rounded-lg hover:text-brand-600 dark:hover:text-brand-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition">Contact</a>
+        <nav class="hidden md:flex items-center space-x-1 font-semibold text-xs uppercase tracking-wider text-slate-600 dark:text-slate-300">
+          <a href="#about" data-i18n="nav.about" class="px-3.5 py-2 rounded-xl hover:text-brand-600 dark:hover:text-brand-400 hover:bg-slate-100/80 dark:hover:bg-slate-800/80 transition-all">About</a>
+          <a href="#projects" data-i18n="nav.projects" class="px-3.5 py-2 rounded-xl hover:text-brand-600 dark:hover:text-brand-400 hover:bg-slate-100/80 dark:hover:bg-slate-800/80 transition-all">Projects</a>
+          <a href="#awards" data-i18n="nav.awards" class="px-3.5 py-2 rounded-xl hover:text-brand-600 dark:hover:text-brand-400 hover:bg-slate-100/80 dark:hover:bg-slate-800/80 transition-all">Awards</a>
+          <a href="#terminal" data-i18n="nav.terminal" class="px-3.5 py-2 rounded-xl hover:text-brand-600 dark:hover:text-brand-400 hover:bg-slate-100/80 dark:hover:bg-slate-800/80 transition-all">Terminal</a>
+          <a href="#contact" data-i18n="nav.contact" class="px-3.5 py-2 rounded-xl hover:text-brand-600 dark:hover:text-brand-400 hover:bg-slate-100/80 dark:hover:bg-slate-800/80 transition-all">Contact</a>
         </nav>
 
         <div class="flex items-center gap-2 sm:gap-3">
             <!-- Theme Toggle Button -->
-            <button id="theme-toggle-btn" title="Toggle Theme" aria-label="Toggle Theme" class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:text-brand-600 dark:hover:text-brand-400 transition">
+            <button id="theme-toggle-btn" title="Toggle Theme" aria-label="Toggle Theme" class="p-2.5 rounded-xl bg-slate-100/80 dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 text-slate-700 dark:text-slate-200 hover:text-brand-600 dark:hover:text-brand-400 transition-all">
                 <i id="theme-icon" class="fa-solid fa-moon"></i>
             </button>
 
             <!-- Language Switcher Toggle -->
-            <button id="lang-toggle-btn" title="Switch Language" aria-label="Switch Language" class="px-2.5 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 font-mono text-xs font-bold hover:text-brand-600 dark:hover:text-brand-400 transition flex items-center gap-1.5">
+            <button id="lang-toggle-btn" title="Switch Language" aria-label="Switch Language" class="px-3 py-2 rounded-xl bg-slate-100/80 dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 text-slate-700 dark:text-slate-200 font-mono text-xs font-bold hover:text-brand-600 dark:hover:text-brand-400 transition-all flex items-center gap-1.5">
                 <i class="fa-solid fa-globe text-xs"></i>
                 <span id="lang-label">TR</span>
             </button>
 
-            <div class="hidden lg:flex items-center gap-2 bg-emerald-50 dark:bg-emerald-950/50 border border-emerald-200/80 dark:border-emerald-800 px-3 py-1.5 rounded-full">
+            <div class="hidden lg:flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 px-3.5 py-1.5 rounded-full">
                 <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                <span class="font-mono text-[11px] font-semibold text-emerald-700 dark:text-emerald-400">TaMesh #004c (868 MHz) Active</span>
+                <span class="font-mono text-[11px] font-bold text-emerald-700 dark:text-emerald-400">TaMesh #004c (868 MHz) Active</span>
             </div>
 
             <!-- Mobile Menu Button -->
-            <button id="mobile-menu-btn" aria-label="Toggle navigation menu" class="md:hidden p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none">
+            <button id="mobile-menu-btn" aria-label="Toggle navigation menu" class="md:hidden p-2.5 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none">
               <i class="fa-solid fa-bars text-xl"></i>
             </button>
         </div>
       </div>
 
       <!-- Mobile Nav Dropdown -->
-      <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 px-4 pt-2 pb-4 space-y-2 text-sm font-medium text-slate-700 dark:text-slate-200">
-        <a href="#about" data-i18n="nav.about" class="block px-3 py-2 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800">About</a>
-        <a href="#projects" data-i18n="nav.projects" class="block px-3 py-2 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800">Projects</a>
-        <a href="#awards" data-i18n="nav.awards" class="block px-3 py-2 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800">Awards</a>
-        <a href="#terminal" data-i18n="nav.terminal" class="block px-3 py-2 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800">Terminal</a>
-        <a href="#contact" data-i18n="nav.contact" class="block px-3 py-2 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800">Contact</a>
+      <div id="mobile-menu" class="hidden md:hidden bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl border-b border-slate-200 dark:border-slate-800 px-4 pt-3 pb-5 space-y-2 text-sm font-semibold">
+        <a href="#about" data-i18n="nav.about" class="block px-3.5 py-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800">About</a>
+        <a href="#projects" data-i18n="nav.projects" class="block px-3.5 py-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800">Projects</a>
+        <a href="#awards" data-i18n="nav.awards" class="block px-3.5 py-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800">Awards</a>
+        <a href="#terminal" data-i18n="nav.terminal" class="block px-3.5 py-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800">Terminal</a>
+        <a href="#contact" data-i18n="nav.contact" class="block px-3.5 py-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800">Contact</a>
       </div>
     </header>
 
-    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-16">
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-20">
 
         <!-- HERO & ABOUT SECTION -->
         <section id="about" class="pt-4 scroll-mt-24 space-y-8">
-            <div class="glass-panel rounded-2xl p-6 sm:p-10 shadow-sm relative overflow-hidden border border-slate-200 dark:border-slate-800">
-                <div class="absolute -right-20 -top-20 w-80 h-80 bg-brand-500/10 rounded-full blur-3xl pointer-events-none"></div>
-                <div class="absolute -left-20 -bottom-20 w-80 h-80 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="glass-panel rounded-3xl p-6 sm:p-12 shadow-xl shadow-slate-200/50 dark:shadow-none relative overflow-hidden border border-slate-200/80 dark:border-slate-800">
+                <div class="absolute -right-24 -top-24 w-96 h-96 bg-brand-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="absolute -left-24 -bottom-24 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"></div>
 
-                <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                    <div class="lg:col-span-8 space-y-5">
-                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-xs font-mono font-medium">
+                <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                    <div class="lg:col-span-8 space-y-6">
+                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-50 dark:bg-brand-950/60 border border-brand-200/80 dark:border-brand-800 text-brand-700 dark:text-brand-300 text-xs font-mono font-semibold">
                             <i class="fa-solid fa-microchip text-brand-500"></i> <span data-i18n="hero.role">Hardware & Systems Developer</span>
                         </div>
                         
-                        <h1 class="text-3xl sm:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
+                        <h1 class="text-4xl sm:text-6xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-none">
                             Ali Ege Bozkurt
                         </h1>
                         
-                        <p class="text-base sm:text-lg text-brand-700 dark:text-brand-400 font-mono font-medium">
+                        <p class="text-sm sm:text-base text-brand-600 dark:text-brand-400 font-mono font-semibold tracking-wide">
                             Computer Vision • Meshtastic (868 MHz) • 1S Custom Tinywhoops • Debian Linux • Ender-3
                         </p>
                         
-                        <p data-i18n="hero.bio" class="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed max-w-2xl">
+                        <p data-i18n="hero.bio" class="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed max-w-2xl font-normal">
                             High school student at Bahçeşehir Koleji 50. Yıl Fen ve Teknoloji Lisesi focused on building computer vision pan-and-tilt tracking platforms, 868 MHz Meshtastic radio communications (TaMesh Node ID: #004c), flying 1S custom tinywhoop quadcopters, self-hosted Debian/CasaOS servers, and Creality Ender-3 fabrication.
                         </p>
 
-                        <div class="flex flex-wrap gap-3 pt-2">
-                            <a href="#projects" class="px-5 py-2.5 bg-brand-600 hover:bg-brand-700 text-white font-mono text-xs font-bold rounded-xl transition-all shadow-sm hover:shadow flex items-center gap-2">
+                        <div class="flex flex-wrap gap-3.5 pt-2">
+                            <a href="#projects" class="px-6 py-3 bg-brand-600 hover:bg-brand-700 text-white font-mono text-xs font-bold rounded-2xl transition-all shadow-md shadow-brand-600/20 hover:shadow-lg hover:shadow-brand-600/30 flex items-center gap-2.5">
                                 <i class="fa-solid fa-folder-open"></i> <span data-i18n="hero.explore_projects">Explore Projects</span>
                             </a>
-                            <a href="#awards" class="px-5 py-2.5 bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800 hover:bg-amber-100 dark:hover:bg-amber-900/50 text-amber-900 dark:text-amber-300 font-mono text-xs font-bold rounded-xl transition-all shadow-sm flex items-center gap-2">
+                            <a href="#awards" class="px-6 py-3 bg-amber-500/10 border border-amber-500/30 hover:bg-amber-500/20 text-amber-800 dark:text-amber-300 font-mono text-xs font-bold rounded-2xl transition-all flex items-center gap-2.5">
                                 <i class="fa-solid fa-trophy text-amber-500"></i> <span data-i18n="hero.view_awards">View Awards</span>
                             </a>
-                            <a href="#terminal" class="px-5 py-2.5 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 hover:border-brand-500 text-slate-700 dark:text-slate-200 hover:text-brand-600 dark:hover:text-brand-400 font-mono text-xs font-bold rounded-xl transition-all shadow-sm flex items-center gap-2">
-                                <i class="fa-solid fa-terminal text-brand-500"></i> <span data-i18n="hero.open_terminal">Open Terminal Lab</span>
+                            <a href="#terminal" class="px-6 py-3 bg-slate-900 dark:bg-slate-800 hover:bg-slate-800 dark:hover:bg-slate-700 text-white font-mono text-xs font-bold rounded-2xl transition-all shadow-sm flex items-center gap-2.5">
+                                <i class="fa-solid fa-terminal text-brand-400"></i> <span data-i18n="hero.open_terminal">Open Terminal Lab</span>
                             </a>
                         </div>
                     </div>
 
                     <!-- Hero Quick Stats Badges -->
-                    <div class="lg:col-span-4 space-y-4">
-                        <div class="glass-panel p-4 rounded-xl shadow-xs border border-slate-200/70 dark:border-slate-800 hover:border-brand-300 transition-all">
+                    <div class="lg:col-span-4 space-y-3.5">
+                        <div class="glass-panel p-4 rounded-2xl shadow-xs border border-slate-200/80 dark:border-slate-800 hover:border-brand-500/50 transition-all">
                             <div class="flex items-center justify-between">
                                 <div>
-                                    <div class="text-2xl font-black text-slate-900 dark:text-white font-mono">Node #004c</div>
+                                    <div class="text-2xl font-black text-slate-900 dark:text-white font-mono tracking-tight">Node #004c</div>
                                     <div class="text-xs font-mono font-semibold text-slate-500 dark:text-slate-400">TaMesh Mesh (868 MHz)</div>
                                 </div>
-                                <div class="w-10 h-10 rounded-lg bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 flex items-center justify-center">
+                                <div class="w-11 h-11 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center border border-emerald-500/20">
                                     <i class="fa-solid fa-tower-cell text-lg"></i>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="glass-panel p-4 rounded-xl shadow-xs border border-slate-200/70 dark:border-slate-800 hover:border-brand-300 transition-all">
+                        <div class="glass-panel p-4 rounded-2xl shadow-xs border border-slate-200/80 dark:border-slate-800 hover:border-brand-500/50 transition-all">
                             <div class="flex items-center justify-between">
                                 <div>
-                                    <div class="text-2xl font-black text-slate-900 dark:text-white font-mono">TARS AI</div>
+                                    <div class="text-2xl font-black text-slate-900 dark:text-white font-mono tracking-tight">TARS AI</div>
                                     <div data-i18n="stats.tars_desc" class="text-xs font-mono font-semibold text-slate-500 dark:text-slate-400">Pan & Tilt Vision System</div>
                                 </div>
-                                <div class="w-10 h-10 rounded-lg bg-purple-50 dark:bg-purple-950/60 text-purple-600 dark:text-purple-400 flex items-center justify-center">
+                                <div class="w-11 h-11 rounded-xl bg-purple-500/10 text-purple-600 dark:text-purple-400 flex items-center justify-center border border-purple-500/20">
                                     <i class="fa-solid fa-robot text-lg"></i>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="glass-panel p-4 rounded-xl shadow-xs border border-slate-200/70 dark:border-slate-800 hover:border-brand-300 transition-all">
+                        <div class="glass-panel p-4 rounded-2xl shadow-xs border border-slate-200/80 dark:border-slate-800 hover:border-brand-500/50 transition-all">
                             <div class="flex items-center justify-between">
                                 <div>
-                                    <div class="text-2xl font-black text-slate-900 dark:text-white font-mono">1S Tinywhoop</div>
+                                    <div class="text-2xl font-black text-slate-900 dark:text-white font-mono tracking-tight">1S Tinywhoop</div>
                                     <div data-i18n="stats.tinywhoop_desc" class="text-xs font-mono font-semibold text-slate-500 dark:text-slate-400">Custom Micro Flight</div>
                                 </div>
-                                <div class="w-10 h-10 rounded-lg bg-amber-50 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400 flex items-center justify-center">
+                                <div class="w-11 h-11 rounded-xl bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center border border-amber-500/20">
                                     <i class="fa-solid fa-plane-up text-lg"></i>
                                 </div>
                             </div>
@@ -183,7 +223,7 @@
 
         <!-- PROJECTS SECTION -->
         <section id="projects" class="space-y-8 scroll-mt-24">
-            <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+            <div class="border-b border-slate-200/80 dark:border-slate-800 pb-5 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
                 <div>
                     <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white flex items-center gap-3">
                         <span class="text-brand-500 font-mono text-lg sm:text-xl">01.</span> <span data-i18n="projects.title">Featured Engineering Projects</span>
@@ -193,107 +233,107 @@
 
                 <!-- Category Filters -->
                 <div class="flex flex-wrap gap-1.5 font-mono text-xs">
-                    <button data-filter="all" class="filter-btn active px-3 py-1.5 rounded-lg bg-brand-600 text-white font-bold transition">All</button>
-                    <button data-filter="hardware" class="filter-btn px-3 py-1.5 rounded-lg bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:text-brand-600 transition font-semibold">Hardware</button>
-                    <button data-filter="ai" class="filter-btn px-3 py-1.5 rounded-lg bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:text-brand-600 transition font-semibold">AI & Systems</button>
-                    <button data-filter="mesh" class="filter-btn px-3 py-1.5 rounded-lg bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:text-brand-600 transition font-semibold">Mesh / FPV</button>
+                    <button data-filter="all" class="filter-btn active px-3.5 py-2 rounded-xl bg-brand-600 text-white font-bold transition">All</button>
+                    <button data-filter="hardware" class="filter-btn px-3.5 py-2 rounded-xl bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-800 hover:text-brand-600 transition font-semibold">Hardware</button>
+                    <button data-filter="ai" class="filter-btn px-3.5 py-2 rounded-xl bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-800 hover:text-brand-600 transition font-semibold">AI & Systems</button>
+                    <button data-filter="mesh" class="filter-btn px-3.5 py-2 rounded-xl bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-800 hover:text-brand-600 transition font-semibold">Mesh / FPV</button>
                 </div>
             </div>
 
             <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <!-- Project 1: Meshtastic -->
-                <div class="project-card glass-panel rounded-xl p-6 shadow-xs hover:shadow-md hover:-translate-y-1 transition-all border border-slate-200/90 dark:border-slate-800 flex flex-col justify-between" data-category="mesh">
+                <div class="project-card glow-card glass-panel rounded-2xl p-6 border border-slate-200/80 dark:border-slate-800 flex flex-col justify-between" data-category="mesh">
                     <div class="space-y-4">
                         <div class="flex items-center justify-between">
-                            <span class="px-2.5 py-1 rounded-md bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 text-[11px] font-mono font-bold border border-emerald-200/80 dark:border-emerald-800">Meshtastic #004c</span>
+                            <span class="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 text-[11px] font-mono font-bold border border-emerald-500/20">Meshtastic #004c</span>
                             <span class="font-mono text-xs text-slate-400 dark:text-slate-500 font-bold">868 MHz</span>
                         </div>
                         <h3 class="text-lg font-bold text-slate-900 dark:text-white">Meshtastic Radio Node (TaMesh)</h3>
                         <p data-i18n="projects.meshtastic_desc" class="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed">Off-grid LoRa radio communication node operating on 868 MHz. Provides decentralized message routing and telemetry without cellular networks.</p>
                     </div>
-                    <div class="pt-5 mt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
-                        <span class="font-mono text-xs text-emerald-600 dark:text-emerald-400 font-bold"><i class="fa-solid fa-tower-cell mr-1"></i> Active Node</span>
-                        <button onclick="openModal('meshtastic-node')" data-i18n="projects.inspect" class="px-3 py-1.5 bg-slate-100 dark:bg-slate-800 hover:bg-brand-600 hover:text-white dark:hover:bg-brand-600 text-slate-700 dark:text-slate-200 font-mono text-xs font-bold rounded-lg transition-all">Inspect</button>
+                    <div class="pt-5 mt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between">
+                        <span class="font-mono text-xs text-emerald-600 dark:text-emerald-400 font-bold flex items-center gap-1.5"><i class="fa-solid fa-tower-cell"></i> Active Node</span>
+                        <button onclick="openModal('meshtastic-node')" data-i18n="projects.inspect" class="px-3.5 py-1.5 bg-slate-100 dark:bg-slate-800 hover:bg-brand-600 hover:text-white dark:hover:bg-brand-600 text-slate-700 dark:text-slate-200 font-mono text-xs font-bold rounded-xl transition-all">Inspect</button>
                     </div>
                 </div>
 
                 <!-- Project 2: TARS AI -->
-                <div class="project-card glass-panel rounded-xl p-6 shadow-xs hover:shadow-md hover:-translate-y-1 transition-all border border-slate-200/90 dark:border-slate-800 flex flex-col justify-between" data-category="ai">
+                <div class="project-card glow-card glass-panel rounded-2xl p-6 border border-slate-200/80 dark:border-slate-800 flex flex-col justify-between" data-category="ai">
                     <div class="space-y-4">
                         <div class="flex items-center justify-between">
-                            <span class="px-2.5 py-1 rounded-md bg-purple-50 dark:bg-purple-950/60 text-purple-800 dark:text-purple-300 text-[11px] font-mono font-bold border border-purple-200/80 dark:border-purple-800">Robotics & Vision</span>
-                            <a href="https://github.com/BrickFPV/Tars-Ai-With-Pan-Tilt-Camera" target="_blank" class="text-slate-400 hover:text-slate-800 dark:hover:text-white text-sm"><i class="fa-brands fa-github"></i></a>
+                            <span class="px-3 py-1 rounded-full bg-purple-500/10 text-purple-700 dark:text-purple-300 text-[11px] font-mono font-bold border border-purple-500/20">Robotics & Vision</span>
+                            <a href="https://github.com/BrickFPV/Tars-Ai-With-Pan-Tilt-Camera" target="_blank" class="text-slate-400 hover:text-slate-900 dark:hover:text-white text-base transition-colors"><i class="fa-brands fa-github"></i></a>
                         </div>
                         <h3 class="text-lg font-bold text-slate-900 dark:text-white">TARS AI Pan & Tilt Camera</h3>
                         <p data-i18n="projects.tars_desc" class="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed">Interstellar-inspired TARS platform featuring active pan and tilt camera tracking powered by gpt-oss 120B on a Raspberry Pi 4.</p>
                     </div>
-                    <div class="pt-5 mt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
-                        <span class="font-mono text-xs text-purple-600 dark:text-purple-400 font-bold"><i class="fa-solid fa-microchip mr-1"></i> gpt-oss 120B</span>
-                        <button onclick="openModal('tars-ai-pan-tilt')" data-i18n="projects.inspect" class="px-3 py-1.5 bg-slate-100 dark:bg-slate-800 hover:bg-brand-600 hover:text-white dark:hover:bg-brand-600 text-slate-700 dark:text-slate-200 font-mono text-xs font-bold rounded-lg transition-all">Inspect</button>
+                    <div class="pt-5 mt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between">
+                        <span class="font-mono text-xs text-purple-600 dark:text-purple-400 font-bold flex items-center gap-1.5"><i class="fa-solid fa-microchip"></i> gpt-oss 120B</span>
+                        <button onclick="openModal('tars-ai-pan-tilt')" data-i18n="projects.inspect" class="px-3.5 py-1.5 bg-slate-100 dark:bg-slate-800 hover:bg-brand-600 hover:text-white dark:hover:bg-brand-600 text-slate-700 dark:text-slate-200 font-mono text-xs font-bold rounded-xl transition-all">Inspect</button>
                     </div>
                 </div>
 
                 <!-- Project 3: 1S Custom Tinywhoops -->
-                <div class="project-card glass-panel rounded-xl p-6 shadow-xs hover:shadow-md hover:-translate-y-1 transition-all border border-slate-200/90 dark:border-slate-800 flex flex-col justify-between" data-category="mesh">
+                <div class="project-card glow-card glass-panel rounded-2xl p-6 border border-slate-200/80 dark:border-slate-800 flex flex-col justify-between" data-category="mesh">
                     <div class="space-y-4">
                         <div class="flex items-center justify-between">
-                            <span class="px-2.5 py-1 rounded-md bg-amber-50 dark:bg-amber-950/60 text-amber-800 dark:text-amber-300 text-[11px] font-mono font-bold border border-amber-200/80 dark:border-amber-800">FPV Drone</span>
+                            <span class="px-3 py-1 rounded-full bg-amber-500/10 text-amber-700 dark:text-amber-300 text-[11px] font-mono font-bold border border-amber-500/20">FPV Drone</span>
                             <span class="font-mono text-xs text-slate-400 dark:text-slate-500 font-bold">1S Battery</span>
                         </div>
                         <h3 class="text-lg font-bold text-slate-900 dark:text-white">1S Custom Tinywhoop Setup</h3>
                         <p data-i18n="projects.tinywhoop_desc_card" class="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed">Personal FPV flight gear and custom 1S micro quadcopters, powered by EMAX Transporter 2 goggles and VIFLY WhoopStor V3 charger.</p>
                     </div>
-                    <div class="pt-5 mt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
-                        <span class="font-mono text-xs text-amber-600 dark:text-amber-400 font-bold"><i class="fa-solid fa-plane-up mr-1"></i> Micro Flight</span>
-                        <button onclick="openModal('tinywhoop-1s')" data-i18n="projects.inspect" class="px-3 py-1.5 bg-slate-100 dark:bg-slate-800 hover:bg-brand-600 hover:text-white dark:hover:bg-brand-600 text-slate-700 dark:text-slate-200 font-mono text-xs font-bold rounded-lg transition-all">Inspect</button>
+                    <div class="pt-5 mt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between">
+                        <span class="font-mono text-xs text-amber-600 dark:text-amber-400 font-bold flex items-center gap-1.5"><i class="fa-solid fa-plane-up"></i> Micro Flight</span>
+                        <button onclick="openModal('tinywhoop-1s')" data-i18n="projects.inspect" class="px-3.5 py-1.5 bg-slate-100 dark:bg-slate-800 hover:bg-brand-600 hover:text-white dark:hover:bg-brand-600 text-slate-700 dark:text-slate-200 font-mono text-xs font-bold rounded-xl transition-all">Inspect</button>
                     </div>
                 </div>
 
                 <!-- Project 4: Debian / CasaOS Server -->
-                <div class="project-card glass-panel rounded-xl p-6 shadow-xs hover:shadow-md hover:-translate-y-1 transition-all border border-slate-200/90 dark:border-slate-800 flex flex-col justify-between" data-category="hardware">
+                <div class="project-card glow-card glass-panel rounded-2xl p-6 border border-slate-200/80 dark:border-slate-800 flex flex-col justify-between" data-category="hardware">
                     <div class="space-y-4">
                         <div class="flex items-center justify-between">
-                            <span class="px-2.5 py-1 rounded-md bg-sky-50 dark:bg-sky-950/60 text-sky-800 dark:text-sky-300 text-[11px] font-mono font-bold border border-sky-200/80 dark:border-sky-800">Self-Hosted</span>
+                            <span class="px-3 py-1 rounded-full bg-sky-500/10 text-sky-700 dark:text-sky-300 text-[11px] font-mono font-bold border border-sky-500/20">Self-Hosted</span>
                             <span class="font-mono text-xs text-slate-400 dark:text-slate-500 font-bold">Debian 12</span>
                         </div>
                         <h3 class="text-lg font-bold text-slate-900 dark:text-white">Debian / CasaOS Local Server</h3>
                         <p data-i18n="projects.server_desc" class="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed">Self-hosted homelab server running Debian Linux with CasaOS dashboard management and Docker containers for local infrastructure.</p>
                     </div>
-                    <div class="pt-5 mt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
-                        <span class="font-mono text-xs text-sky-600 dark:text-sky-400 font-bold"><i class="fa-solid fa-server mr-1"></i> Docker Container</span>
-                        <button onclick="openModal('home-server')" data-i18n="projects.inspect" class="px-3 py-1.5 bg-slate-100 dark:bg-slate-800 hover:bg-brand-600 hover:text-white dark:hover:bg-brand-600 text-slate-700 dark:text-slate-200 font-mono text-xs font-bold rounded-lg transition-all">Inspect</button>
+                    <div class="pt-5 mt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between">
+                        <span class="font-mono text-xs text-sky-600 dark:text-sky-400 font-bold flex items-center gap-1.5"><i class="fa-solid fa-server"></i> Docker Stack</span>
+                        <button onclick="openModal('home-server')" data-i18n="projects.inspect" class="px-3.5 py-1.5 bg-slate-100 dark:bg-slate-800 hover:bg-brand-600 hover:text-white dark:hover:bg-brand-600 text-slate-700 dark:text-slate-200 font-mono text-xs font-bold rounded-xl transition-all">Inspect</button>
                     </div>
                 </div>
 
                 <!-- Project 5: Hermes AI Agent Tools -->
-                <div class="project-card glass-panel rounded-xl p-6 shadow-xs hover:shadow-md hover:-translate-y-1 transition-all border border-slate-200/90 dark:border-slate-800 flex flex-col justify-between" data-category="ai">
+                <div class="project-card glow-card glass-panel rounded-2xl p-6 border border-slate-200/80 dark:border-slate-800 flex flex-col justify-between" data-category="ai">
                     <div class="space-y-4">
                         <div class="flex items-center justify-between">
-                            <span class="px-2.5 py-1 rounded-md bg-indigo-50 dark:bg-indigo-950/60 text-indigo-800 dark:text-indigo-300 text-[11px] font-mono font-bold border border-indigo-200/80 dark:border-indigo-800">AI Tooling</span>
+                            <span class="px-3 py-1 rounded-full bg-indigo-500/10 text-indigo-700 dark:text-indigo-300 text-[11px] font-mono font-bold border border-indigo-500/20">AI Tooling</span>
                             <span class="font-mono text-xs text-slate-400 dark:text-slate-500 font-bold">Hermes Agent</span>
                         </div>
                         <h3 class="text-lg font-bold text-slate-900 dark:text-white">Hermes AI Agent Local Tools</h3>
                         <p data-i18n="projects.hermes_desc" class="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed">Custom tools built for the Hermes AI Agent platform, including Edupage school connections and network printer control.</p>
                     </div>
-                    <div class="pt-5 mt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
-                        <span class="font-mono text-xs text-indigo-600 dark:text-indigo-400 font-bold"><i class="fa-solid fa-screwdriver-wrench mr-1"></i> Edupage & Printer</span>
-                        <button onclick="openModal('hermes-ai')" data-i18n="projects.inspect" class="px-3 py-1.5 bg-slate-100 dark:bg-slate-800 hover:bg-brand-600 hover:text-white dark:hover:bg-brand-600 text-slate-700 dark:text-slate-200 font-mono text-xs font-bold rounded-lg transition-all">Inspect</button>
+                    <div class="pt-5 mt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between">
+                        <span class="font-mono text-xs text-indigo-600 dark:text-indigo-400 font-bold flex items-center gap-1.5"><i class="fa-solid fa-screwdriver-wrench"></i> Edupage & Print</span>
+                        <button onclick="openModal('hermes-ai')" data-i18n="projects.inspect" class="px-3.5 py-1.5 bg-slate-100 dark:bg-slate-800 hover:bg-brand-600 hover:text-white dark:hover:bg-brand-600 text-slate-700 dark:text-slate-200 font-mono text-xs font-bold rounded-xl transition-all">Inspect</button>
                     </div>
                 </div>
 
                 <!-- Project 6: Ender-3 Printing -->
-                <div class="project-card glass-panel rounded-xl p-6 shadow-xs hover:shadow-md hover:-translate-y-1 transition-all border border-slate-200/90 dark:border-slate-800 flex flex-col justify-between" data-category="hardware">
+                <div class="project-card glow-card glass-panel rounded-2xl p-6 border border-slate-200/80 dark:border-slate-800 flex flex-col justify-between" data-category="hardware">
                     <div class="space-y-4">
                         <div class="flex items-center justify-between">
-                            <span class="px-2.5 py-1 rounded-md bg-rose-50 dark:bg-rose-950/60 text-rose-800 dark:text-rose-300 text-[11px] font-mono font-bold border border-rose-200/80 dark:border-rose-800">3D Fabrication</span>
+                            <span class="px-3 py-1 rounded-full bg-rose-500/10 text-rose-700 dark:text-rose-300 text-[11px] font-mono font-bold border border-rose-500/20">3D Fabrication</span>
                             <span class="font-mono text-xs text-slate-400 dark:text-slate-500 font-bold">Ender-3</span>
                         </div>
                         <h3 class="text-lg font-bold text-slate-900 dark:text-white">Ender-3 Hardware Lab</h3>
                         <p data-i18n="projects.ender_desc" class="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed">Creality Ender-3 setup tuned for fabricating custom electronics cases, drone mounts, and robotic mechanical parts.</p>
                     </div>
-                    <div class="pt-5 mt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
-                        <span class="font-mono text-xs text-rose-600 dark:text-rose-400 font-bold"><i class="fa-solid fa-cube mr-1"></i> 3D Enclosures</span>
-                        <button onclick="openModal('ender3-printing')" data-i18n="projects.inspect" class="px-3 py-1.5 bg-slate-100 dark:bg-slate-800 hover:bg-brand-600 hover:text-white dark:hover:bg-brand-600 text-slate-700 dark:text-slate-200 font-mono text-xs font-bold rounded-lg transition-all">Inspect</button>
+                    <div class="pt-5 mt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between">
+                        <span class="font-mono text-xs text-rose-600 dark:text-rose-400 font-bold flex items-center gap-1.5"><i class="fa-solid fa-cube"></i> Enclosures</span>
+                        <button onclick="openModal('ender3-printing')" data-i18n="projects.inspect" class="px-3.5 py-1.5 bg-slate-100 dark:bg-slate-800 hover:bg-brand-600 hover:text-white dark:hover:bg-brand-600 text-slate-700 dark:text-slate-200 font-mono text-xs font-bold rounded-xl transition-all">Inspect</button>
                     </div>
                 </div>
             </div>
@@ -301,7 +341,7 @@
 
         <!-- AWARDS SECTION -->
         <section id="awards" class="space-y-8 scroll-mt-24">
-            <div class="border-b border-slate-200 dark:border-slate-800 pb-4">
+            <div class="border-b border-slate-200/80 dark:border-slate-800 pb-5">
                 <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white flex items-center gap-3">
                     <span class="text-brand-500 font-mono text-lg sm:text-xl">02.</span> <span data-i18n="awards.title">Awards & Achievements</span>
                 </h2>
@@ -310,10 +350,10 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <!-- Award 1 -->
-                <div class="glass-panel rounded-xl p-6 shadow-xs hover:shadow-md hover:-translate-y-1 transition-all border border-slate-200/90 dark:border-slate-800 flex flex-col justify-between">
-                    <div class="space-y-3">
+                <div class="glow-card glass-panel rounded-2xl p-6 border border-slate-200/80 dark:border-slate-800 flex flex-col justify-between">
+                    <div class="space-y-3.5">
                         <div class="flex items-center justify-between">
-                            <span class="px-2.5 py-1 rounded-md bg-amber-50 dark:bg-amber-950/60 text-amber-800 dark:text-amber-300 text-[11px] font-mono font-bold border border-amber-200/80 dark:border-amber-800 flex items-center gap-1.5">
+                            <span class="px-3 py-1 rounded-full bg-amber-500/10 text-amber-800 dark:text-amber-300 text-[11px] font-mono font-bold border border-amber-500/20 flex items-center gap-1.5">
                                 <i class="fa-solid fa-trophy text-amber-500"></i> <span data-i18n="awards.place_1">1st Place</span>
                             </span>
                             <span class="font-mono text-xs text-slate-400 dark:text-slate-500 font-bold">2025</span>
@@ -321,17 +361,17 @@
                         <h3 data-i18n="awards.award1_title" class="text-base font-bold text-slate-900 dark:text-white leading-snug">Innovative Project Award</h3>
                         <p class="text-slate-600 dark:text-slate-300 text-xs sm:text-sm font-medium">FLL Challenge Submerged 2025</p>
                     </div>
-                    <div class="pt-4 mt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between font-mono text-[11px] text-slate-500 dark:text-slate-400">
+                    <div class="pt-4 mt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between font-mono text-[11px] text-slate-500 dark:text-slate-400">
                         <span>FIRST LEGO League</span>
                         <span data-i18n="awards.national" class="text-amber-600 dark:text-amber-400 font-bold">National</span>
                     </div>
                 </div>
 
                 <!-- Award 2 -->
-                <div class="glass-panel rounded-xl p-6 shadow-xs hover:shadow-md hover:-translate-y-1 transition-all border border-slate-200/90 dark:border-slate-800 flex flex-col justify-between">
-                    <div class="space-y-3">
+                <div class="glow-card glass-panel rounded-2xl p-6 border border-slate-200/80 dark:border-slate-800 flex flex-col justify-between">
+                    <div class="space-y-3.5">
                         <div class="flex items-center justify-between">
-                            <span class="px-2.5 py-1 rounded-md bg-amber-50 dark:bg-amber-950/60 text-amber-800 dark:text-amber-300 text-[11px] font-mono font-bold border border-amber-200/80 dark:border-amber-800 flex items-center gap-1.5">
+                            <span class="px-3 py-1 rounded-full bg-amber-500/10 text-amber-800 dark:text-amber-300 text-[11px] font-mono font-bold border border-amber-500/20 flex items-center gap-1.5">
                                 <i class="fa-solid fa-trophy text-amber-500"></i> <span data-i18n="awards.place_1">1st Place</span>
                             </span>
                             <span class="font-mono text-xs text-slate-400 dark:text-slate-500 font-bold">2024</span>
@@ -339,17 +379,17 @@
                         <h3 data-i18n="awards.award2_title" class="text-base font-bold text-slate-900 dark:text-white leading-snug">Innovative Project Award</h3>
                         <p class="text-slate-600 dark:text-slate-300 text-xs sm:text-sm font-medium">FLL Challenge Masterpiece 2024</p>
                     </div>
-                    <div class="pt-4 mt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between font-mono text-[11px] text-slate-500 dark:text-slate-400">
+                    <div class="pt-4 mt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between font-mono text-[11px] text-slate-500 dark:text-slate-400">
                         <span>FIRST LEGO League</span>
                         <span data-i18n="awards.national" class="text-amber-600 dark:text-amber-400 font-bold">National</span>
                     </div>
                 </div>
 
                 <!-- Award 3 -->
-                <div class="glass-panel rounded-xl p-6 shadow-xs hover:shadow-md hover:-translate-y-1 transition-all border border-slate-200/90 dark:border-slate-800 flex flex-col justify-between">
-                    <div class="space-y-3">
+                <div class="glow-card glass-panel rounded-2xl p-6 border border-slate-200/80 dark:border-slate-800 flex flex-col justify-between">
+                    <div class="space-y-3.5">
                         <div class="flex items-center justify-between">
-                            <span class="px-2.5 py-1 rounded-md bg-amber-50 dark:bg-amber-950/60 text-amber-800 dark:text-amber-300 text-[11px] font-mono font-bold border border-amber-200/80 dark:border-amber-800 flex items-center gap-1.5">
+                            <span class="px-3 py-1 rounded-full bg-amber-500/10 text-amber-800 dark:text-amber-300 text-[11px] font-mono font-bold border border-amber-500/20 flex items-center gap-1.5">
                                 <i class="fa-solid fa-trophy text-amber-500"></i> <span data-i18n="awards.place_1">1st Place</span>
                             </span>
                             <span class="font-mono text-xs text-slate-400 dark:text-slate-500 font-bold">2022</span>
@@ -357,17 +397,17 @@
                         <h3 data-i18n="awards.award3_title" class="text-base font-bold text-slate-900 dark:text-white leading-snug">2nd National Coding Competition</h3>
                         <p data-i18n="awards.award3_desc" class="text-slate-600 dark:text-slate-300 text-xs sm:text-sm font-medium">Selçuklu Primary School National Coding Competition</p>
                     </div>
-                    <div class="pt-4 mt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between font-mono text-[11px] text-slate-500 dark:text-slate-400">
+                    <div class="pt-4 mt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between font-mono text-[11px] text-slate-500 dark:text-slate-400">
                         <span data-i18n="awards.primary_coding">Primary Schools Coding</span>
                         <span data-i18n="awards.national" class="text-amber-600 dark:text-amber-400 font-bold">National</span>
                     </div>
                 </div>
 
                 <!-- Award 4 -->
-                <div class="glass-panel rounded-xl p-6 shadow-xs hover:shadow-md hover:-translate-y-1 transition-all border border-slate-200/90 dark:border-slate-800 flex flex-col justify-between">
-                    <div class="space-y-3">
+                <div class="glow-card glass-panel rounded-2xl p-6 border border-slate-200/80 dark:border-slate-800 flex flex-col justify-between">
+                    <div class="space-y-3.5">
                         <div class="flex items-center justify-between">
-                            <span class="px-2.5 py-1 rounded-md bg-amber-50 dark:bg-amber-950/60 text-amber-800 dark:text-amber-300 text-[11px] font-mono font-bold border border-amber-200/80 dark:border-amber-800 flex items-center gap-1.5">
+                            <span class="px-3 py-1 rounded-full bg-amber-500/10 text-amber-800 dark:text-amber-300 text-[11px] font-mono font-bold border border-amber-500/20 flex items-center gap-1.5">
                                 <i class="fa-solid fa-trophy text-amber-500"></i> <span data-i18n="awards.place_1">1st Place</span>
                             </span>
                             <span class="font-mono text-xs text-slate-400 dark:text-slate-500 font-bold">2021</span>
@@ -375,17 +415,17 @@
                         <h3 data-i18n="awards.award4_title" class="text-base font-bold text-slate-900 dark:text-white leading-snug">VEX Robotics Competition</h3>
                         <p data-i18n="awards.award4_desc" class="text-slate-600 dark:text-slate-300 text-xs sm:text-sm font-medium">National Level Championship</p>
                     </div>
-                    <div class="pt-4 mt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between font-mono text-[11px] text-slate-500 dark:text-slate-400">
+                    <div class="pt-4 mt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between font-mono text-[11px] text-slate-500 dark:text-slate-400">
                         <span>VEX Robotics</span>
                         <span data-i18n="awards.national_level" class="text-amber-600 dark:text-amber-400 font-bold">National Level</span>
                     </div>
                 </div>
 
                 <!-- Award 5 -->
-                <div class="glass-panel rounded-xl p-6 shadow-xs hover:shadow-md hover:-translate-y-1 transition-all border border-slate-200/90 dark:border-slate-800 flex flex-col justify-between">
-                    <div class="space-y-3">
+                <div class="glow-card glass-panel rounded-2xl p-6 border border-slate-200/80 dark:border-slate-800 flex flex-col justify-between">
+                    <div class="space-y-3.5">
                         <div class="flex items-center justify-between">
-                            <span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 text-[11px] font-mono font-bold border border-slate-200 dark:border-slate-700 flex items-center gap-1.5">
+                            <span class="px-3 py-1 rounded-full bg-slate-500/10 text-slate-800 dark:text-slate-200 text-[11px] font-mono font-bold border border-slate-500/20 flex items-center gap-1.5">
                                 <i class="fa-solid fa-award text-slate-500 dark:text-slate-400"></i> <span data-i18n="awards.place_2">2nd Place</span>
                             </span>
                             <span class="font-mono text-xs text-slate-400 dark:text-slate-500 font-bold">2021</span>
@@ -393,7 +433,7 @@
                         <h3 data-i18n="awards.award5_title" class="text-base font-bold text-slate-900 dark:text-white leading-snug">1st National Coding Competition</h3>
                         <p data-i18n="awards.award5_desc" class="text-slate-600 dark:text-slate-300 text-xs sm:text-sm font-medium">Selçuklu Primary School National Coding Competition</p>
                     </div>
-                    <div class="pt-4 mt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between font-mono text-[11px] text-slate-500 dark:text-slate-400">
+                    <div class="pt-4 mt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between font-mono text-[11px] text-slate-500 dark:text-slate-400">
                         <span data-i18n="awards.primary_coding">Primary Schools Coding</span>
                         <span data-i18n="awards.national" class="text-slate-600 dark:text-slate-400 font-bold">National</span>
                     </div>
@@ -403,47 +443,47 @@
 
         <!-- INTERACTIVE LIGHT TERMINAL / LAB WIDGET -->
         <section id="terminal" class="space-y-6 scroll-mt-24">
-            <div class="border-b border-slate-200 dark:border-slate-800 pb-4">
+            <div class="border-b border-slate-200/80 dark:border-slate-800 pb-5">
                 <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white flex items-center gap-3">
                     <span class="text-brand-500 font-mono text-lg sm:text-xl">03.</span> <span data-i18n="terminal.title">CLI Terminal Lab</span>
                 </h2>
                 <p data-i18n="terminal.subtitle" class="text-slate-500 dark:text-slate-400 text-sm mt-1">Interactive shell environment. Type commands or click quick action triggers below.</p>
             </div>
 
-            <div class="bg-white dark:bg-slate-900 rounded-xl shadow-md border border-slate-300 dark:border-slate-800 overflow-hidden font-mono text-xs">
+            <div class="bg-white dark:bg-slate-900 rounded-2xl shadow-xl border border-slate-200/80 dark:border-slate-800 overflow-hidden font-mono text-xs transition-colors">
                 <!-- Terminal Bar Header -->
-                <div class="bg-slate-100 dark:bg-slate-800 px-4 py-3 border-b border-slate-200 dark:border-slate-700 flex items-center justify-between">
+                <div class="bg-slate-100/80 dark:bg-slate-950 px-5 py-3 border-b border-slate-200/80 dark:border-slate-800 flex items-center justify-between">
                     <div class="flex items-center gap-2">
-                        <span class="w-3 h-3 rounded-full bg-rose-400 inline-block"></span>
-                        <span class="w-3 h-3 rounded-full bg-amber-400 inline-block"></span>
-                        <span class="w-3 h-3 rounded-full bg-emerald-400 inline-block"></span>
-                        <span class="ml-2 text-slate-600 dark:text-slate-300 font-bold text-[11px]">ege@aliegebozkurt.dev:~ (bash)</span>
+                        <span class="w-3 h-3 rounded-full bg-rose-500 inline-block"></span>
+                        <span class="w-3 h-3 rounded-full bg-amber-500 inline-block"></span>
+                        <span class="w-3 h-3 rounded-full bg-emerald-500 inline-block"></span>
+                        <span class="ml-2 text-slate-600 dark:text-slate-400 font-bold text-[11px]">ege@aliegebozkurt.dev:~ (bash)</span>
                     </div>
-                    <div class="text-slate-400 dark:text-slate-500 text-[10px]">v3.4.0-mesh</div>
+                    <div class="text-slate-400 dark:text-slate-500 text-[10px] font-semibold">v3.4.0-mesh</div>
                 </div>
 
                 <!-- Terminal Output Panel -->
-                <div id="terminal-output" class="p-4 sm:p-6 h-72 overflow-y-auto term-scroll bg-slate-50 dark:bg-slate-950 space-y-2 text-slate-800 dark:text-slate-200">
+                <div id="terminal-output" class="p-5 sm:p-6 h-72 overflow-y-auto term-scroll bg-slate-50/50 dark:bg-slate-950/60 space-y-2 text-slate-800 dark:text-slate-200">
                     <div class="text-slate-400 dark:text-slate-500" data-i18n="terminal.welcome">Welcome to Ali Ege Bozkurt's interactive CLI shell.</div>
                     <div class="text-slate-400 dark:text-slate-500"><span data-i18n="terminal.prompt_help">Type</span> <span class="text-brand-600 dark:text-brand-400 font-bold">help</span> <span data-i18n="terminal.prompt_actions">or click action buttons below.</span></div>
-                    <div>---------------------------------------------------</div>
+                    <div class="text-slate-300 dark:text-slate-800">---------------------------------------------------</div>
                 </div>
 
                 <!-- Quick Command Suggestion Buttons -->
-                <div class="bg-slate-100 dark:bg-slate-800/80 border-t border-slate-200 dark:border-slate-700 px-4 py-2 flex flex-wrap gap-2 items-center">
-                    <span data-i18n="terminal.quick_commands" class="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase">Quick Commands:</span>
-                    <button onclick="runQuickCmd('help')" class="px-2 py-1 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 hover:border-brand-400 text-slate-700 dark:text-slate-200 hover:text-brand-600 dark:hover:text-brand-400 rounded text-[11px] transition-colors">help</button>
-                    <button onclick="runQuickCmd('neofetch')" class="px-2 py-1 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 hover:border-brand-400 text-slate-700 dark:text-slate-200 hover:text-brand-600 dark:hover:text-brand-400 rounded text-[11px] transition-colors">neofetch</button>
-                    <button onclick="runQuickCmd('meshtastic')" class="px-2 py-1 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 hover:border-emerald-400 text-slate-700 dark:text-slate-200 hover:text-emerald-600 dark:hover:text-emerald-400 rounded text-[11px] transition-colors font-bold">meshtastic</button>
-                    <button onclick="runQuickCmd('projects')" class="px-2 py-1 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 hover:border-brand-400 text-slate-700 dark:text-slate-200 hover:text-brand-600 dark:hover:text-brand-400 rounded text-[11px] transition-colors">projects</button>
-                    <button onclick="runQuickCmd('clear')" class="px-2 py-1 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 hover:border-rose-400 text-slate-700 dark:text-slate-200 hover:text-rose-600 dark:hover:text-rose-400 rounded text-[11px] transition-colors">clear</button>
+                <div class="bg-slate-100/50 dark:bg-slate-900/90 border-t border-slate-200/80 dark:border-slate-800 px-5 py-2.5 flex flex-wrap gap-2 items-center">
+                    <span data-i18n="terminal.quick_commands" class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Quick Commands:</span>
+                    <button onclick="runQuickCmd('help')" class="px-2.5 py-1 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-brand-400 text-slate-700 dark:text-slate-200 hover:text-brand-600 dark:hover:text-brand-400 rounded-lg text-[11px] font-semibold transition-all shadow-2xs">help</button>
+                    <button onclick="runQuickCmd('neofetch')" class="px-2.5 py-1 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-brand-400 text-slate-700 dark:text-slate-200 hover:text-brand-600 dark:hover:text-brand-400 rounded-lg text-[11px] font-semibold transition-all shadow-2xs">neofetch</button>
+                    <button onclick="runQuickCmd('meshtastic')" class="px-2.5 py-1 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-emerald-400 text-slate-700 dark:text-slate-200 hover:text-emerald-600 dark:hover:text-emerald-400 rounded-lg text-[11px] font-bold transition-all shadow-2xs">meshtastic</button>
+                    <button onclick="runQuickCmd('projects')" class="px-2.5 py-1 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-brand-400 text-slate-700 dark:text-slate-200 hover:text-brand-600 dark:hover:text-brand-400 rounded-lg text-[11px] font-semibold transition-all shadow-2xs">projects</button>
+                    <button onclick="runQuickCmd('clear')" class="px-2.5 py-1 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-rose-400 text-slate-700 dark:text-slate-200 hover:text-rose-600 dark:hover:text-rose-400 rounded-lg text-[11px] font-semibold transition-all shadow-2xs">clear</button>
                 </div>
 
                 <!-- Input Prompt Form -->
-                <form id="terminal-form" class="bg-white dark:bg-slate-900 px-4 py-3 border-t border-slate-200 dark:border-slate-800 flex items-center gap-2">
+                <form id="terminal-form" class="bg-white dark:bg-slate-900 px-5 py-3 border-t border-slate-200/80 dark:border-slate-800 flex items-center gap-2">
                     <span class="text-emerald-600 dark:text-emerald-400 font-bold">ege@aliegebozkurt.dev:~$</span>
                     <input type="text" id="terminal-input" autocomplete="off" placeholder="Type a command (e.g., 'meshtastic', 'neofetch')..." class="flex-grow bg-transparent outline-none text-slate-900 dark:text-white font-mono text-xs">
-                    <button type="submit" data-i18n="terminal.execute" class="px-3 py-1 bg-brand-600 hover:bg-brand-700 text-white rounded font-bold text-[11px] transition-colors">
+                    <button type="submit" data-i18n="terminal.execute" class="px-3.5 py-1.5 bg-brand-600 hover:bg-brand-700 text-white rounded-lg font-bold text-[11px] transition-colors shadow-2xs">
                         Execute
                     </button>
                 </form>
@@ -452,17 +492,17 @@
 
         <!-- CONTACT & DIRECT LINKS -->
         <section id="contact" class="space-y-8 scroll-mt-24">
-            <div class="border-b border-slate-200 dark:border-slate-800 pb-4">
+            <div class="border-b border-slate-200/80 dark:border-slate-800 pb-5">
                 <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white flex items-center gap-3">
                     <span class="text-brand-500 font-mono text-lg sm:text-xl">04.</span> <span data-i18n="contact.title">Contact & Direct Links</span>
                 </h2>
                 <p data-i18n="contact.subtitle" class="text-slate-500 dark:text-slate-400 text-sm mt-1">Direct contact points for engineering projects, robotics, and agent integrations.</p>
             </div>
 
-            <div class="glass-panel border border-slate-200 dark:border-slate-800 rounded-2xl p-6 sm:p-8 grid grid-cols-1 md:grid-cols-2 gap-8 shadow-sm">
+            <div class="glass-panel border border-slate-200/80 dark:border-slate-800 rounded-3xl p-6 sm:p-10 grid grid-cols-1 md:grid-cols-2 gap-10 shadow-xl shadow-slate-200/40 dark:shadow-none">
                 <div class="space-y-6">
                     <div>
-                        <h3 data-i18n="contact.get_in_touch" class="text-xl font-bold text-slate-900 dark:text-white mb-2">Get In Touch</h3>
+                        <h3 data-i18n="contact.get_in_touch" class="text-xl font-extrabold text-slate-900 dark:text-white mb-2">Get In Touch</h3>
                         <p data-i18n="contact.desc" class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
                             Reach out regarding computer vision robotics, home servers, or AI agent integrations.
                         </p>
@@ -470,28 +510,28 @@
 
                     <div class="space-y-3 font-mono text-xs sm:text-sm">
                         <!-- Personal Email -->
-                        <div class="space-y-1">
+                        <div class="space-y-1.5">
                             <span data-i18n="contact.personal_email" class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Direct Personal Email</span>
-                            <div class="flex items-center justify-between text-slate-800 dark:text-slate-100 bg-white dark:bg-slate-800/80 p-3 rounded-xl border border-slate-200 dark:border-slate-700 shadow-2xs">
-                                <div class="flex items-center gap-2 overflow-hidden">
+                            <div class="flex items-center justify-between text-slate-800 dark:text-slate-100 bg-white/80 dark:bg-slate-900/80 p-3.5 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-2xs">
+                                <div class="flex items-center gap-2.5 overflow-hidden">
                                     <i class="fa-solid fa-envelope text-brand-500 flex-shrink-0"></i>
                                     <span id="email-text-personal" class="font-bold truncate">aliegebozkurt12@gmail.com</span>
                                 </div>
-                                <button onclick="copyEmailText('aliegebozkurt12@gmail.com', 'copy-btn-personal')" id="copy-btn-personal" class="ml-2 px-2.5 py-1 text-xs bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg hover:border-brand-500 hover:bg-white dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 transition-colors flex-shrink-0">
+                                <button onclick="copyEmailText('aliegebozkurt12@gmail.com', 'copy-btn-personal')" id="copy-btn-personal" class="ml-2 px-3 py-1.5 text-xs bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl hover:border-brand-500 hover:bg-white dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition-all flex-shrink-0 font-bold">
                                     <i class="fa-regular fa-copy"></i> <span data-i18n="contact.copy">Copy</span>
                                 </button>
                             </div>
                         </div>
 
                         <!-- AI Agent Email -->
-                        <div class="space-y-1">
+                        <div class="space-y-1.5">
                             <span data-i18n="contact.agent_email" class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">AI Agent Gateway Email</span>
-                            <div class="flex items-center justify-between text-slate-800 dark:text-slate-100 bg-white dark:bg-slate-800/80 p-3 rounded-xl border border-slate-200 dark:border-slate-700 shadow-2xs">
-                                <div class="flex items-center gap-2 overflow-hidden">
+                            <div class="flex items-center justify-between text-slate-800 dark:text-slate-100 bg-white/80 dark:bg-slate-900/80 p-3.5 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-2xs">
+                                <div class="flex items-center gap-2.5 overflow-hidden">
                                     <i class="fa-solid fa-robot text-purple-600 dark:text-purple-400 flex-shrink-0"></i>
                                     <span id="email-text-agent" class="font-bold truncate">ai.aliegebozkurt@gmail.com</span>
                                 </div>
-                                <button onclick="copyEmailText('ai.aliegebozkurt@gmail.com', 'copy-btn-agent')" id="copy-btn-agent" class="ml-2 px-2.5 py-1 text-xs bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg hover:border-brand-500 hover:bg-white dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 transition-colors flex-shrink-0">
+                                <button onclick="copyEmailText('ai.aliegebozkurt@gmail.com', 'copy-btn-agent')" id="copy-btn-agent" class="ml-2 px-3 py-1.5 text-xs bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl hover:border-brand-500 hover:bg-white dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition-all flex-shrink-0 font-bold">
                                     <i class="fa-regular fa-copy"></i> <span data-i18n="contact.copy">Copy</span>
                                 </button>
                             </div>
@@ -499,30 +539,30 @@
                     </div>
 
                     <div class="flex flex-wrap items-center gap-3 pt-2">
-                        <a href="https://github.com/BrickFPV" target="_blank" class="px-4 py-2 bg-slate-900 dark:bg-slate-800 hover:bg-slate-800 dark:hover:bg-slate-700 text-white font-mono text-xs font-semibold rounded-xl transition-colors flex items-center gap-2 shadow-xs">
+                        <a href="https://github.com/BrickFPV" target="_blank" class="px-5 py-2.5 bg-slate-900 dark:bg-slate-800 hover:bg-slate-800 dark:hover:bg-slate-700 text-white font-mono text-xs font-semibold rounded-2xl transition-all flex items-center gap-2 shadow-sm">
                             <i class="fa-brands fa-github text-sm"></i> GitHub (@BrickFPV)
                         </a>
-                        <a href="mailto:aliegebozkurt12@gmail.com" class="px-4 py-2 bg-brand-600 hover:bg-brand-700 text-white font-mono text-xs font-semibold rounded-xl transition-colors flex items-center gap-2 shadow-xs">
+                        <a href="mailto:aliegebozkurt12@gmail.com" class="px-5 py-2.5 bg-brand-600 hover:bg-brand-700 text-white font-mono text-xs font-semibold rounded-2xl transition-all flex items-center gap-2 shadow-md shadow-brand-600/20">
                             <i class="fa-solid fa-paper-plane text-xs"></i> <span data-i18n="contact.send_mail">Send Mail</span>
                         </a>
                     </div>
                 </div>
 
                 <!-- Contact Form -->
-                <form id="contact-form" class="space-y-4 bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200/90 dark:border-slate-800 shadow-2xs">
+                <form id="contact-form" class="space-y-4 bg-white/90 dark:bg-slate-900/90 p-6 sm:p-8 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm">
                     <div>
-                        <label data-i18n="contact.form_name" class="block font-mono text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">YOUR NAME</label>
-                        <input type="text" required class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg p-2.5 text-xs sm:text-sm text-slate-900 dark:text-white outline-none focus:bg-white dark:focus:bg-slate-800 focus:border-brand-500 transition-colors font-mono" placeholder="Name">
+                        <label data-i18n="contact.form_name" class="block font-mono text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">YOUR NAME</label>
+                        <input type="text" required class="w-full bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 rounded-xl p-3 text-xs sm:text-sm text-slate-900 dark:text-white outline-none focus:bg-white dark:focus:bg-slate-800 focus:border-brand-500 transition-all font-mono" placeholder="Name">
                     </div>
                     <div>
-                        <label data-i18n="contact.form_email" class="block font-mono text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">EMAIL ADDRESS</label>
-                        <input type="email" required class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg p-2.5 text-xs sm:text-sm text-slate-900 dark:text-white outline-none focus:bg-white dark:focus:bg-slate-800 focus:border-brand-500 transition-colors font-mono" placeholder="name@domain.com">
+                        <label data-i18n="contact.form_email" class="block font-mono text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">EMAIL ADDRESS</label>
+                        <input type="email" required class="w-full bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 rounded-xl p-3 text-xs sm:text-sm text-slate-900 dark:text-white outline-none focus:bg-white dark:focus:bg-slate-800 focus:border-brand-500 transition-all font-mono" placeholder="name@domain.com">
                     </div>
                     <div>
-                        <label data-i18n="contact.form_message" class="block font-mono text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">MESSAGE / INQUIRY</label>
-                        <textarea rows="4" required class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg p-2.5 text-xs sm:text-sm text-slate-900 dark:text-white outline-none focus:bg-white dark:focus:bg-slate-800 focus:border-brand-500 transition-colors resize-none font-mono" placeholder="Project message or inquiry..."></textarea>
+                        <label data-i18n="contact.form_message" class="block font-mono text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">MESSAGE / INQUIRY</label>
+                        <textarea rows="4" required class="w-full bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 rounded-xl p-3 text-xs sm:text-sm text-slate-900 dark:text-white outline-none focus:bg-white dark:focus:bg-slate-800 focus:border-brand-500 transition-all resize-none font-mono" placeholder="Project message or inquiry..."></textarea>
                     </div>
-                    <button type="submit" class="w-full py-2.5 bg-brand-600 hover:bg-brand-700 text-white font-mono text-xs font-semibold rounded-lg transition-colors shadow-xs flex items-center justify-center gap-2">
+                    <button type="submit" class="w-full py-3 bg-brand-600 hover:bg-brand-700 text-white font-mono text-xs font-bold rounded-xl transition-all shadow-md shadow-brand-600/20 flex items-center justify-center gap-2">
                         <i class="fa-solid fa-paper-plane text-xs"></i> <span data-i18n="contact.form_submit">Send Message</span>
                     </button>
                     <p id="form-response" data-i18n="contact.form_success" class="text-xs font-mono text-center text-emerald-600 dark:text-emerald-400 hidden font-semibold">✓ Message delivered successfully.</p>
@@ -533,24 +573,24 @@
     </main>
 
     <!-- Footer -->
-    <footer class="border-t border-slate-200 dark:border-slate-800 py-8 text-center font-mono text-xs text-slate-500 dark:text-slate-400 bg-white dark:bg-slate-900 mt-16">
+    <footer class="border-t border-slate-200/80 dark:border-slate-800 py-10 text-center font-mono text-xs text-slate-500 dark:text-slate-400 bg-white/50 dark:bg-slate-950/50 backdrop-blur-md mt-20 transition-colors">
         <div class="max-w-7xl mx-auto px-4 space-y-2">
-            <p data-i18n="footer.rights" class="font-semibold text-slate-700 dark:text-slate-300">&copy; 2026 Ali Ege Bozkurt. All rights reserved.</p>
+            <p data-i18n="footer.rights" class="font-bold text-slate-700 dark:text-slate-300">&copy; 2026 Ali Ege Bozkurt. All rights reserved.</p>
             <p class="text-slate-500 dark:text-slate-400">
-                Email: <a href="mailto:aliegebozkurt12@gmail.com" class="hover:text-brand-600 underline">aliegebozkurt12@gmail.com</a> | 
-                TaMesh: <span class="text-emerald-700 dark:text-emerald-400 font-bold">Node #004c (868 MHz)</span>
+                Email: <a href="mailto:aliegebozkurt12@gmail.com" class="hover:text-brand-600 underline font-semibold">aliegebozkurt12@gmail.com</a> | 
+                TaMesh: <span class="text-emerald-600 dark:text-emerald-400 font-bold">Node #004c (868 MHz)</span>
             </p>
             <p class="text-brand-600 dark:text-brand-400 font-bold">aliegebozkurt.dev</p>
         </div>
     </footer>
 
     <!-- PROJECT MODAL POPUP -->
-    <div id="project-modal" class="fixed inset-0 z-50 hidden bg-slate-900/40 dark:bg-slate-950/60 backdrop-blur-sm flex items-center justify-center p-4">
-        <div class="glass-panel bg-white dark:bg-slate-900 max-w-lg w-full rounded-2xl shadow-xl border border-slate-200 dark:border-slate-800 p-6 space-y-4 relative">
-            <button onclick="closeModal()" class="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 rounded-lg text-sm">
+    <div id="project-modal" class="fixed inset-0 z-50 hidden bg-slate-950/60 backdrop-blur-md flex items-center justify-center p-4">
+        <div class="glass-panel bg-white dark:bg-slate-900 max-w-lg w-full rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-800 p-7 space-y-5 relative">
+            <button onclick="closeModal()" class="absolute top-5 right-5 p-2 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 rounded-xl text-sm transition-colors">
                 <i class="fa-solid fa-xmark text-lg"></i>
             </button>
-            <div id="modal-content" class="space-y-3">
+            <div id="modal-content" class="space-y-4">
                 <!-- Modal details dynamically loaded via JS -->
             </div>
         </div>
