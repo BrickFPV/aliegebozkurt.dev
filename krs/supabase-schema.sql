@@ -24,6 +24,12 @@ create table public.notes (
   unique (member_id, note_type)
 );
 
+grant usage on schema public to authenticated, service_role;
+grant select on public.profiles to authenticated, service_role;
+grant insert, update on public.profiles to service_role;
+grant select, insert, update, delete on public.notes to authenticated, service_role;
+grant usage, select on all sequences in schema public to service_role;
+
 alter table public.profiles enable row level security;
 alter table public.notes enable row level security;
 

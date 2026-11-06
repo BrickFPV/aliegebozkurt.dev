@@ -24,16 +24,27 @@ const users = [
 const admin = createClient(url, serviceRoleKey, { auth: { autoRefreshToken: false, persistSession: false } });
 for (const [username, display_name, role] of users) {
   const password = crypto.randomBytes(18).toString("base64url");
+  const email = `${username}@login.krs.invalid`;
   const { data, error } = await admin.auth.admin.createUser({
-    email: `${username}@login.krs.invalid`,
+    email,
     password,
     email_confirm: true,
     user_metadata: { username, display_name, role },
   });
-  if (error) throw error;
-  const { error: profileError } = await admin.from("profiles").insert({
-    id: data.user.id, username, display_name, role,
-  });
+  let user = data?.user;
+  if (error?.code === "email_exists") {
+    const { data: usersPage, error: listError } = await admin.auth.admin.listUsers({ perPage: 1000 });
+    if (listError) throw listError;
+    user = usersPage.users.find((candidate) => candidate.email === email);
+    if (!user) throw error;
+    console.log(`${display_name}: mevcut hesap bulundu; yeni şifre üretilemedi.`);
+  } else if (error) {
+    throw error;
+  } else {
+    console.log(`${display_name}\t${username}\t${password}`);
+  }
+  const { error: profileError } = await admin.from("profiles").upsert({
+    id: user.id, username, display_name, role,
+  }, { onConflict: "id" });
   if (profileError) throw profileError;
-  console.log(`${display_name}\t${username}\t${password}`);
 }
