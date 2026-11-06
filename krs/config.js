@@ -3,6 +3,6 @@
  * Bu iki değer public olabilir; service_role anahtarını kesinlikle buraya yazmayın.
  */
 window.KRS_CONFIG = {
-  supabaseUrl: "",
-  supabaseAnonKey: "",
+  supabaseUrl: "https://xkzzafszkzaezyygdbwa.supabase.co/rest/v1/",
+  supabaseAnonKey: "sb_publishable_JebI4NYvnoJxDhGM0FQDhg_gnys686k",
 };
