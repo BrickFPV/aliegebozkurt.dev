@@ -39,6 +39,8 @@ as $$ select exists (
   select 1 from public.profiles where id = auth.uid() and role = 'admin'
 ) $$;
 
+grant execute on function public.is_admin() to authenticated;
+
 create policy "Users read own or admins read all profiles"
 on public.profiles for select to authenticated
 using (id = auth.uid() or public.is_admin());

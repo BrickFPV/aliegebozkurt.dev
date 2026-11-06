@@ -20,6 +20,9 @@ const elements = {
   username: document.querySelector("#username"),
   currentUserLabel: document.querySelector("#current-user-label"),
   logoutButton: document.querySelector("#logout-button"),
+  themeToggle: document.querySelector("#theme-toggle"),
+  themeIcon: document.querySelector("#theme-icon"),
+  themeLabel: document.querySelector("#theme-label"),
   dashboardTitle: document.querySelector("#dashboard-title"),
   roleBadge: document.querySelector("#role-badge"),
   adminPanel: document.querySelector("#admin-panel"),
@@ -42,6 +45,19 @@ function setStatus(message, isError = false) {
 
 function showLoginError(message) {
   elements.loginError.textContent = message;
+}
+
+function updateThemeButton() {
+  const dark = document.documentElement.dataset.theme === "dark";
+  elements.themeIcon.textContent = dark ? "☀" : "☾";
+  elements.themeLabel.textContent = dark ? "Açık tema" : "Koyu tema";
+  elements.themeToggle.setAttribute("aria-label", dark ? "Açık temaya geç" : "Koyu temaya geç");
+}
+
+function initializeTheme() {
+  const savedTheme = localStorage.getItem("krs-theme");
+  document.documentElement.dataset.theme = savedTheme === "dark" ? "dark" : "light";
+  updateThemeButton();
 }
 
 function noteCard(member, note, editable) {
@@ -89,7 +105,7 @@ async function loadNotes(member, container, editable) {
     .select("note_type, score, comment")
     .eq("member_id", member.id);
   if (error) {
-    setStatus("Notlar yüklenemedi.", true);
+    setStatus(`Notlar yüklenemedi: ${error.message}`, true);
     console.error(error);
     return;
   }
@@ -179,6 +195,15 @@ elements.logoutButton.addEventListener("click", async () => {
   elements.dashboardView.classList.add("hidden");
   elements.loginView.classList.remove("hidden");
 });
+
+elements.themeToggle.addEventListener("click", () => {
+  const nextTheme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+  document.documentElement.dataset.theme = nextTheme;
+  localStorage.setItem("krs-theme", nextTheme);
+  updateThemeButton();
+});
+
+initializeTheme();
 
 if (client) {
   client.auth.onAuthStateChange((_event, session) => {
