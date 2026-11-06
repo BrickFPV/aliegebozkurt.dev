@@ -3,6 +3,7 @@ import crypto from "node:crypto";
 
 const url = process.env.SUPABASE_URL;
 const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+const resetExisting = process.env.RESET_EXISTING_PASSWORDS === "true";
 if (!url || !serviceRoleKey) {
   throw new Error("SUPABASE_URL ve SUPABASE_SERVICE_ROLE_KEY ortam değişkenlerini ayarlayın.");
 }
@@ -47,7 +48,14 @@ for (const [username, display_name, role] of users) {
     if (listError) throw listError;
     user = usersPage.users.find((candidate) => candidate.email === email);
     if (!user) throw error;
-    console.log(`${display_name}: mevcut hesap bulundu; yeni şifre üretilemedi.`);
+    if (resetExisting) {
+      const { data: updated, error: updateError } = await admin.auth.admin.updateUserById(user.id, { password });
+      if (updateError) throw updateError;
+      user = updated.user;
+      console.log(`${display_name}\t${username}\t${password}`);
+    } else {
+      console.log(`${display_name}: mevcut hesap bulundu; şifre değiştirilmedi.`);
+    }
   } else if (error) {
     throw error;
   } else {
