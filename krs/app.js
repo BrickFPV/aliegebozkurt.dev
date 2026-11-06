@@ -23,6 +23,9 @@ const elements = {
   themeToggle: document.querySelector("#theme-toggle"),
   themeIcon: document.querySelector("#theme-icon"),
   themeLabel: document.querySelector("#theme-label"),
+  loginThemeToggle: document.querySelector("#login-theme-toggle"),
+  loginThemeIcon: document.querySelector("#login-theme-icon"),
+  loginThemeLabel: document.querySelector("#login-theme-label"),
   dashboardTitle: document.querySelector("#dashboard-title"),
   roleBadge: document.querySelector("#role-badge"),
   adminPanel: document.querySelector("#admin-panel"),
@@ -52,6 +55,9 @@ function updateThemeButton() {
   elements.themeIcon.textContent = dark ? "☀" : "☾";
   elements.themeLabel.textContent = dark ? "Açık tema" : "Koyu tema";
   elements.themeToggle.setAttribute("aria-label", dark ? "Açık temaya geç" : "Koyu temaya geç");
+  elements.loginThemeIcon.textContent = dark ? "☀" : "☾";
+  elements.loginThemeLabel.textContent = dark ? "Açık tema" : "Koyu tema";
+  elements.loginThemeToggle.setAttribute("aria-label", dark ? "Açık temaya geç" : "Koyu temaya geç");
 }
 
 function initializeTheme() {
@@ -201,6 +207,10 @@ elements.themeToggle.addEventListener("click", () => {
   document.documentElement.dataset.theme = nextTheme;
   localStorage.setItem("krs-theme", nextTheme);
   updateThemeButton();
+});
+
+elements.loginThemeToggle.addEventListener("click", () => {
+  elements.themeToggle.click();
 });
 
 initializeTheme();

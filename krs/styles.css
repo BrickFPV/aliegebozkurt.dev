@@ -47,6 +47,7 @@ button { cursor: pointer; }
 .login-layout { display: grid; min-height: 100vh; place-items: center; padding: 1.5rem; background: radial-gradient(circle at 20% 0%, #e8f0ff 0, var(--background) 48%); }
 :root[data-theme="dark"] .login-layout { background: radial-gradient(circle at 20% 0%, #17264a 0, var(--background) 45%); }
 .login-card { width: min(100%, 440px); padding: 2.5rem; background: var(--surface); border: 1px solid var(--border); border-radius: 22px; box-shadow: var(--shadow); }
+.login-theme-toggle { position: fixed; top: 1.25rem; right: 1.25rem; z-index: 2; }
 .brand-mark { margin-bottom: 1.5rem; color: var(--text); font-size: 2rem; font-weight: 900; letter-spacing: 0.18em; }
 .brand-mark.small { margin: 0; font-size: 1.4rem; }
 h1, h2, h3 { margin: 0; line-height: 1.15; }
