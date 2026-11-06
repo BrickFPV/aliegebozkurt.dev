@@ -25,12 +25,22 @@ const admin = createClient(url, serviceRoleKey, { auth: { autoRefreshToken: fals
 for (const [username, display_name, role] of users) {
   const password = crypto.randomBytes(18).toString("base64url");
   const email = `${username}@login.krs.invalid`;
-  const { data, error } = await admin.auth.admin.createUser({
-    email,
-    password,
-    email_confirm: true,
-    user_metadata: { username, display_name, role },
-  });
+  let data;
+  let error;
+  try {
+    ({ data, error } = await admin.auth.admin.createUser({
+      email,
+      password,
+      email_confirm: true,
+      user_metadata: { username, display_name, role },
+    }));
+  } catch (createError) {
+    if (createError?.code === "email_exists" || createError?.status === 422) {
+      error = createError;
+    } else {
+      throw createError;
+    }
+  }
   let user = data?.user;
   if (error?.code === "email_exists") {
     const { data: usersPage, error: listError } = await admin.auth.admin.listUsers({ perPage: 1000 });
