@@ -9,7 +9,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 
     <!-- Three.js r128 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -99,7 +99,7 @@
             top: 16px;
             left: 20px;
             right: 20px;
-            z-index: 40;
+            z-index: 45;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -385,6 +385,231 @@
             font-weight: 700;
         }
 
+        /* Full-Screen Transparent Intro Greeting */
+        #intro-greeting {
+            position: fixed;
+            inset: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 35;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 24px;
+            background: radial-gradient(
+                circle at 50% 48%,
+                rgba(10, 14, 22, 0.08) 0%,
+                rgba(10, 14, 22, 0.34) 68%,
+                rgba(8, 11, 18, 0.56) 100%
+            );
+            pointer-events: none;
+            will-change: opacity, transform, filter;
+            transform-origin: center center;
+        }
+
+        .greeting-frame {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            will-change: transform;
+        }
+
+        /* Subtle Architectural Viewport Corner Ticks */
+        .corner-tick {
+            position: fixed;
+            width: 22px;
+            height: 22px;
+            border-color: rgba(255, 226, 179, 0.28);
+            border-style: solid;
+            pointer-events: none;
+        }
+        .corner-tick.tl { top: 68px; left: 24px; border-width: 1.5px 0 0 1.5px; }
+        .corner-tick.tr { top: 68px; right: 24px; border-width: 1.5px 1.5px 0 0; }
+        .corner-tick.bl { bottom: 24px; left: 24px; border-width: 0 0 1.5px 1.5px; }
+        .corner-tick.br { bottom: 24px; right: 24px; border-width: 0 1.5px 1.5px 0; }
+
+        .greeting-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            padding: 6px 15px;
+            border-radius: 999px;
+            background: rgba(15, 20, 30, 0.28);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 226, 179, 0.24);
+            font-size: 11.5px;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: rgba(254, 243, 199, 0.92);
+            margin-bottom: 22px;
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.22);
+            opacity: 0;
+            animation: greetRise 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+        }
+
+        .greeting-title {
+            font-family: 'Space Grotesk', 'Plus Jakarta Sans', sans-serif;
+            font-size: clamp(3.3rem, 11.5vw, 9.6rem);
+            font-weight: 700;
+            line-height: 0.96;
+            letter-spacing: -0.04em;
+            color: rgba(255, 255, 255, 0.94);
+            text-shadow:
+                0 12px 42px rgba(0, 0, 0, 0.45),
+                0 2px 12px rgba(0, 0, 0, 0.35);
+            margin: 0;
+        }
+
+        .greeting-line {
+            display: block;
+            opacity: 0;
+            animation: greetRise 1.05s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .greeting-line.line-1 {
+            font-weight: 500;
+            color: rgba(248, 250, 252, 0.84);
+            animation-delay: 0.22s;
+        }
+
+        .greeting-line.line-2 {
+            animation-delay: 0.38s;
+        }
+
+        .greeting-accent {
+            background: linear-gradient(
+                120deg,
+                #ffffff 0%,
+                #fef08a 28%,
+                #f59e0b 58%,
+                #fde68a 82%,
+                #ffffff 100%
+            );
+            background-size: 220% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 10px 30px rgba(245, 158, 11, 0.28));
+            animation: shimmerGold 6s linear infinite;
+        }
+
+        .greeting-rule {
+            width: 0px;
+            height: 1.5px;
+            background: linear-gradient(90deg, transparent, rgba(251, 191, 36, 0.85), transparent);
+            margin: 24px auto 18px;
+            animation: expandRule 0.95s cubic-bezier(0.16, 1, 0.3, 1) 0.58s forwards;
+        }
+
+        .greeting-sub {
+            font-size: clamp(0.95rem, 1.6vw, 1.2rem);
+            font-weight: 500;
+            letter-spacing: 0.03em;
+            color: rgba(241, 245, 249, 0.88);
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.55);
+            opacity: 0;
+            animation: greetRise 0.95s cubic-bezier(0.16, 1, 0.3, 1) 0.66s forwards;
+        }
+
+        .greeting-scroll-cue {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            pointer-events: auto;
+            cursor: pointer;
+            opacity: 0;
+            animation: greetFadeIn 1s ease 0.85s forwards;
+            transition: transform 0.25s ease;
+        }
+
+        .greeting-scroll-cue:hover {
+            transform: translateX(-50%) translateY(-2px);
+        }
+
+        .mouse-capsule {
+            width: 24px;
+            height: 38px;
+            border-radius: 999px;
+            border: 1.5px solid rgba(255, 255, 255, 0.45);
+            background: rgba(15, 20, 30, 0.22);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            display: flex;
+            justify-content: center;
+            padding-top: 7px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+        }
+
+        .mouse-wheel {
+            width: 3px;
+            height: 7px;
+            border-radius: 999px;
+            background: #fbbf24;
+            box-shadow: 0 0 8px #f59e0b;
+            animation: wheelGlide 1.8s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+        }
+
+        .greeting-cue-text {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: rgba(248, 250, 252, 0.85);
+            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+        }
+
+        @keyframes greetRise {
+            0% {
+                opacity: 0;
+                transform: translateY(28px) scale(0.97);
+                filter: blur(8px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+                filter: blur(0);
+            }
+        }
+
+        @keyframes greetFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes expandRule {
+            from { width: 0px; opacity: 0; }
+            to { width: 96px; opacity: 1; }
+        }
+
+        @keyframes shimmerGold {
+            0% { background-position: 0% center; }
+            100% { background-position: 220% center; }
+        }
+
+        @keyframes wheelGlide {
+            0% { transform: translateY(0); opacity: 1; }
+            70% { transform: translateY(11px); opacity: 0.15; }
+            100% { transform: translateY(0); opacity: 0; }
+        }
+
+        /* Hide #scroll-prompt since the full-screen greeting has its own scroll cue */
+        #scroll-prompt {
+            display: none !important;
+        }
+
         /* Subtle Scroll Hint */
         #scroll-prompt {
             position: fixed;
@@ -473,6 +698,11 @@
             #scroll-prompt {
                 display: none;
             }
+            .corner-tick.tl { top: 58px; left: 14px; }
+            .corner-tick.tr { top: 58px; right: 14px; }
+            .corner-tick.bl { bottom: 14px; left: 14px; }
+            .corner-tick.br { bottom: 14px; right: 14px; }
+            .greeting-scroll-cue { bottom: 22px; }
         }
     </style>
 </head>
@@ -483,7 +713,7 @@
     </div>
 
     <header>
-        <a href="#" onclick="jumpToStage(0); return false;" class="pill-btn">
+        <a href="#" onclick="enterRoomFromGreeting(); return false;" class="pill-btn">
             <span class="status-dot"></span>
             <span>aliegebozkurt.dev</span>
         </a>
@@ -500,6 +730,34 @@
     <div id="toast">Copied</div>
 
     <div id="canvas-container"></div>
+
+    <!-- Full-Screen Transparent Pre-Scroll Greeting -->
+    <section id="intro-greeting" aria-label="Welcome Greeting">
+        <div class="corner-tick tl"></div>
+        <div class="corner-tick tr"></div>
+        <div class="corner-tick bl"></div>
+        <div class="corner-tick br"></div>
+
+        <div class="greeting-frame" id="greeting-frame">
+            <div class="greeting-eyebrow">
+                <span class="status-dot"></span>
+                <span data-i18n="greet_eyebrow">3D Interactive Workspace</span>
+            </div>
+            <h1 class="greeting-title">
+                <span class="greeting-line line-1" data-i18n="greet_l1">Hi,</span>
+                <span class="greeting-line line-2"><span data-i18n="greet_l2_pre">I am </span><span class="greeting-accent">Ege</span></span>
+            </h1>
+            <div class="greeting-rule"></div>
+            <p class="greeting-sub" data-i18n="greet_sub">Student • FPV &amp; Robotics Builder</p>
+        </div>
+
+        <div class="greeting-scroll-cue" onclick="enterRoomFromGreeting()">
+            <div class="mouse-capsule">
+                <div class="mouse-wheel"></div>
+            </div>
+            <span class="greeting-cue-text" data-i18n="scroll_hint">Scroll to explore</span>
+        </div>
+    </section>
 
     <main id="hud-layer">
         <!-- Stage 0: Room Overview -->
@@ -760,6 +1018,10 @@
 
         const i18n = {
             en: {
+                greet_eyebrow: "3D Interactive Workspace",
+                greet_l1: "Hi,",
+                greet_l2_pre: "I am ",
+                greet_sub: "Student • FPV & Robotics Builder",
                 s0_badge: "Student & Builder",
                 s0_desc: "Student at Bahçeşehir Koleji 50. Yıl Fen ve Teknoloji Lisesi.",
                 s0_cta: "Explore Room",
@@ -810,6 +1072,10 @@
                 copied: "Copied"
             },
             tr: {
+                greet_eyebrow: "3D İnteraktif Çalışma Alanı",
+                greet_l1: "Merhaba,",
+                greet_l2_pre: "Ben ",
+                greet_sub: "Öğrenci • FPV & Robotik Geliştirici",
                 s0_badge: "Öğrenci & Geliştirici",
                 s0_desc: "Bahçeşehir Koleji 50. Yıl Fen ve Teknoloji Lisesi öğrencisi.",
                 s0_cta: "Odayı Keşfet",
@@ -3870,10 +4136,18 @@
         }, { passive: true });
 
         window.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowDown' || e.key === 'PageDown') {
-                jumpToStage(Math.min(NUM_STAGES - 1, currentStage + 1));
+            if (e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === ' ') {
+                if (smoothProgress < 0.035) {
+                    enterRoomFromGreeting();
+                } else {
+                    jumpToStage(Math.min(NUM_STAGES - 1, currentStage + 1));
+                }
             } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
-                jumpToStage(Math.max(0, currentStage - 1));
+                if (currentStage === 0 && smoothProgress >= 0.035) {
+                    targetProgress = 0;
+                } else {
+                    jumpToStage(Math.max(0, currentStage - 1));
+                }
             }
         });
 
@@ -3882,8 +4156,15 @@
             if (p && targetProgress > 0.015) p.style.opacity = '0';
         }
 
+        function enterRoomFromGreeting() {
+            targetProgress = 0.046;
+            orbitYaw = 0;
+            orbitPitch = 0;
+            hidePrompt();
+        }
+
         function jumpToStage(idx) {
-            targetProgress = idx / (NUM_STAGES - 1);
+            targetProgress = idx === 0 ? 0.046 : idx / (NUM_STAGES - 1);
             orbitYaw = 0;
             orbitPitch = 0;
             hidePrompt();
@@ -3930,6 +4211,36 @@
 
             smoothProgress += (targetProgress - smoothProgress) * 0.055;
             document.getElementById('progress-fill').style.width = (smoothProgress * 100).toFixed(2) + '%';
+
+            // Full-screen transparent greeting dissolves smoothly during initial scroll (0 -> 0.042)
+            const greetEl = document.getElementById('intro-greeting');
+            const greetFrameEl = document.getElementById('greeting-frame');
+            const hudLayerEl = document.getElementById('hud-layer');
+            const bottomDockEl = document.getElementById('bottom-dock');
+            const greetFadeT = Math.min(1, Math.max(0, smoothProgress / 0.042));
+            const greetEase = greetFadeT * greetFadeT * (3 - 2 * greetFadeT);
+
+            if (greetEl) {
+                const greetOpacity = 1 - greetEase;
+                greetEl.style.opacity = greetOpacity.toFixed(3);
+                greetEl.style.transform = `scale(${(1 + greetEase * 0.075).toFixed(4)})`;
+                greetEl.style.filter = greetEase > 0.01 ? `blur(${(greetEase * 12).toFixed(1)}px)` : 'none';
+                greetEl.style.visibility = greetOpacity <= 0.01 ? 'hidden' : 'visible';
+                if (greetFrameEl && greetOpacity > 0.01) {
+                    greetFrameEl.style.transform = `translate3d(${(-pointerX * 14).toFixed(1)}px, ${(-pointerY * 10).toFixed(1)}px, 0)`;
+                }
+            }
+
+            // Reveal HUD cards and bottom dock seamlessly as the greeting fades out
+            const hudReveal = Math.min(1, Math.max(0, (greetFadeT - 0.45) / 0.55));
+            if (hudLayerEl) {
+                hudLayerEl.style.opacity = hudReveal.toFixed(3);
+                hudLayerEl.style.visibility = hudReveal <= 0.01 ? 'hidden' : 'visible';
+            }
+            if (bottomDockEl) {
+                bottomDockEl.style.opacity = hudReveal.toFixed(3);
+                bottomDockEl.style.pointerEvents = hudReveal > 0.6 ? 'auto' : 'none';
+            }
 
             const exactStage = smoothProgress * (NUM_STAGES - 1);
             const nearestStage = Math.round(exactStage);
