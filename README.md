@@ -1,1 +1,1 @@
-# [aliegebozkurt.dev](aliegebozkurt.dev)
+# [Open The Site](aliegebozkurt.dev)
