@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Ali Ege Bozkurt — 3D Portfolio</title>
-    <meta name="description" content="Ali Ege Bozkurt — Student at Bahçeşehir Koleji 50. Yıl Fen ve Teknoloji Lisesi. Interactive 3D portfolio featuring room, Custom 1S Tinywhoop, TARS AI, Creality Ender-3, and rooftop Meshtastic Node #004c.">
+    <meta name="description" content="Ali Ege Bozkurt — Student at Bahçeşehir Koleji 50. Yıl Fen ve Teknoloji Lisesi. Interactive 3D portfolio featuring room, Custom 1S Tinywhoop, Cicekli Script & wit image processing library, TARS AI, Creality Ender-3, and rooftop Meshtastic Node #004c.">
     <link rel="canonical" href="https://aliegebozkurt.dev/">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,7 +21,8 @@
       "name": "Ali Ege Bozkurt",
       "url": "https://aliegebozkurt.dev",
       "sameAs": [
-        "https://github.com/BrickFPV"
+        "https://github.com/BrickFPV",
+        "https://github.com/drkkahraman/CicekliScript"
       ],
       "affiliation": {
         "@type": "EducationalOrganization",
@@ -72,7 +73,7 @@
         #three-experience-spacer {
             position: relative;
             width: 100%;
-            height: 700vh;
+            height: 760vh;
             z-index: 1;
         }
 
@@ -1577,8 +1578,35 @@
             </div>
         </section>
 
-        <!-- Stage 2: Workbench — TARS AI, Soldering Station, Hermes AI & Server -->
+        <!-- Stage 2: Cicekli Script & wit Image Processing Library -->
         <section class="stage-card" data-stage="2">
+            <div class="badge" data-i18n="scs_badge">Language &amp; Vision</div>
+            <h2 class="card-title">Cicekli Script &amp; wit</h2>
+            <p class="card-body" data-i18n="scs_desc">
+                A fast, reliable, beginner-friendly programming language written in C — paired with wit ("What Is That"), my image processing library.
+            </p>
+            <div class="spec-list">
+                <div class="spec-row">
+                    <span class="spec-key" data-i18n="scs_k1">Language</span>
+                    <span class="spec-val" data-i18n="scs_v1">Cicekli Script (C Core)</span>
+                </div>
+                <div class="spec-row">
+                    <span class="spec-key" data-i18n="scs_k2">Library</span>
+                    <span class="spec-val" data-i18n="scs_v2">wit — What Is That (CV)</span>
+                </div>
+                <div class="spec-row">
+                    <span class="spec-key" data-i18n="scs_k3">Design</span>
+                    <span class="spec-val" data-i18n="scs_v3">Fast, Reliable &amp; Beginner-Friendly</span>
+                </div>
+            </div>
+            <a href="https://github.com/drkkahraman/CicekliScript" target="_blank" rel="noopener" class="primary-cta">
+                <span data-i18n="scs_cta">Cicekli Script Repository</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+            </a>
+        </section>
+
+        <!-- Stage 3: Workbench — TARS AI, Soldering Station, Hermes AI & Server -->
+        <section class="stage-card" data-stage="3">
             <div class="badge" data-i18n="s2_badge">Workbench</div>
             <h2 class="card-title">TARS AI &amp; Server</h2>
             <p class="card-body" data-i18n="s2_desc">
@@ -1604,8 +1632,8 @@
             </a>
         </section>
 
-        <!-- Stage 3: Creality Ender-3 -->
-        <section class="stage-card right-corner" data-stage="3">
+        <!-- Stage 4: Creality Ender-3 -->
+        <section class="stage-card right-corner" data-stage="4">
             <div class="badge" data-i18n="s3_badge">3D Printer</div>
             <h2 class="card-title">Creality Ender-3</h2>
             <p class="card-body" data-i18n="s3_desc">
@@ -1623,8 +1651,8 @@
             </div>
         </section>
 
-        <!-- Stage 4: Rooftop Meshtastic Node #004c -->
-        <section class="stage-card" data-stage="4">
+        <!-- Stage 5: Rooftop Meshtastic Node #004c -->
+        <section class="stage-card" data-stage="5">
             <div class="badge" data-i18n="s4_badge">Rooftop Radio</div>
             <h2 class="card-title">Meshtastic Node #004c</h2>
             <p class="card-body" data-i18n="s4_desc">
@@ -1642,8 +1670,8 @@
             </div>
         </section>
 
-        <!-- Stage 5: Trophy 1 (2025 FLL Submerged) -->
-        <section class="stage-card" data-stage="5">
+        <!-- Stage 6: Trophy 1 (2025 FLL Submerged) -->
+        <section class="stage-card" data-stage="6">
             <div class="badge" data-i18n="aw_badge_1">Award 1 of 5 • 2025</div>
             <h2 class="card-title" data-i18n="aw1">1st Place for Innovative Project – FLL Challenge Submerged</h2>
             <div class="spec-list">
@@ -1657,16 +1685,16 @@
                 </div>
             </div>
             <div class="trophy-dots">
-                <span class="trophy-dot active" onclick="jumpToStage(5)"></span>
-                <span class="trophy-dot" onclick="jumpToStage(6)"></span>
+                <span class="trophy-dot active" onclick="jumpToStage(6)"></span>
                 <span class="trophy-dot" onclick="jumpToStage(7)"></span>
                 <span class="trophy-dot" onclick="jumpToStage(8)"></span>
                 <span class="trophy-dot" onclick="jumpToStage(9)"></span>
+                <span class="trophy-dot" onclick="jumpToStage(10)"></span>
             </div>
         </section>
 
-        <!-- Stage 6: Trophy 2 (2024 FLL Masterpiece) -->
-        <section class="stage-card" data-stage="6">
+        <!-- Stage 7: Trophy 2 (2024 FLL Masterpiece) -->
+        <section class="stage-card" data-stage="7">
             <div class="badge" data-i18n="aw_badge_2">Award 2 of 5 • 2024</div>
             <h2 class="card-title" data-i18n="aw2">1st Place for Innovative Project – FLL Challenge Masterpiece</h2>
             <div class="spec-list">
@@ -1680,16 +1708,16 @@
                 </div>
             </div>
             <div class="trophy-dots">
-                <span class="trophy-dot" onclick="jumpToStage(5)"></span>
-                <span class="trophy-dot active" onclick="jumpToStage(6)"></span>
-                <span class="trophy-dot" onclick="jumpToStage(7)"></span>
+                <span class="trophy-dot" onclick="jumpToStage(6)"></span>
+                <span class="trophy-dot active" onclick="jumpToStage(7)"></span>
                 <span class="trophy-dot" onclick="jumpToStage(8)"></span>
                 <span class="trophy-dot" onclick="jumpToStage(9)"></span>
+                <span class="trophy-dot" onclick="jumpToStage(10)"></span>
             </div>
         </section>
 
-        <!-- Stage 7: Trophy 3 (2022 Selçuklu Coding) -->
-        <section class="stage-card" data-stage="7">
+        <!-- Stage 8: Trophy 3 (2022 Selçuklu Coding) -->
+        <section class="stage-card" data-stage="8">
             <div class="badge" data-i18n="aw_badge_3">Award 3 of 5 • 2022</div>
             <h2 class="card-title" data-i18n="aw3">1st Place – Selçuklu Primary School 2nd National Coding Competition for Primary Schools</h2>
             <div class="spec-list">
@@ -1703,16 +1731,16 @@
                 </div>
             </div>
             <div class="trophy-dots">
-                <span class="trophy-dot" onclick="jumpToStage(5)"></span>
                 <span class="trophy-dot" onclick="jumpToStage(6)"></span>
-                <span class="trophy-dot active" onclick="jumpToStage(7)"></span>
-                <span class="trophy-dot" onclick="jumpToStage(8)"></span>
+                <span class="trophy-dot" onclick="jumpToStage(7)"></span>
+                <span class="trophy-dot active" onclick="jumpToStage(8)"></span>
                 <span class="trophy-dot" onclick="jumpToStage(9)"></span>
+                <span class="trophy-dot" onclick="jumpToStage(10)"></span>
             </div>
         </section>
 
-        <!-- Stage 8: Trophy 4 (2021 VEX National) -->
-        <section class="stage-card" data-stage="8">
+        <!-- Stage 9: Trophy 4 (2021 VEX National) -->
+        <section class="stage-card" data-stage="9">
             <div class="badge" data-i18n="aw_badge_4">Award 4 of 5 • 2021</div>
             <h2 class="card-title" data-i18n="aw4">1st Place – VEX Robotics Competition (National Level)</h2>
             <div class="spec-list">
@@ -1726,16 +1754,16 @@
                 </div>
             </div>
             <div class="trophy-dots">
-                <span class="trophy-dot" onclick="jumpToStage(5)"></span>
                 <span class="trophy-dot" onclick="jumpToStage(6)"></span>
                 <span class="trophy-dot" onclick="jumpToStage(7)"></span>
-                <span class="trophy-dot active" onclick="jumpToStage(8)"></span>
-                <span class="trophy-dot" onclick="jumpToStage(9)"></span>
+                <span class="trophy-dot" onclick="jumpToStage(8)"></span>
+                <span class="trophy-dot active" onclick="jumpToStage(9)"></span>
+                <span class="trophy-dot" onclick="jumpToStage(10)"></span>
             </div>
         </section>
 
-        <!-- Stage 9: Trophy 5 (2021 Selçuklu 1st Coding) -->
-        <section class="stage-card" data-stage="9">
+        <!-- Stage 10: Trophy 5 (2021 Selçuklu 1st Coding) -->
+        <section class="stage-card" data-stage="10">
             <div class="badge" data-i18n="aw_badge_5">Award 5 of 5 • 2021</div>
             <h2 class="card-title" data-i18n="aw5">2nd Place – Selçuklu Primary School 1st National Coding Competition for Primary Schools</h2>
             <div class="spec-list">
@@ -1749,16 +1777,16 @@
                 </div>
             </div>
             <div class="trophy-dots">
-                <span class="trophy-dot" onclick="jumpToStage(5)"></span>
                 <span class="trophy-dot" onclick="jumpToStage(6)"></span>
                 <span class="trophy-dot" onclick="jumpToStage(7)"></span>
                 <span class="trophy-dot" onclick="jumpToStage(8)"></span>
-                <span class="trophy-dot active" onclick="jumpToStage(9)"></span>
+                <span class="trophy-dot" onclick="jumpToStage(9)"></span>
+                <span class="trophy-dot active" onclick="jumpToStage(10)"></span>
             </div>
         </section>
 
-        <!-- Stage 10: Contact -->
-        <section class="stage-card right-corner" data-stage="10">
+        <!-- Stage 11: Contact -->
+        <section class="stage-card right-corner" data-stage="11">
             <div class="badge" data-i18n="s6_badge">Contact</div>
             <h2 class="card-title" data-i18n="s6_title">Get in Touch</h2>
             <div class="contact-stack">
@@ -1792,11 +1820,12 @@
     <nav class="bottom-dock" id="bottom-dock">
         <button class="dock-btn active" data-nav="0" onclick="jumpToStage(0)" data-i18n="nav_0">Room</button>
         <button class="dock-btn" data-nav="1" onclick="jumpToStage(1)">Tinywhoop</button>
-        <button class="dock-btn" data-nav="2" onclick="jumpToStage(2)">TARS AI</button>
-        <button class="dock-btn" data-nav="3" onclick="jumpToStage(3)">Ender-3</button>
-        <button class="dock-btn" data-nav="4" onclick="jumpToStage(4)" data-i18n="nav_4">Roof Node</button>
-        <button class="dock-btn" data-nav="5" onclick="jumpToStage(5)" data-i18n="nav_5">Awards</button>
-        <button class="dock-btn" data-nav="10" onclick="jumpToStage(10)" data-i18n="nav_6">Contact</button>
+        <button class="dock-btn" data-nav="2" onclick="jumpToStage(2)">Cicekli Script</button>
+        <button class="dock-btn" data-nav="3" onclick="jumpToStage(3)">TARS AI</button>
+        <button class="dock-btn" data-nav="4" onclick="jumpToStage(4)">Ender-3</button>
+        <button class="dock-btn" data-nav="5" onclick="jumpToStage(5)" data-i18n="nav_4">Roof Node</button>
+        <button class="dock-btn" data-nav="6" onclick="jumpToStage(6)" data-i18n="nav_5">Awards</button>
+        <button class="dock-btn" data-nav="11" onclick="jumpToStage(11)" data-i18n="nav_6">Contact</button>
         <button class="dock-btn" onclick="scrollToEditorial()" data-i18n="nav_skills">Skills ↓</button>
     </nav>
         </div>
@@ -1819,7 +1848,7 @@
                     Hardware, Embedded Systems &amp; Applied AI.
                 </h1>
                 <p class="sb-hero-sub" data-i18n="ed_sub">
-                    I design custom PCBs, build 1S FPV tinywhoops, and deploy real-time edge vision and self-hosted Linux infrastructure.
+                    I build programming languages and image processing libraries, design custom PCBs, and deploy 1S FPV drones, edge vision, and Linux infrastructure.
                 </p>
 
                 <div class="sb-metrics">
@@ -1910,19 +1939,20 @@
                                 </span>
                                 <span class="sb-card-num">03</span>
                             </div>
-                            <h3 class="sb-card-title" data-i18n="p3_title">Applied AI &amp; Edge Vision</h3>
-                            <p class="sb-card-lead" data-i18n="p3_lead">Real-time vision pipelines and tool-connected AI agents.</p>
+                            <h3 class="sb-card-title" data-i18n="p3_title">Languages, Vision &amp; Applied AI</h3>
+                            <p class="sb-card-lead" data-i18n="p3_lead">Systems programming, image processing libraries, and edge AI.</p>
                             <ul class="sb-bullets">
+                                <li><strong data-i18n="p3_b3_k">Cicekli Script &amp; wit:</strong> <span data-i18n="p3_b3_v">Co-building a fast, reliable language in C and its "What Is That" image processing library.</span></li>
                                 <li><strong data-i18n="p3_b1_k">TARS AI Robot:</strong> <span data-i18n="p3_b1_v">Dual-axis OpenCV face tracking &amp; voice interaction on gpt-oss 120B.</span></li>
                                 <li><strong data-i18n="p3_b2_k">Edge Vehicle Detection:</strong> <span data-i18n="p3_b2_v">160° wide-angle Raspberry Pi pipeline using YOLO11 Nano NCNN.</span></li>
                             </ul>
                         </div>
                         <div class="sb-tag-row">
-                            <span class="sb-tag">Python</span>
+                            <span class="sb-tag">Cicekli Script</span>
+                            <span class="sb-tag">wit (CV)</span>
+                            <span class="sb-tag">C / Python</span>
                             <span class="sb-tag">OpenCV</span>
                             <span class="sb-tag">YOLO11 NCNN</span>
-                            <span class="sb-tag">AI Agents</span>
-                            <span class="sb-tag">Raspberry Pi</span>
                         </div>
                     </article>
 
@@ -2011,6 +2041,22 @@
                         <p class="sb-skill-desc" data-i18n="sk_lora">Solar rooftop node #004c deployment &amp; directional antenna tuning.</p>
                     </div>
 
+                    <div class="sb-skill-item" data-cat="software">
+                        <div class="sb-skill-top">
+                            <span class="sb-skill-name">Cicekli Script (C Core)</span>
+                            <span class="sb-skill-cat" data-i18n="tag_lang">Language</span>
+                        </div>
+                        <p class="sb-skill-desc" data-i18n="sk_cs">Fast, reliable, beginner-friendly programming language implemented in C.</p>
+                    </div>
+
+                    <div class="sb-skill-item" data-cat="ai">
+                        <div class="sb-skill-top">
+                            <span class="sb-skill-name">wit (What Is That)</span>
+                            <span class="sb-skill-cat" data-i18n="tag_ai">AI / CV</span>
+                        </div>
+                        <p class="sb-skill-desc" data-i18n="sk_wit">Image processing and vision library built natively for Cicekli Script.</p>
+                    </div>
+
                     <div class="sb-skill-item" data-cat="ai">
                         <div class="sb-skill-top">
                             <span class="sb-skill-name">Edge Computer Vision</span>
@@ -2080,6 +2126,30 @@
                 </div>
 
                 <div class="sb-build-list">
+                    <!-- Build 0: Cicekli Script & wit -->
+                    <div class="sb-build-row open">
+                        <button class="sb-build-trigger" onclick="toggleBuildRow(this)">
+                            <span class="sb-build-year">2026</span>
+                            <span class="sb-build-name">Cicekli Script &amp; wit (What Is That)</span>
+                            <span class="sb-build-brief" data-i18n="b0_brief">Fast, reliable, beginner-friendly language in C with the wit image processing library.</span>
+                            <span class="sb-build-pill" data-i18n="b0_pill">Language &amp; Vision</span>
+                            <span class="sb-build-plus">+</span>
+                        </button>
+                        <div class="sb-build-drawer">
+                            <div class="sb-drawer-grid">
+                                <div class="sb-drawer-specs">
+                                    <span class="sb-spec-chip"><strong>Language:</strong> Cicekli Script (C Implementation)</span>
+                                    <span class="sb-spec-chip"><strong>Library:</strong> wit — What Is That (Image Processing)</span>
+                                    <span class="sb-spec-chip"><strong>Focus:</strong> Fast, Reliable &amp; Beginner-Friendly</span>
+                                </div>
+                                <a href="https://github.com/drkkahraman/CicekliScript" target="_blank" rel="noopener" class="sb-repo-link">
+                                    <span>GitHub Repo</span>
+                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- Build 1 -->
                     <div class="sb-build-row open">
                         <button class="sb-build-trigger" onclick="toggleBuildRow(this)">
@@ -2300,6 +2370,15 @@
                 s1_k1: "Class",
                 s1_v1: "1S Custom Made Tinywhoop",
                 s1_k2: "Frame",
+                scs_badge: "Language & Vision",
+                scs_desc: "A fast, reliable, beginner-friendly programming language written in C — paired with wit (\"What Is That\"), my image processing library.",
+                scs_k1: "Language",
+                scs_v1: "Cicekli Script (C Core)",
+                scs_k2: "Library",
+                scs_v2: "wit — What Is That (CV)",
+                scs_k3: "Design",
+                scs_v3: "Fast, Reliable & Beginner-Friendly",
+                scs_cta: "Cicekli Script Repository",
                 s2_badge: "Workbench",
                 s2_desc: "3D-printed TARS AI robot, soldering and hot air rework station, Hermes AI, and Debian / CasaOS server.",
                 s2_v2: "Edupage & Printer connections",
@@ -2343,7 +2422,7 @@
                 s6_continue: "Keep scrolling for Skills & Work",
                 ed_eyebrow: "İzmir, Türkiye • Bahçeşehir Koleji 50. Yıl Fen ve Teknoloji Lisesi",
                 ed_title: "Hardware, Embedded Systems & Applied AI.",
-                ed_sub: "I design custom PCBs, build 1S FPV tinywhoops, and deploy real-time edge vision and self-hosted Linux infrastructure.",
+                ed_sub: "I build programming languages and image processing libraries, design custom PCBs, and deploy 1S FPV drones, edge vision, and Linux infrastructure.",
                 ed_m1: "National & FLL Robotics Awards",
                 ed_m2: "Meshtastic Node #004c (TaMesh)",
                 ed_m4: "Debian / CasaOS Home Server",
@@ -2366,8 +2445,10 @@
                 p2_b2_v: "Raspberry Pi-driven Ender-3 printing structural mounts & ducts.",
                 p2_b3_k: "Mechatronics:",
                 p2_b3_v: "Pan-tilt servo mechanisms & 3D-printable Delta kinematics.",
-                p3_title: "Applied AI & Edge Vision",
-                p3_lead: "Real-time vision pipelines and tool-connected AI agents.",
+                p3_title: "Languages, Vision & Applied AI",
+                p3_lead: "Systems programming, image processing libraries, and edge AI.",
+                p3_b3_k: "Cicekli Script & wit:",
+                p3_b3_v: "Co-building a fast, reliable language in C and its \"What Is That\" image processing library.",
                 p3_b1_k: "TARS AI Robot:",
                 p3_b1_v: "Dual-axis OpenCV face tracking & voice interaction on gpt-oss 120B.",
                 p3_b2_k: "Edge Vehicle Detection:",
@@ -2390,6 +2471,9 @@
                 tag_rf: "RF Mesh",
                 tag_ai: "AI / CV",
                 tag_sw: "Software",
+                tag_lang: "Language",
+                sk_cs: "Fast, reliable, beginner-friendly programming language implemented in C.",
+                sk_wit: "Image processing and vision library built natively for Cicekli Script.",
                 sk_pcb_t: "PCB Designing & SMD Rework",
                 sk_pcb: "Custom schematic design, PCB layout, and fine-pitch hot-air soldering.",
                 sk_mcu: "Embedded C++/MicroPython firmware, PWM, I2C & telemetry sensors.",
@@ -2407,6 +2491,8 @@
                 ed_sec3_k: "Engineering Log",
                 ed_sec3_t: "Selected Builds",
                 ed_sec3_n: "Click any row to inspect hardware & stack specs.",
+                b0_brief: "Fast, reliable, beginner-friendly language in C with the wit image processing library.",
+                b0_pill: "Language & Vision",
                 b1_brief: "3D-printed tracking robot with OpenCV & gpt-oss 120B.",
                 b2_name: "Custom PCB Designing",
                 b2_brief: "Custom schematic design, multi-layer PCB layout, and embedded board assembly.",
@@ -2436,6 +2522,15 @@
                 s1_k1: "Sınıf",
                 s1_v1: "1S Özel Yapım Tinywhoop",
                 s1_k2: "Gövde",
+                scs_badge: "Dil & Görüntü İşleme",
+                scs_desc: "C ile yazılmış hızlı, güvenilir ve başlangıç dostu programlama dili — ve onun için geliştirdiğim görüntü işleme kütüphanesi wit (\"What Is That\").",
+                scs_k1: "Dil",
+                scs_v1: "Cicekli Script (C Çekirdek)",
+                scs_k2: "Kütüphane",
+                scs_v2: "wit — What Is That (Görüntü İşleme)",
+                scs_k3: "Tasarım",
+                scs_v3: "Hızlı, Güvenilir & Başlangıç Dostu",
+                scs_cta: "Cicekli Script Deposu",
                 s2_badge: "Çalışma Masası",
                 s2_desc: "3D baskı TARS AI robotu, havya ve sıcak hava istasyonu, Hermes AI ve Debian / CasaOS sunucusu.",
                 s2_v2: "Edupage & Yazıcı bağlantıları",
@@ -2479,7 +2574,7 @@
                 s6_continue: "Yetenekler ve Projeler için kaydırın",
                 ed_eyebrow: "İzmir, Türkiye • Bahçeşehir Koleji 50. Yıl Fen ve Teknoloji Lisesi",
                 ed_title: "Donanım, Gömülü Sistemler & Uygulamalı AI.",
-                ed_sub: "Özel PCB devreler tasarlıyor, 1S FPV tinywhoop dronlar üretiyor ve uçta görüntü işleme ile Linux sunucu altyapıları kuruyorum.",
+                ed_sub: "Programlama dilleri ve görüntü işleme kütüphaneleri geliştiriyor, özel PCB devreler tasarlıyor ve 1S FPV dronlar ile Linux altyapıları kuruyorum.",
                 ed_m1: "Ulusal & FLL Robotik Ödülü",
                 ed_m2: "Meshtastic Düğümü #004c (TaMesh)",
                 ed_m4: "Debian / CasaOS Ev Sunucusu",
@@ -2502,8 +2597,10 @@
                 p2_b2_v: "Raspberry Pi destekli Ender-3 ile özel parça ve soğutma kanalları.",
                 p2_b3_k: "Mekatronik:",
                 p2_b3_v: "Pan-tilt servo mekanizmaları ve 3D baskı Delta robot kinematiği.",
-                p3_title: "Uygulamalı AI & Görüntü İşleme",
-                p3_lead: "Gömülü cihazlarda gerçek zamanlı çıkarım ve araç bağlantılı AI ajanları.",
+                p3_title: "Diller, Görüntü İşleme & Uygulamalı AI",
+                p3_lead: "Sistem programlama, görüntü işleme kütüphaneleri ve uçta yapay zekâ.",
+                p3_b3_k: "Cicekli Script & wit:",
+                p3_b3_v: "Ekibimle C tabanlı hızlı bir dil ve \"What Is That\" görüntü işleme kütüphanesini geliştiriyorum.",
                 p3_b1_k: "TARS AI Robotu:",
                 p3_b1_v: "OpenCV yüz takibi ve gpt-oss 120B tabanlı sesli etkileşim.",
                 p3_b2_k: "Uçta Araç Tespiti:",
@@ -2526,6 +2623,9 @@
                 tag_rf: "RF Mesh",
                 tag_ai: "AI / CV",
                 tag_sw: "Yazılım",
+                tag_lang: "Dil",
+                sk_cs: "C ile geliştirilen hızlı, güvenilir ve başlangıç dostu programlama dili.",
+                sk_wit: "Cicekli Script için geliştirilmiş görüntü işleme ve bilgisayarlı görü kütüphanesi.",
                 sk_pcb_t: "PCB Tasarımı & SMD Lehimleme",
                 sk_pcb: "Özel şematik çizimi, PCB tasarımı ve sıcak hava SMD lehimleme.",
                 sk_mcu: "Gömülü C++/MicroPython yazılımı, PWM, I2C ve telemetri sensörleri.",
@@ -2543,6 +2643,8 @@
                 ed_sec3_k: "Mühendislik Kaydı",
                 ed_sec3_t: "Seçili Projeler",
                 ed_sec3_n: "Donanım ve yazılım detayları için satırlara tıklayın.",
+                b0_brief: "C ile yazılmış hızlı, güvenilir programlama dili ve wit görüntü işleme kütüphanesi.",
+                b0_pill: "Dil & Görüntü",
                 b1_brief: "OpenCV ve gpt-oss 120B destekli 3D baskı takip robotu.",
                 b2_name: "Özel PCB Tasarımı",
                 b2_brief: "Özel şematik çizimi, çok katmanlı PCB tasarımı ve gömülü kart dizgisi.",
@@ -3755,6 +3857,271 @@
         woodDeskMat.position.set(0.25, 0.884, 0.08);
         woodDeskMat.receiveShadow = true;
         woodDeskGroup.add(woodDeskMat);
+
+        // ==========================================
+        // 5B. CICEKLI SCRIPT & wit ("WHAT IS THAT") 3D STUDIO DISPLAY
+        // ==========================================
+        const csScreenCanvas = document.createElement('canvas');
+        csScreenCanvas.width = 640;
+        csScreenCanvas.height = 400;
+        const csCtx = csScreenCanvas.getContext('2d');
+        const csScreenTex = new THREE.CanvasTexture(csScreenCanvas);
+
+        function renderCicekliScriptScreen(timeSec) {
+            const w = 640, h = 400;
+            // Deep obsidian IDE background
+            csCtx.fillStyle = '#0b101b';
+            csCtx.fillRect(0, 0, w, h);
+
+            // Top IDE Header Bar
+            csCtx.fillStyle = '#131b2e';
+            csCtx.fillRect(0, 0, w, 34);
+            csCtx.fillStyle = '#1e293b';
+            csCtx.fillRect(0, 33, w, 1.5);
+
+            // Window control dots
+            ['#ef4444', '#f59e0b', '#10b981'].forEach((col, i) => {
+                csCtx.fillStyle = col;
+                csCtx.beginPath();
+                csCtx.arc(16 + i * 15, 17, 4.5, 0, Math.PI * 2);
+                csCtx.fill();
+            });
+
+            // File tabs
+            csCtx.fillStyle = '#0b101b';
+            csCtx.fillRect(66, 5, 168, 29);
+            csCtx.fillStyle = '#fbbf24';
+            csCtx.font = 'bold 12px monospace';
+            csCtx.textAlign = 'left';
+            csCtx.fillText('● vision_demo.cs', 78, 23);
+
+            csCtx.fillStyle = '#94a3b8';
+            csCtx.font = '600 11px monospace';
+            csCtx.fillText('wit_core.h', 248, 23);
+
+            // Right badge: C Runtime
+            csCtx.fillStyle = 'rgba(245, 158, 11, 0.16)';
+            csCtx.beginPath();
+            csCtx.roundRect(452, 6, 174, 22, 11);
+            csCtx.fill();
+            csCtx.fillStyle = '#fbbf24';
+            csCtx.font = 'bold 11px monospace';
+            csCtx.textAlign = 'center';
+            csCtx.fillText('CicekliScript • C Core', 539, 20);
+
+            // Left Pane: Cicekli Script Source Code
+            csCtx.textAlign = 'left';
+            const codeLines = [
+                { num: '01', parts: [['// Cicekli Script + wit', '#64748b']] },
+                { num: '02', parts: [['use ', '#f59e0b'], ['wit', '#38bdf8'], [' as ', '#f59e0b'], ['vision', '#e2e8f0']] },
+                { num: '03', parts: [] },
+                { num: '04', parts: [['img = vision.', '#e2e8f0'], ['load', '#34d399'], ['("cam0.png")', '#fde68a']] },
+                { num: '05', parts: [['edges = vision.', '#e2e8f0'], ['sobel', '#34d399'], ['(img)', '#e2e8f0']] },
+                { num: '06', parts: [['obj = vision.', '#e2e8f0'], ['identify', '#34d399'], ['(edges)', '#e2e8f0']] },
+                { num: '07', parts: [] },
+                { num: '08', parts: [['print', '#38bdf8'], ['("wit -> ", obj.label)', '#fde68a']] },
+                { num: '09', parts: [['print', '#38bdf8'], ['("conf -> ", obj.score)', '#fde68a']] }
+            ];
+
+            codeLines.forEach((row, idx) => {
+                const y = 62 + idx * 24;
+                csCtx.fillStyle = '#475569';
+                csCtx.font = '12px monospace';
+                csCtx.fillText(row.num, 14, y);
+
+                let curX = 42;
+                csCtx.font = '600 13px monospace';
+                row.parts.forEach(([txt, col]) => {
+                    csCtx.fillStyle = col;
+                    csCtx.fillText(txt, curX, y);
+                    curX += csCtx.measureText(txt).width;
+                });
+            });
+
+            // Bottom-left Terminal Output
+            csCtx.fillStyle = '#070b12';
+            csCtx.fillRect(10, 286, 326, 102);
+            csCtx.strokeStyle = '#1e293b';
+            csCtx.lineWidth = 1.5;
+            csCtx.strokeRect(10, 286, 326, 102);
+
+            csCtx.fillStyle = '#94a3b8';
+            csCtx.font = 'bold 11px monospace';
+            csCtx.fillText('TERMINAL — cicekli run vision_demo.cs', 20, 305);
+
+            csCtx.fillStyle = '#34d399';
+            csCtx.font = '12px monospace';
+            csCtx.fillText('✓ Compiled via C runtime (1.4 ms)', 20, 328);
+            csCtx.fillStyle = '#f8fafc';
+            csCtx.fillText('wit -> 1S_CUSTOM_TINYWHOOP', 20, 350);
+            csCtx.fillStyle = '#fbbf24';
+            csCtx.fillText('conf -> 98.4% [edges: 1,420]', 20, 372);
+
+            // Vertical Divider
+            csCtx.fillStyle = '#1e293b';
+            csCtx.fillRect(346, 34, 2, 366);
+
+            // Right Pane: wit ("What Is That") Image Processing Viewport
+            const vx = 358, vy = 46, vw = 270, vh = 342;
+            csCtx.fillStyle = '#070d17';
+            csCtx.beginPath();
+            csCtx.roundRect(vx, vy, vw, vh, 10);
+            csCtx.fill();
+            csCtx.strokeStyle = 'rgba(56, 189, 248, 0.35)';
+            csCtx.lineWidth = 1.5;
+            csCtx.stroke();
+
+            // Header inside wit viewport
+            csCtx.fillStyle = '#38bdf8';
+            csCtx.font = 'bold 12px monospace';
+            csCtx.fillText('wit • WHAT IS THAT', vx + 14, vy + 24);
+            csCtx.fillStyle = '#64748b';
+            csCtx.font = '11px monospace';
+            csCtx.fillText('IMAGE PROCESSING PIPELINE', vx + 14, vy + 41);
+
+            // Simulated vision grid inside viewport
+            const gx = vx + 16, gy = vy + 54, gw = vw - 32, gh = 196;
+            csCtx.fillStyle = '#0d1626';
+            csCtx.fillRect(gx, gy, gw, gh);
+
+            csCtx.strokeStyle = 'rgba(56, 189, 248, 0.12)';
+            csCtx.lineWidth = 1;
+            for (let x = gx + 24; x < gx + gw; x += 24) {
+                csCtx.beginPath(); csCtx.moveTo(x, gy); csCtx.lineTo(x, gy + gh); csCtx.stroke();
+            }
+            for (let y = gy + 24; y < gy + gh; y += 24) {
+                csCtx.beginPath(); csCtx.moveTo(gx, y); csCtx.lineTo(gx + gw, y); csCtx.stroke();
+            }
+
+            // Stylized edge-detected quad silhouette in center of vision frame
+            const cx = gx + gw * 0.5, cy = gy + gh * 0.52;
+            csCtx.strokeStyle = '#38bdf8';
+            csCtx.lineWidth = 2;
+            [[-36, -28], [36, -28], [-36, 28], [36, 28]].forEach(([dx, dy]) => {
+                csCtx.beginPath();
+                csCtx.arc(cx + dx, cy + dy, 22, 0, Math.PI * 2);
+                csCtx.stroke();
+            });
+            csCtx.strokeStyle = '#fbbf24';
+            csCtx.beginPath();
+            csCtx.moveTo(cx - 26, cy - 20); csCtx.lineTo(cx + 26, cy + 20);
+            csCtx.moveTo(cx + 26, cy - 20); csCtx.lineTo(cx - 26, cy + 20);
+            csCtx.stroke();
+
+            // Animated horizontal wit scanline
+            const scanY = gy + 8 + ((Math.sin(timeSec * 2.2) + 1) * 0.5) * (gh - 16);
+            csCtx.strokeStyle = 'rgba(52, 211, 153, 0.85)';
+            csCtx.lineWidth = 2;
+            csCtx.beginPath();
+            csCtx.moveTo(gx + 4, scanY);
+            csCtx.lineTo(gx + gw - 4, scanY);
+            csCtx.stroke();
+
+            // Emerald bounding box brackets around target
+            const bx = cx - 66, by = cy - 56, bw = 132, bh = 112, bl = 16;
+            csCtx.strokeStyle = '#34d399';
+            csCtx.lineWidth = 3;
+            csCtx.beginPath();
+            csCtx.moveTo(bx, by + bl); csCtx.lineTo(bx, by); csCtx.lineTo(bx + bl, by);
+            csCtx.moveTo(bx + bw - bl, by); csCtx.lineTo(bx + bw, by); csCtx.lineTo(bx + bw, by + bl);
+            csCtx.moveTo(bx, by + bh - bl); csCtx.lineTo(bx, by + bh); csCtx.lineTo(bx + bl, by + bh);
+            csCtx.moveTo(bx + bw - bl, by + bh); csCtx.lineTo(bx + bw, by + bh); csCtx.lineTo(bx + bw, by + bh - bl);
+            csCtx.stroke();
+
+            // Detection tag pill
+            csCtx.fillStyle = '#34d399';
+            csCtx.fillRect(bx, by - 18, 118, 18);
+            csCtx.fillStyle = '#062016';
+            csCtx.font = 'bold 11px monospace';
+            csCtx.fillText('1S_WHOOP 98.4%', bx + 6, by - 5);
+
+            // Bottom telemetry bars inside wit pane
+            csCtx.fillStyle = '#cbd5e1';
+            csCtx.font = 'bold 11px monospace';
+            csCtx.fillText('EDGE FILTER: SOBEL + THRESH', vx + 16, vy + 274);
+            csCtx.fillStyle = '#94a3b8';
+            csCtx.fillText('LATENCY: 1.8 ms • ZERO-ALLOC', vx + 16, vy + 296);
+            csCtx.fillStyle = '#fbbf24';
+            csCtx.fillText('REPO: drkkahraman/CicekliScript', vx + 16, vy + 318);
+
+            csScreenTex.needsUpdate = true;
+        }
+        renderCicekliScriptScreen(0);
+
+        const csWorkstationGroup = new THREE.Group();
+        csWorkstationGroup.position.set(-0.34, 0.88, 0.32);
+        csWorkstationGroup.rotation.y = 1.28;
+        woodDeskGroup.add(csWorkstationGroup);
+
+        // Weighted brushed-aluminum monitor foot & angled neck
+        const monFoot = new THREE.Mesh(new THREE.BoxGeometry(0.16, 0.012, 0.13), matBrushedSteel);
+        monFoot.position.set(0, 0.006, -0.04);
+        monFoot.castShadow = true;
+        csWorkstationGroup.add(monFoot);
+
+        const monNeck = new THREE.Mesh(new THREE.BoxGeometry(0.045, 0.16, 0.018), matBrushedSteel);
+        monNeck.position.set(0, 0.085, -0.075);
+        monNeck.rotation.x = -0.14;
+        monNeck.castShadow = true;
+        csWorkstationGroup.add(monNeck);
+
+        // Slim studio display chassis + glowing Cicekli Script & wit screen
+        const monHead = new THREE.Group();
+        monHead.position.set(0, 0.255, -0.045);
+        monHead.rotation.x = -0.06;
+        csWorkstationGroup.add(monHead);
+
+        const monChassis = new THREE.Mesh(new THREE.BoxGeometry(0.52, 0.33, 0.022), matMatteBlack);
+        monChassis.castShadow = true;
+        monHead.add(monChassis);
+
+        const monTrim = new THREE.Mesh(new THREE.BoxGeometry(0.526, 0.336, 0.012), matBrushedSteel);
+        monTrim.position.z = -0.004;
+        monHead.add(monTrim);
+
+        const monScreen = new THREE.Mesh(
+            new THREE.PlaneGeometry(0.49, 0.305),
+            new THREE.MeshBasicMaterial({ map: csScreenTex })
+        );
+        monScreen.position.z = 0.012;
+        monHead.add(monScreen);
+
+        // Top USB-C Vision Camera Sensor feeding wit ("What Is That")
+        const witCamBody = new THREE.Mesh(new THREE.BoxGeometry(0.085, 0.024, 0.028), matDarkMetal);
+        witCamBody.position.set(0, 0.176, 0.004);
+        witCamBody.castShadow = true;
+        monHead.add(witCamBody);
+
+        const witCamLens = new THREE.Mesh(new THREE.CylinderGeometry(0.008, 0.008, 0.008, 16), matGlowCyan);
+        witCamLens.rotation.x = Math.PI / 2;
+        witCamLens.position.set(0, 0.176, 0.019);
+        monHead.add(witCamLens);
+
+        const witCamLed = new THREE.Mesh(new THREE.SphereGeometry(0.003, 8, 8), matGlowEmerald);
+        witCamLed.position.set(0.024, 0.176, 0.019);
+        monHead.add(witCamLed);
+
+        // Compact 65% Mechanical Developer Keyboard + Wireless Mouse in front of display
+        const kbBase = new THREE.Mesh(new THREE.BoxGeometry(0.31, 0.014, 0.115), matDarkMetal);
+        kbBase.position.set(-0.04, 0.007, 0.105);
+        kbBase.rotation.x = 0.05;
+        kbBase.castShadow = true;
+        csWorkstationGroup.add(kbBase);
+
+        const kbKeys = new THREE.Mesh(new THREE.BoxGeometry(0.292, 0.008, 0.098), matMatteBlack);
+        kbKeys.position.set(-0.04, 0.015, 0.105);
+        kbKeys.rotation.x = 0.05;
+        csWorkstationGroup.add(kbKeys);
+
+        const kbAccentKey = new THREE.Mesh(new THREE.BoxGeometry(0.022, 0.009, 0.018), matGlowAmber);
+        kbAccentKey.position.set(-0.172, 0.016, 0.072);
+        csWorkstationGroup.add(kbAccentKey);
+
+        const devMouse = new THREE.Mesh(new THREE.BoxGeometry(0.056, 0.022, 0.095), matMatteBlack);
+        devMouse.position.set(0.175, 0.011, 0.11);
+        devMouse.rotation.y = -0.12;
+        devMouse.castShadow = true;
+        csWorkstationGroup.add(devMouse);
 
         // ==========================================
         // 6. CUSTOM 1S TINYWHOOP (PHOTO-MATCHED 3D BUILD)
@@ -5326,6 +5693,7 @@
         const waypoints = [
             { cam: [0.35, 5.25, 3.35], target: [-0.45, 4.45, -1.65] },
             { cam: [-3.22, 4.54, -0.02], target: [-3.48, 4.35, -0.25] },
+            { cam: [-3.18, 4.68, 0.24], target: [-4.09, 4.58, -0.03] },
             { cam: [-2.15, 4.86, -0.82], target: [-2.25, 4.42, -2.35] },
             { cam: [-0.62, 5.02, -1.32], target: [0.15, 4.62, -2.85] },
             { cam: [-1.55, 10.05, 3.25], target: [-3.7, 9.18, -0.45] },
@@ -5472,7 +5840,7 @@
             });
             document.querySelectorAll('.dock-btn').forEach(btn => {
                 const navIdx = parseInt(btn.getAttribute('data-nav'), 10);
-                const isAwards = (navIdx === 5 && idx >= 5 && idx <= 9);
+                const isAwards = (navIdx === 6 && idx >= 6 && idx <= 10);
                 btn.classList.toggle('active', navIdx === idx || isAwards);
             });
         }
@@ -5562,7 +5930,7 @@
 
             let cx, cy, cz, tx, ty, tz;
 
-            if (idxA === 3 && idxB === 4) {
+            if (idxA === 4 && idxB === 5) {
                 cx = quadBezier(wpA.cam[0], exitWindowWaypoint.cam[0], wpB.cam[0], easeT);
                 cy = quadBezier(wpA.cam[1], exitWindowWaypoint.cam[1], wpB.cam[1], easeT);
                 cz = quadBezier(wpA.cam[2], exitWindowWaypoint.cam[2], wpB.cam[2], easeT);
@@ -5586,7 +5954,7 @@
             }
 
             const isDroneFocus = (idxA === 1 && idxB === 1 && rawT < 0.15) || (nearestStage === 1 && Math.abs(exactStage - 1) < 0.12);
-            const parallaxScale = (idxA === 1 || idxB === 1) ? 0.025 : ((idxA <= 3 && idxB <= 3) ? 0.12 : 0.38);
+            const parallaxScale = (idxA === 1 || idxB === 1 || idxA === 2 || idxB === 2) ? 0.025 : ((idxA <= 4 && idxB <= 4) ? 0.12 : 0.38);
 
             if (isDroneFocus && Math.abs(orbitYaw) > 0.001) {
                 const dx0 = cx - tx;
@@ -5684,9 +6052,14 @@
                 ring.material.opacity = (1 - cycle) * 0.55;
             });
 
+            // --- 4B. LIVE CICEKLI SCRIPT & wit MONITOR SCANLINE REFRESH (~6 FPS) ---
+            if (nearestStage <= 3 && Math.floor(t * 6) !== Math.floor((t - 0.016) * 6)) {
+                renderCicekliScriptScreen(t);
+            }
+
             // --- 5. INDIVIDUAL TROPHY SPOTLIGHT & GENTLE ROTATION ---
             trophyObjects.forEach((tr, i) => {
-                const trophyStage = 5 + i;
+                const trophyStage = 6 + i;
                 const isFocused = (nearestStage === trophyStage);
                 tr.rotation.y = t * 0.5 + i * 0.7;
                 const baseTop = trophySpecs[i].h + 0.015;
