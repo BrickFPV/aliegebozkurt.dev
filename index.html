@@ -52,21 +52,47 @@
             -moz-osx-font-smoothing: grayscale;
         }
 
-        html, body {
+        html {
             width: 100%;
-            height: 100%;
-            overflow: hidden;
+            overflow-x: hidden;
+            overflow-x: clip;
+            background: var(--bg-dark);
+        }
+
+        body {
+            width: 100%;
+            min-height: 100vh;
+            margin: 0;
+            overflow: visible;
             background: var(--bg-dark);
             font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
             color: var(--text-main);
+        }
+
+        #three-experience-spacer {
+            position: relative;
+            width: 100%;
+            height: 700vh;
+            z-index: 1;
+        }
+
+        #three-sticky-stage {
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            height: 100dvh;
+            overflow: hidden;
             user-select: none;
         }
 
         #canvas-container {
-            position: fixed;
+            position: absolute;
             inset: 0;
-            width: 100vw;
-            height: 100vh;
+            width: 100%;
+            height: 100%;
             z-index: 1;
             cursor: grab;
         }
@@ -149,7 +175,7 @@
 
         /* Clean, High-Contrast HUD Cards */
         #hud-layer {
-            position: fixed;
+            position: absolute;
             inset: 0;
             z-index: 20;
             pointer-events: none;
@@ -343,7 +369,7 @@
 
         /* Bottom Navigation Dock */
         nav.bottom-dock {
-            position: fixed;
+            position: absolute;
             bottom: 16px;
             left: 50%;
             transform: translateX(-50%);
@@ -387,10 +413,10 @@
 
         /* Full-Screen Transparent Intro Greeting */
         #intro-greeting {
-            position: fixed;
+            position: absolute;
             inset: 0;
-            width: 100vw;
-            height: 100vh;
+            width: 100%;
+            height: 100%;
             z-index: 35;
             display: flex;
             flex-direction: column;
@@ -422,7 +448,7 @@
 
         /* Subtle Architectural Viewport Corner Ticks */
         .corner-tick {
-            position: fixed;
+            position: absolute;
             width: 22px;
             height: 22px;
             border-color: rgba(255, 226, 179, 0.28);
@@ -520,7 +546,7 @@
         }
 
         .greeting-scroll-cue {
-            position: fixed;
+            position: absolute;
             bottom: 30px;
             left: 50%;
             transform: translateX(-50%);
@@ -704,6 +730,759 @@
             .corner-tick.br { bottom: 14px; right: 14px; }
             .greeting-scroll-cue { bottom: 22px; }
         }
+
+        /* Adaptive Header Light Mode (White / Sunburnt White Section) */
+        header {
+            z-index: 70;
+            transition: color 0.3s ease;
+        }
+
+        header.light-theme .pill-btn {
+            background: rgba(255, 252, 246, 0.88);
+            border-color: rgba(168, 144, 116, 0.28);
+            color: #1c1917;
+            box-shadow: 0 8px 24px -6px rgba(92, 64, 38, 0.12);
+        }
+
+        header.light-theme .pill-btn:hover {
+            background: #ffffff;
+            border-color: rgba(194, 65, 12, 0.42);
+        }
+
+        header.light-theme .status-dot {
+            background: #c2410c;
+            box-shadow: 0 0 8px rgba(194, 65, 12, 0.45);
+        }
+
+        #back-to-3d-btn {
+            display: none;
+        }
+
+        header.light-theme #back-to-3d-btn {
+            display: inline-flex;
+        }
+
+        #progress-track {
+            z-index: 75;
+        }
+
+        #progress-track.light-theme {
+            background: rgba(28, 25, 23, 0.07);
+        }
+
+        #progress-track.light-theme #progress-fill {
+            background: linear-gradient(90deg, #c2410c, #d97706);
+        }
+
+        .continue-scroll-btn {
+            margin-top: 12px;
+            width: 100%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 9px 14px;
+            border-radius: 12px;
+            background: rgba(245, 158, 11, 0.14);
+            border: 1px solid rgba(251, 191, 36, 0.34);
+            color: #fde68a;
+            font-family: inherit;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s ease, transform 0.2s ease;
+        }
+
+        .continue-scroll-btn:hover {
+            background: rgba(245, 158, 11, 0.24);
+            transform: translateY(-1px);
+        }
+
+        /* =========================================================
+           WHITE & SUNBURNT-WHITE EDITORIAL PORTFOLIO UI
+           ========================================================= */
+        #editorial-page {
+            --sb-white: #ffffff;
+            --sb-cream: #fbf7f0;
+            --sb-sunburnt: #f4ece0;
+            --sb-sand: #ebe0cf;
+            --sb-border: #e5dac8;
+            --sb-border-hover: #cfbda3;
+            --sb-ink: #1c1917;
+            --sb-ink-secondary: #57534e;
+            --sb-muted: #78716c;
+            --sb-accent: #c2410c;
+            --sb-amber: #d97706;
+            --sb-accent-soft: rgba(194, 65, 12, 0.08);
+
+            position: relative;
+            z-index: 40;
+            width: 100%;
+            background: linear-gradient(180deg, #ffffff 0%, #fbf7f0 16%, #f7f0e4 62%, #fbf7f0 100%);
+            color: var(--sb-ink);
+            border-top-left-radius: 32px;
+            border-top-right-radius: 32px;
+            margin-top: -32px;
+            box-shadow: 0 -24px 64px rgba(10, 14, 22, 0.34), 0 -1px 0 rgba(255, 255, 255, 0.9) inset;
+            user-select: text;
+        }
+
+        .sb-handle-bar {
+            display: flex;
+            justify-content: center;
+            padding-top: 14px;
+        }
+
+        .sb-handle-pill {
+            width: 44px;
+            height: 4px;
+            border-radius: 999px;
+            background: var(--sb-sand);
+        }
+
+        .sb-container {
+            max-width: 1060px;
+            margin: 0 auto;
+            padding: 56px 24px 96px;
+        }
+
+        /* Editorial Hero */
+        .sb-hero {
+            padding-bottom: 48px;
+            border-bottom: 1px solid var(--sb-border);
+        }
+
+        .sb-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            border-radius: 999px;
+            background: var(--sb-sunburnt);
+            border: 1px solid var(--sb-border);
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--sb-ink-secondary);
+            margin-bottom: 20px;
+        }
+
+        .sb-eyebrow-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--sb-accent);
+        }
+
+        .sb-hero-title {
+            font-family: 'Space Grotesk', 'Plus Jakarta Sans', sans-serif;
+            font-size: clamp(2.1rem, 4.4vw, 3.35rem);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.08;
+            color: var(--sb-ink);
+            max-width: 780px;
+            margin-bottom: 14px;
+        }
+
+        .sb-hero-title span {
+            color: var(--sb-accent);
+        }
+
+        .sb-hero-sub {
+            font-size: clamp(1rem, 1.4vw, 1.125rem);
+            line-height: 1.6;
+            color: var(--sb-ink-secondary);
+            max-width: 640px;
+            margin-bottom: 32px;
+        }
+
+        /* 3 Compact Metric Tiles */
+        .sb-metrics {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+        }
+
+        .sb-metric-card {
+            background: var(--sb-white);
+            border: 1px solid var(--sb-border);
+            border-radius: 18px;
+            padding: 18px 20px;
+            box-shadow: 0 8px 24px -12px rgba(92, 64, 38, 0.08);
+        }
+
+        .sb-metric-val {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--sb-ink);
+            margin-bottom: 4px;
+        }
+
+        .sb-metric-label {
+            font-size: 12.5px;
+            font-weight: 500;
+            color: var(--sb-muted);
+            line-height: 1.35;
+        }
+
+        /* Section Header */
+        .sb-section {
+            padding-top: 56px;
+        }
+
+        .sb-sec-head {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .sb-sec-kicker {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--sb-accent);
+            margin-bottom: 6px;
+        }
+
+        .sb-sec-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(1.45rem, 2.5vw, 1.9rem);
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            color: var(--sb-ink);
+        }
+
+        .sb-sec-note {
+            font-size: 13.5px;
+            color: var(--sb-muted);
+        }
+
+        /* 4-Card Bento Grid: What I Do */
+        .sb-bento {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .sb-card {
+            background: var(--sb-white);
+            border: 1px solid var(--sb-border);
+            border-radius: 22px;
+            padding: 26px 28px;
+            box-shadow: 0 12px 32px -16px rgba(92, 64, 38, 0.10);
+            transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .sb-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--sb-border-hover);
+            box-shadow: 0 18px 38px -16px rgba(92, 64, 38, 0.15);
+        }
+
+        .sb-card-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 14px;
+        }
+
+        .sb-icon-box {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: var(--sb-sunburnt);
+            border: 1px solid var(--sb-border);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--sb-accent);
+        }
+
+        .sb-card-num {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--sb-muted);
+            letter-spacing: 0.06em;
+        }
+
+        .sb-card-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 19px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--sb-ink);
+            margin-bottom: 4px;
+        }
+
+        .sb-card-lead {
+            font-size: 13.5px;
+            color: var(--sb-muted);
+            margin-bottom: 16px;
+        }
+
+        .sb-bullets {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+            margin-bottom: 20px;
+        }
+
+        .sb-bullets li {
+            position: relative;
+            padding-left: 16px;
+            font-size: 13.5px;
+            line-height: 1.45;
+            color: var(--sb-ink-secondary);
+        }
+
+        .sb-bullets li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 7px;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--sb-amber);
+        }
+
+        .sb-bullets li strong {
+            color: var(--sb-ink);
+            font-weight: 600;
+        }
+
+        .sb-tag-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            padding-top: 14px;
+            border-top: 1px solid var(--sb-cream);
+        }
+
+        .sb-tag {
+            font-size: 11.5px;
+            font-weight: 600;
+            color: var(--sb-ink-secondary);
+            background: var(--sb-cream);
+            border: 1px solid var(--sb-border);
+            padding: 4px 10px;
+            border-radius: 999px;
+        }
+
+        /* Filterable Skills Matrix */
+        .sb-filter-bar {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: var(--sb-sunburnt);
+            border: 1px solid var(--sb-border);
+            padding: 4px;
+            border-radius: 999px;
+        }
+
+        .sb-filter-btn {
+            border: none;
+            background: transparent;
+            padding: 6px 14px;
+            border-radius: 999px;
+            font-family: inherit;
+            font-size: 12.5px;
+            font-weight: 600;
+            color: var(--sb-ink-secondary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .sb-filter-btn:hover {
+            color: var(--sb-ink);
+        }
+
+        .sb-filter-btn.active {
+            background: var(--sb-white);
+            color: var(--sb-ink);
+            box-shadow: 0 2px 8px rgba(92, 64, 38, 0.10);
+        }
+
+        .sb-skills-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .sb-skill-item {
+            background: var(--sb-white);
+            border: 1px solid var(--sb-border);
+            border-radius: 16px;
+            padding: 15px 18px;
+            transition: border-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .sb-skill-item.hidden {
+            display: none;
+        }
+
+        .sb-skill-item:hover {
+            border-color: var(--sb-border-hover);
+            transform: translateY(-1px);
+        }
+
+        .sb-skill-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            margin-bottom: 5px;
+        }
+
+        .sb-skill-name {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--sb-ink);
+        }
+
+        .sb-skill-cat {
+            font-size: 10.5px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--sb-accent);
+            background: var(--sb-accent-soft);
+            padding: 2px 8px;
+            border-radius: 999px;
+            white-space: nowrap;
+        }
+
+        .sb-skill-desc {
+            font-size: 12.5px;
+            line-height: 1.45;
+            color: var(--sb-muted);
+        }
+
+        /* Expandable Selected Builds List */
+        .sb-build-list {
+            background: var(--sb-white);
+            border: 1px solid var(--sb-border);
+            border-radius: 22px;
+            overflow: hidden;
+            box-shadow: 0 12px 32px -16px rgba(92, 64, 38, 0.09);
+        }
+
+        .sb-build-row {
+            border-bottom: 1px solid var(--sb-border);
+            transition: background 0.2s ease;
+        }
+
+        .sb-build-row:last-child {
+            border-bottom: none;
+        }
+
+        .sb-build-trigger {
+            width: 100%;
+            background: transparent;
+            border: none;
+            padding: 18px 24px;
+            display: grid;
+            grid-template-columns: 56px 1.25fr 1.6fr auto 24px;
+            align-items: center;
+            gap: 16px;
+            text-align: left;
+            font-family: inherit;
+            cursor: pointer;
+            color: var(--sb-ink);
+            transition: background 0.2s ease;
+        }
+
+        .sb-build-trigger:hover {
+            background: var(--sb-cream);
+        }
+
+        .sb-build-year {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--sb-muted);
+        }
+
+        .sb-build-name {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--sb-ink);
+        }
+
+        .sb-build-brief {
+            font-size: 13.5px;
+            color: var(--sb-ink-secondary);
+        }
+
+        .sb-build-pill {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--sb-ink-secondary);
+            background: var(--sb-sunburnt);
+            border: 1px solid var(--sb-border);
+            padding: 4px 10px;
+            border-radius: 999px;
+            white-space: nowrap;
+        }
+
+        .sb-build-plus {
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--sb-muted);
+            text-align: center;
+            transition: transform 0.25s ease, color 0.25s ease;
+        }
+
+        .sb-build-row.open .sb-build-plus {
+            transform: rotate(45deg);
+            color: var(--sb-accent);
+        }
+
+        .sb-build-drawer {
+            display: none;
+            padding: 0 24px 20px 96px;
+            background: #fdfbf7;
+            border-top: 1px dashed var(--sb-border);
+        }
+
+        .sb-build-row.open .sb-build-drawer {
+            display: block;
+        }
+
+        .sb-drawer-grid {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            padding-top: 14px;
+        }
+
+        .sb-drawer-specs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .sb-spec-chip {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--sb-ink-secondary);
+            background: var(--sb-white);
+            border: 1px solid var(--sb-border);
+            padding: 5px 11px;
+            border-radius: 10px;
+        }
+
+        .sb-spec-chip strong {
+            color: var(--sb-ink);
+            font-weight: 700;
+        }
+
+        .sb-repo-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12.5px;
+            font-weight: 700;
+            color: var(--sb-accent);
+            text-decoration: none;
+            padding: 6px 12px;
+            border-radius: 999px;
+            background: var(--sb-accent-soft);
+            transition: background 0.2s ease;
+        }
+
+        .sb-repo-link:hover {
+            background: rgba(194, 65, 12, 0.14);
+        }
+
+        /* Clean Awards List */
+        .sb-awards-card {
+            background: var(--sb-white);
+            border: 1px solid var(--sb-border);
+            border-radius: 22px;
+            padding: 8px 24px;
+            box-shadow: 0 12px 32px -16px rgba(92, 64, 38, 0.08);
+        }
+
+        .sb-award-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--sb-cream);
+        }
+
+        .sb-award-row:last-child {
+            border-bottom: none;
+        }
+
+        .sb-award-left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .sb-award-year {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 12.5px;
+            font-weight: 700;
+            color: var(--sb-accent);
+            background: var(--sb-accent-soft);
+            padding: 4px 10px;
+            border-radius: 999px;
+            white-space: nowrap;
+        }
+
+        .sb-award-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--sb-ink);
+        }
+
+        .sb-award-medal {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--sb-muted);
+            white-space: nowrap;
+        }
+
+        /* Sunburnt-White Footer Contact Strip */
+        .sb-footer {
+            margin-top: 56px;
+            background: var(--sb-sunburnt);
+            border: 1px solid var(--sb-border);
+            border-radius: 24px;
+            padding: 28px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .sb-footer-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--sb-ink);
+            margin-bottom: 4px;
+        }
+
+        .sb-footer-sub {
+            font-size: 13.5px;
+            color: var(--sb-ink-secondary);
+        }
+
+        .sb-footer-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .sb-contact-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            border-radius: 999px;
+            background: var(--sb-white);
+            border: 1px solid var(--sb-border);
+            color: var(--sb-ink);
+            font-family: inherit;
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: border-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .sb-contact-pill:hover {
+            border-color: var(--sb-accent);
+            transform: translateY(-1px);
+        }
+
+        .sb-top-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 10px 18px;
+            border-radius: 999px;
+            background: var(--sb-ink);
+            color: #ffffff;
+            border: none;
+            font-family: inherit;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+
+        .sb-top-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        @media (max-width: 900px) {
+            .sb-metrics {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .sb-skills-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .sb-build-trigger {
+                grid-template-columns: 48px 1fr auto 20px;
+            }
+            .sb-build-brief {
+                display: none;
+            }
+            .sb-build-drawer {
+                padding-left: 24px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            #three-experience-spacer {
+                height: 620vh;
+            }
+            .sb-bento {
+                grid-template-columns: 1fr;
+            }
+            .sb-skills-grid {
+                grid-template-columns: 1fr;
+            }
+            .sb-metrics {
+                grid-template-columns: 1fr;
+            }
+            .sb-container {
+                padding: 40px 16px 72px;
+            }
+            .sb-card {
+                padding: 20px;
+            }
+            .sb-award-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 6px;
+            }
+            .sb-footer {
+                padding: 22px 20px;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -719,6 +1498,10 @@
         </a>
 
         <div class="header-right">
+            <button id="back-to-3d-btn" class="pill-btn" onclick="scrollToTop3D()">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+                <span data-i18n="nav_back_3d">3D Room</span>
+            </button>
             <a href="https://github.com/BrickFPV" target="_blank" rel="noopener" class="pill-btn">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
                 <span>GitHub</span>
@@ -729,7 +1512,9 @@
 
     <div id="toast">Copied</div>
 
-    <div id="canvas-container"></div>
+    <div id="three-experience-spacer">
+        <div id="three-sticky-stage">
+            <div id="canvas-container"></div>
 
     <!-- Full-Screen Transparent Pre-Scroll Greeting -->
     <section id="intro-greeting" aria-label="Welcome Greeting">
@@ -992,6 +1777,10 @@
                     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
                 </div>
             </div>
+            <button class="continue-scroll-btn" onclick="scrollToEditorial()">
+                <span data-i18n="s6_continue">Keep scrolling for Skills &amp; Work</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+            </button>
         </section>
     </main>
 
@@ -1008,7 +1797,487 @@
         <button class="dock-btn" data-nav="4" onclick="jumpToStage(4)" data-i18n="nav_4">Roof Node</button>
         <button class="dock-btn" data-nav="5" onclick="jumpToStage(5)" data-i18n="nav_5">Awards</button>
         <button class="dock-btn" data-nav="10" onclick="jumpToStage(10)" data-i18n="nav_6">Contact</button>
+        <button class="dock-btn" onclick="scrollToEditorial()" data-i18n="nav_skills">Skills ↓</button>
     </nav>
+        </div>
+    </div>
+
+    <!-- =========================================================
+         CLEAN WHITE & SUNBURNT-WHITE EDITORIAL PORTFOLIO UI
+         ========================================================= -->
+    <main id="editorial-page" aria-label="Skills and Engineering Overview">
+        <div class="sb-handle-bar"><span class="sb-handle-pill"></span></div>
+
+        <div class="sb-container">
+            <!-- Hero Identity & Metrics -->
+            <section class="sb-hero">
+                <div class="sb-eyebrow">
+                    <span class="sb-eyebrow-dot"></span>
+                    <span data-i18n="ed_eyebrow">İzmir, Türkiye • Bahçeşehir Koleji 50. Yıl Fen ve Teknoloji Lisesi</span>
+                </div>
+                <h1 class="sb-hero-title" data-i18n="ed_title">
+                    Hardware, Embedded Systems &amp; Applied AI.
+                </h1>
+                <p class="sb-hero-sub" data-i18n="ed_sub">
+                    I design custom PCBs, build 1S FPV tinywhoops, and deploy real-time edge vision and self-hosted Linux infrastructure.
+                </p>
+
+                <div class="sb-metrics">
+                    <div class="sb-metric-card">
+                        <div class="sb-metric-val">5×</div>
+                        <div class="sb-metric-label" data-i18n="ed_m1">National &amp; FLL Robotics Awards</div>
+                    </div>
+                    <div class="sb-metric-card">
+                        <div class="sb-metric-val">868 MHz</div>
+                        <div class="sb-metric-label" data-i18n="ed_m2">Meshtastic Node #004c (TaMesh)</div>
+                    </div>
+                    <div class="sb-metric-card">
+                        <div class="sb-metric-val">24/7</div>
+                        <div class="sb-metric-label" data-i18n="ed_m4">Debian / CasaOS Home Server</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 1: What I Do (4-Card Clean Bento) -->
+            <section class="sb-section">
+                <div class="sb-sec-head">
+                    <div>
+                        <div class="sb-sec-kicker" data-i18n="ed_sec1_k">Disciplines</div>
+                        <h2 class="sb-sec-title" data-i18n="ed_sec1_t">What I Do</h2>
+                    </div>
+                    <div class="sb-sec-note" data-i18n="ed_sec1_n">Four core engineering areas from bench to deployment.</div>
+                </div>
+
+                <div class="sb-bento">
+                    <!-- Pillar 1 -->
+                    <article class="sb-card">
+                        <div>
+                            <div class="sb-card-top">
+                                <span class="sb-icon-box">
+                                    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3"/><path d="M15 1v3"/><path d="M9 20v3"/><path d="M15 20v3"/><path d="M20 9h3"/><path d="M20 14h3"/><path d="M1 9h3"/><path d="M1 14h3"/></svg>
+                                </span>
+                                <span class="sb-card-num">01</span>
+                            </div>
+                            <h3 class="sb-card-title" data-i18n="p1_title">Embedded &amp; Custom PCBs</h3>
+                            <p class="sb-card-lead" data-i18n="p1_lead">Circuit design, power regulation, and SMD board assembly.</p>
+                            <ul class="sb-bullets">
+                                <li><strong data-i18n="p1_b1_k">PCB Designing:</strong> <span data-i18n="p1_b1_v">Custom schematic design, PCB layout, and embedded hardware prototyping.</span></li>
+                                <li><strong data-i18n="p1_b2_k">Digital Variable PSU:</strong> <span data-i18n="p1_b2_v">Programmable 1V–17.5V digital bench supply with live voltage &amp; current telemetry.</span></li>
+                                <li><strong data-i18n="p1_b3_k">SMD Rework:</strong> <span data-i18n="p1_b3_v">Fine-pitch soldering, hot-air assembly &amp; sensor integration.</span></li>
+                            </ul>
+                        </div>
+                        <div class="sb-tag-row">
+                            <span class="sb-tag">KiCad</span>
+                            <span class="sb-tag">PCB Design</span>
+                            <span class="sb-tag">ESP32 / ESP8266</span>
+                            <span class="sb-tag">Power Electronics</span>
+                            <span class="sb-tag">SMD Rework</span>
+                        </div>
+                    </article>
+
+                    <!-- Pillar 2 -->
+                    <article class="sb-card">
+                        <div>
+                            <div class="sb-card-top">
+                                <span class="sb-icon-box">
+                                    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4"/><path d="m16.2 7.8 2.9-2.9"/><path d="M18 12h4"/><path d="m16.2 16.2 2.9 2.9"/><path d="M12 18v4"/><path d="m4.9 19.1 2.9-2.9"/><path d="M2 12h4"/><path d="m4.9 4.9 2.9 2.9"/></svg>
+                                </span>
+                                <span class="sb-card-num">02</span>
+                            </div>
+                            <h3 class="sb-card-title" data-i18n="p2_title">FPV Drones &amp; 3D Fabrication</h3>
+                            <p class="sb-card-lead" data-i18n="p2_lead">Custom 1S micro-quads and Klipper-tuned hardware prototyping.</p>
+                            <ul class="sb-bullets">
+                                <li><strong data-i18n="p2_b1_k">Custom 1S Tinywhoops:</strong> <span data-i18n="p2_b1_v">Hand-built 75mm indoor/freestyle micro-drones with ELRS.</span></li>
+                                <li><strong data-i18n="p2_b2_k">Klipper 3D Printing:</strong> <span data-i18n="p2_b2_v">Raspberry Pi-driven Ender-3 printing structural mounts &amp; ducts.</span></li>
+                                <li><strong data-i18n="p2_b3_k">Mechatronics:</strong> <span data-i18n="p2_b3_v">Pan-tilt servo mechanisms &amp; 3D-printable Delta kinematics.</span></li>
+                            </ul>
+                        </div>
+                        <div class="sb-tag-row">
+                            <span class="sb-tag">1S Tinywhoop</span>
+                            <span class="sb-tag">ELRS 2.4G</span>
+                            <span class="sb-tag">Klipper</span>
+                            <span class="sb-tag">Ender-3</span>
+                            <span class="sb-tag">CAD</span>
+                        </div>
+                    </article>
+
+                    <!-- Pillar 3 -->
+                    <article class="sb-card">
+                        <div>
+                            <div class="sb-card-top">
+                                <span class="sb-icon-box">
+                                    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                                </span>
+                                <span class="sb-card-num">03</span>
+                            </div>
+                            <h3 class="sb-card-title" data-i18n="p3_title">Applied AI &amp; Edge Vision</h3>
+                            <p class="sb-card-lead" data-i18n="p3_lead">Real-time vision pipelines and tool-connected AI agents.</p>
+                            <ul class="sb-bullets">
+                                <li><strong data-i18n="p3_b1_k">TARS AI Robot:</strong> <span data-i18n="p3_b1_v">Dual-axis OpenCV face tracking &amp; voice interaction on gpt-oss 120B.</span></li>
+                                <li><strong data-i18n="p3_b2_k">Edge Vehicle Detection:</strong> <span data-i18n="p3_b2_v">160° wide-angle Raspberry Pi pipeline using YOLO11 Nano NCNN.</span></li>
+                            </ul>
+                        </div>
+                        <div class="sb-tag-row">
+                            <span class="sb-tag">Python</span>
+                            <span class="sb-tag">OpenCV</span>
+                            <span class="sb-tag">YOLO11 NCNN</span>
+                            <span class="sb-tag">AI Agents</span>
+                            <span class="sb-tag">Raspberry Pi</span>
+                        </div>
+                    </article>
+
+                    <!-- Pillar 4 -->
+                    <article class="sb-card">
+                        <div>
+                            <div class="sb-card-top">
+                                <span class="sb-icon-box">
+                                    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+                                </span>
+                                <span class="sb-card-num">04</span>
+                            </div>
+                            <h3 class="sb-card-title" data-i18n="p4_title">Linux Infra &amp; LoRa Mesh RF</h3>
+                            <p class="sb-card-lead" data-i18n="p4_lead">Self-hosted Docker services and off-grid 868 MHz telemetry.</p>
+                            <ul class="sb-bullets">
+                                <li><strong data-i18n="p4_b1_k">Debian Home Server:</strong> <span data-i18n="p4_b1_v">CasaOS, Docker, FastAPI microservices, WireGuard VPN &amp; Pi-hole.</span></li>
+                                <li><strong data-i18n="p4_b2_k">Hermes AI Agent:</strong> <span data-i18n="p4_b2_v">Custom automation tools bridged to EduPage &amp; Klipper printer APIs.</span></li>
+                                <li><strong data-i18n="p4_b3_k">Rooftop Meshtastic:</strong> <span data-i18n="p4_b3_v">Solar-assisted 868 MHz LoRa node (#004c) on the TaMesh network.</span></li>
+                            </ul>
+                        </div>
+                        <div class="sb-tag-row">
+                            <span class="sb-tag">Debian Linux</span>
+                            <span class="sb-tag">Docker</span>
+                            <span class="sb-tag">CasaOS</span>
+                            <span class="sb-tag">FastAPI</span>
+                            <span class="sb-tag">LoRa 868 MHz</span>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <!-- Section 2: Filterable Technical Stack -->
+            <section class="sb-section">
+                <div class="sb-sec-head">
+                    <div>
+                        <div class="sb-sec-kicker" data-i18n="ed_sec2_k">Capabilities</div>
+                        <h2 class="sb-sec-title" data-i18n="ed_sec2_t">Technical Stack</h2>
+                    </div>
+
+                    <div class="sb-filter-bar" role="tablist" aria-label="Filter skills">
+                        <button class="sb-filter-btn active" data-filter="all" onclick="filterSkills('all', this)" data-i18n="f_all">All</button>
+                        <button class="sb-filter-btn" data-filter="hardware" onclick="filterSkills('hardware', this)" data-i18n="f_hw">Hardware &amp; RF</button>
+                        <button class="sb-filter-btn" data-filter="ai" onclick="filterSkills('ai', this)" data-i18n="f_ai">AI &amp; Vision</button>
+                        <button class="sb-filter-btn" data-filter="software" onclick="filterSkills('software', this)" data-i18n="f_sw">Software &amp; Linux</button>
+                    </div>
+                </div>
+
+                <div class="sb-skills-grid" id="skills-grid">
+                    <div class="sb-skill-item" data-cat="hardware">
+                        <div class="sb-skill-top">
+                            <span class="sb-skill-name" data-i18n="sk_pcb_t">PCB Designing &amp; SMD Rework</span>
+                            <span class="sb-skill-cat" data-i18n="tag_hw">Hardware</span>
+                        </div>
+                        <p class="sb-skill-desc" data-i18n="sk_pcb">Custom schematic design, PCB layout, and fine-pitch hot-air soldering.</p>
+                    </div>
+
+                    <div class="sb-skill-item" data-cat="hardware">
+                        <div class="sb-skill-top">
+                            <span class="sb-skill-name">ESP32 / ESP8266 / Teensy</span>
+                            <span class="sb-skill-cat" data-i18n="tag_hw">Hardware</span>
+                        </div>
+                        <p class="sb-skill-desc" data-i18n="sk_mcu">Embedded C++/MicroPython firmware, PWM, I2C &amp; telemetry sensors.</p>
+                    </div>
+
+                    <div class="sb-skill-item" data-cat="hardware">
+                        <div class="sb-skill-top">
+                            <span class="sb-skill-name">1S FPV Micro-Drones</span>
+                            <span class="sb-skill-cat" data-i18n="tag_hw">Hardware</span>
+                        </div>
+                        <p class="sb-skill-desc" data-i18n="sk_fpv">Custom 75mm 1S tinywhoop assembly, Betaflight tuning &amp; ELRS links.</p>
+                    </div>
+
+                    <div class="sb-skill-item" data-cat="hardware">
+                        <div class="sb-skill-top">
+                            <span class="sb-skill-name">Klipper &amp; CAD Fabrication</span>
+                            <span class="sb-skill-cat" data-i18n="tag_hw">Hardware</span>
+                        </div>
+                        <p class="sb-skill-desc" data-i18n="sk_3dp">Raspberry Pi Klipper kinematics, custom ducts &amp; mechanical parts.</p>
+                    </div>
+
+                    <div class="sb-skill-item" data-cat="hardware">
+                        <div class="sb-skill-top">
+                            <span class="sb-skill-name">LoRa 868 MHz &amp; Meshtastic</span>
+                            <span class="sb-skill-cat" data-i18n="tag_rf">RF Mesh</span>
+                        </div>
+                        <p class="sb-skill-desc" data-i18n="sk_lora">Solar rooftop node #004c deployment &amp; directional antenna tuning.</p>
+                    </div>
+
+                    <div class="sb-skill-item" data-cat="ai">
+                        <div class="sb-skill-top">
+                            <span class="sb-skill-name">Edge Computer Vision</span>
+                            <span class="sb-skill-cat" data-i18n="tag_ai">AI / CV</span>
+                        </div>
+                        <p class="sb-skill-desc" data-i18n="sk_cv">Real-time OpenCV tracking &amp; YOLO11 Nano NCNN inference on Pi.</p>
+                    </div>
+
+                    <div class="sb-skill-item" data-cat="ai">
+                        <div class="sb-skill-top">
+                            <span class="sb-skill-name" data-i18n="sk_dl_t">Deep Learning &amp; Neural Networks</span>
+                            <span class="sb-skill-cat" data-i18n="tag_ai">AI / CV</span>
+                        </div>
+                        <p class="sb-skill-desc" data-i18n="sk_dl">PyTorch model training and computer vision inference pipelines.</p>
+                    </div>
+
+                    <div class="sb-skill-item" data-cat="ai">
+                        <div class="sb-skill-top">
+                            <span class="sb-skill-name">LLM Agents &amp; Tool Calling</span>
+                            <span class="sb-skill-cat" data-i18n="tag_ai">AI / CV</span>
+                        </div>
+                        <p class="sb-skill-desc" data-i18n="sk_agent">Hermes &amp; TARS agents wired to local hardware, printers &amp; school APIs.</p>
+                    </div>
+
+                    <div class="sb-skill-item" data-cat="software">
+                        <div class="sb-skill-top">
+                            <span class="sb-skill-name">Debian Linux &amp; CasaOS</span>
+                            <span class="sb-skill-cat" data-i18n="tag_sw">Infra</span>
+                        </div>
+                        <p class="sb-skill-desc" data-i18n="sk_linux">24/7 home server administration, Docker stacks, DNS &amp; WireGuard VPN.</p>
+                    </div>
+
+                    <div class="sb-skill-item" data-cat="software">
+                        <div class="sb-skill-top">
+                            <span class="sb-skill-name">Python &amp; FastAPI</span>
+                            <span class="sb-skill-cat" data-i18n="tag_sw">Software</span>
+                        </div>
+                        <p class="sb-skill-desc" data-i18n="sk_py">Async REST microservices, hardware bridges &amp; automation scripts.</p>
+                    </div>
+
+                    <div class="sb-skill-item" data-cat="software">
+                        <div class="sb-skill-top">
+                            <span class="sb-skill-name">Interactive 3D Web (Three.js)</span>
+                            <span class="sb-skill-cat" data-i18n="tag_sw">Software</span>
+                        </div>
+                        <p class="sb-skill-desc" data-i18n="sk_web">Procedural WebGL scenes, custom shaders &amp; responsive web interfaces.</p>
+                    </div>
+
+                    <div class="sb-skill-item" data-cat="hardware">
+                        <div class="sb-skill-top">
+                            <span class="sb-skill-name">Power Electronics</span>
+                            <span class="sb-skill-cat" data-i18n="tag_hw">Hardware</span>
+                        </div>
+                        <p class="sb-skill-desc" data-i18n="sk_pwr">Buck converters, Li-ion 18650 packs &amp; digital current/voltage sensing.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: Selected Builds (Expandable Spec Rows) -->
+            <section class="sb-section">
+                <div class="sb-sec-head">
+                    <div>
+                        <div class="sb-sec-kicker" data-i18n="ed_sec3_k">Engineering Log</div>
+                        <h2 class="sb-sec-title" data-i18n="ed_sec3_t">Selected Builds</h2>
+                    </div>
+                    <div class="sb-sec-note" data-i18n="ed_sec3_n">Click any row to inspect hardware &amp; stack specs.</div>
+                </div>
+
+                <div class="sb-build-list">
+                    <!-- Build 1 -->
+                    <div class="sb-build-row open">
+                        <button class="sb-build-trigger" onclick="toggleBuildRow(this)">
+                            <span class="sb-build-year">2026</span>
+                            <span class="sb-build-name">TARS AI — Pan-Tilt Vision Rig</span>
+                            <span class="sb-build-brief" data-i18n="b1_brief">3D-printed tracking robot with OpenCV &amp; gpt-oss 120B.</span>
+                            <span class="sb-build-pill">Robotics &amp; AI</span>
+                            <span class="sb-build-plus">+</span>
+                        </button>
+                        <div class="sb-build-drawer">
+                            <div class="sb-drawer-grid">
+                                <div class="sb-drawer-specs">
+                                    <span class="sb-spec-chip"><strong>Compute:</strong> Raspberry Pi &amp; Servo Control</span>
+                                    <span class="sb-spec-chip"><strong>Vision:</strong> OpenCV Face Tracking</span>
+                                    <span class="sb-spec-chip"><strong>Model:</strong> gpt-oss 120B</span>
+                                </div>
+                                <a href="https://github.com/BrickFPV/Tars-Ai-With-Pan-Tilt-Camera" target="_blank" rel="noopener" class="sb-repo-link">
+                                    <span>GitHub Repo</span>
+                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Build 2 -->
+                    <div class="sb-build-row">
+                        <button class="sb-build-trigger" onclick="toggleBuildRow(this)">
+                            <span class="sb-build-year">2026</span>
+                            <span class="sb-build-name" data-i18n="b2_name">Custom PCB Designing</span>
+                            <span class="sb-build-brief" data-i18n="b2_brief">Custom schematic design, multi-layer PCB layout, and embedded board assembly.</span>
+                            <span class="sb-build-pill" data-i18n="b2_pill">PCB Designing</span>
+                            <span class="sb-build-plus">+</span>
+                        </button>
+                        <div class="sb-build-drawer">
+                            <div class="sb-drawer-grid">
+                                <div class="sb-drawer-specs">
+                                    <span class="sb-spec-chip"><strong>Workflow:</strong> Schematic Capture &amp; PCB Layout</span>
+                                    <span class="sb-spec-chip"><strong>Assembly:</strong> SMD Soldering &amp; Board Bring-Up</span>
+                                    <span class="sb-spec-chip"><strong>Focus:</strong> Embedded &amp; Avionics Systems</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Build 3 -->
+                    <div class="sb-build-row">
+                        <button class="sb-build-trigger" onclick="toggleBuildRow(this)">
+                            <span class="sb-build-year">2026</span>
+                            <span class="sb-build-name" data-i18n="b3_name">Real-Time Edge Vehicle Detection</span>
+                            <span class="sb-build-brief" data-i18n="b3_brief">160° wide-angle Raspberry Pi vision system with YOLO11.</span>
+                            <span class="sb-build-pill">Computer Vision</span>
+                            <span class="sb-build-plus">+</span>
+                        </button>
+                        <div class="sb-build-drawer">
+                            <div class="sb-drawer-grid">
+                                <div class="sb-drawer-specs">
+                                    <span class="sb-spec-chip"><strong>Model:</strong> YOLO11 Nano (NCNN)</span>
+                                    <span class="sb-spec-chip"><strong>Optics:</strong> 160° Wide-Angle Camera</span>
+                                    <span class="sb-spec-chip"><strong>Platform:</strong> Raspberry Pi Edge Inference</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Build 4 -->
+                    <div class="sb-build-row">
+                        <button class="sb-build-trigger" onclick="toggleBuildRow(this)">
+                            <span class="sb-build-year">2026</span>
+                            <span class="sb-build-name" data-i18n="b4_name">Digital Variable Bench Power Supply</span>
+                            <span class="sb-build-brief" data-i18n="b4_brief">Programmable 1V–17.5V PSU with real-time voltage &amp; current telemetry.</span>
+                            <span class="sb-build-pill">Power Electronics</span>
+                            <span class="sb-build-plus">+</span>
+                        </button>
+                        <div class="sb-build-drawer">
+                            <div class="sb-drawer-grid">
+                                <div class="sb-drawer-specs">
+                                    <span class="sb-spec-chip"><strong>Controller:</strong> ESP8266 + Rotary Encoder</span>
+                                    <span class="sb-spec-chip"><strong>Stage:</strong> Digital Buck Regulation &amp; Power Sensing</span>
+                                    <span class="sb-spec-chip"><strong>UI:</strong> Live OLED + 3D-Printed Case</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Build 5 -->
+                    <div class="sb-build-row">
+                        <button class="sb-build-trigger" onclick="toggleBuildRow(this)">
+                            <span class="sb-build-year">2026</span>
+                            <span class="sb-build-name">Hermes AI &amp; Debian CasaOS Server</span>
+                            <span class="sb-build-brief" data-i18n="b5_brief">Self-hosted Linux stack with custom EduPage &amp; printer tools.</span>
+                            <span class="sb-build-pill">Infrastructure</span>
+                            <span class="sb-build-plus">+</span>
+                        </button>
+                        <div class="sb-build-drawer">
+                            <div class="sb-drawer-grid">
+                                <div class="sb-drawer-specs">
+                                    <span class="sb-spec-chip"><strong>OS:</strong> Debian + CasaOS + Docker</span>
+                                    <span class="sb-spec-chip"><strong>Services:</strong> FastAPI, WireGuard, Pi-hole</span>
+                                    <span class="sb-spec-chip"><strong>Tools:</strong> EduPage &amp; Klipper Bridges</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Build 6 -->
+                    <div class="sb-build-row">
+                        <button class="sb-build-trigger" onclick="toggleBuildRow(this)">
+                            <span class="sb-build-year">2026</span>
+                            <span class="sb-build-name">Meshtastic Node #004c &amp; 1S Tinywhoops</span>
+                            <span class="sb-build-brief" data-i18n="b6_brief">Rooftop 868 MHz TaMesh node &amp; custom 1S FPV micro-quads.</span>
+                            <span class="sb-build-pill">RF &amp; FPV</span>
+                            <span class="sb-build-plus">+</span>
+                        </button>
+                        <div class="sb-build-drawer">
+                            <div class="sb-drawer-grid">
+                                <div class="sb-drawer-specs">
+                                    <span class="sb-spec-chip"><strong>Mesh:</strong> Node #004c • 868 MHz (TaMesh)</span>
+                                    <span class="sb-spec-chip"><strong>FPV:</strong> Custom 1S 75mm Tinywhoop</span>
+                                    <span class="sb-spec-chip"><strong>Radio:</strong> 2.4 GHz ELRS / 5.8 GHz Video</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4: Competition Awards -->
+            <section class="sb-section">
+                <div class="sb-sec-head">
+                    <div>
+                        <div class="sb-sec-kicker" data-i18n="ed_sec4_k">Recognition</div>
+                        <h2 class="sb-sec-title" data-i18n="ed_sec4_t">Competition Awards</h2>
+                    </div>
+                </div>
+
+                <div class="sb-awards-card">
+                    <div class="sb-award-row">
+                        <div class="sb-award-left">
+                            <span class="sb-award-year">2025</span>
+                            <span class="sb-award-title" data-i18n="aw1">1st Place for Innovative Project – FLL Challenge Submerged</span>
+                        </div>
+                        <span class="sb-award-medal" data-i18n="aw_lego">LEGO Technic FLL Trophy</span>
+                    </div>
+                    <div class="sb-award-row">
+                        <div class="sb-award-left">
+                            <span class="sb-award-year">2024</span>
+                            <span class="sb-award-title" data-i18n="aw2">1st Place for Innovative Project – FLL Challenge Masterpiece</span>
+                        </div>
+                        <span class="sb-award-medal" data-i18n="aw_lego">LEGO Technic FLL Trophy</span>
+                    </div>
+                    <div class="sb-award-row">
+                        <div class="sb-award-left">
+                            <span class="sb-award-year">2022</span>
+                            <span class="sb-award-title" data-i18n="aw3">1st Place – Selçuklu Primary School 2nd National Coding Competition for Primary Schools</span>
+                        </div>
+                        <span class="sb-award-medal" data-i18n="aw_gold">Gold Cup</span>
+                    </div>
+                    <div class="sb-award-row">
+                        <div class="sb-award-left">
+                            <span class="sb-award-year">2021</span>
+                            <span class="sb-award-title" data-i18n="aw4">1st Place – VEX Robotics Competition (National Level)</span>
+                        </div>
+                        <span class="sb-award-medal" data-i18n="aw_gold">Gold Cup</span>
+                    </div>
+                    <div class="sb-award-row">
+                        <div class="sb-award-left">
+                            <span class="sb-award-year">2021</span>
+                            <span class="sb-award-title" data-i18n="aw5">2nd Place – Selçuklu Primary School 1st National Coding Competition for Primary Schools</span>
+                        </div>
+                        <span class="sb-award-medal" data-i18n="aw_silver">Silver Cup</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Clean Contact Footer -->
+            <footer class="sb-footer">
+                <div>
+                    <h3 class="sb-footer-title" data-i18n="s6_title">Get in Touch</h3>
+                    <p class="sb-footer-sub" data-i18n="ed_foot_sub">Click any email to copy directly to clipboard.</p>
+                </div>
+
+                <div class="sb-footer-actions">
+                    <button class="sb-contact-pill" onclick="copyText('aliegebozkurt12@gmail.com')">
+                        <span>aliegebozkurt12@gmail.com</span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                    </button>
+                    <button class="sb-contact-pill" onclick="copyText('ai.aliegebozkurt@gmail.com')">
+                        <span>ai.aliegebozkurt@gmail.com</span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                    </button>
+                    <button class="sb-top-btn" onclick="scrollToTop3D()">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+                        <span data-i18n="nav_back_3d">3D Room</span>
+                    </button>
+                </div>
+            </footer>
+        </div>
+    </main>
 
     <script>
         // ==========================================
@@ -1069,6 +2338,88 @@
                 nav_4: "Roof Node",
                 nav_5: "Awards",
                 nav_6: "Contact",
+                nav_skills: "Skills ↓",
+                nav_back_3d: "3D Room",
+                s6_continue: "Keep scrolling for Skills & Work",
+                ed_eyebrow: "İzmir, Türkiye • Bahçeşehir Koleji 50. Yıl Fen ve Teknoloji Lisesi",
+                ed_title: "Hardware, Embedded Systems & Applied AI.",
+                ed_sub: "I design custom PCBs, build 1S FPV tinywhoops, and deploy real-time edge vision and self-hosted Linux infrastructure.",
+                ed_m1: "National & FLL Robotics Awards",
+                ed_m2: "Meshtastic Node #004c (TaMesh)",
+                ed_m4: "Debian / CasaOS Home Server",
+                ed_sec1_k: "Disciplines",
+                ed_sec1_t: "What I Do",
+                ed_sec1_n: "Four core engineering areas from bench to deployment.",
+                p1_title: "Embedded & Custom PCBs",
+                p1_lead: "Circuit design, power regulation, and SMD board assembly.",
+                p1_b1_k: "PCB Designing:",
+                p1_b1_v: "Custom schematic design, PCB layout, and embedded hardware prototyping.",
+                p1_b2_k: "Digital Variable PSU:",
+                p1_b2_v: "Programmable 1V–17.5V digital bench supply with live voltage & current telemetry.",
+                p1_b3_k: "SMD Rework:",
+                p1_b3_v: "Fine-pitch soldering, hot-air assembly & sensor integration.",
+                p2_title: "FPV Drones & 3D Fabrication",
+                p2_lead: "Custom 1S micro-quads and Klipper-tuned hardware prototyping.",
+                p2_b1_k: "Custom 1S Tinywhoops:",
+                p2_b1_v: "Hand-built 75mm indoor/freestyle micro-drones with ELRS.",
+                p2_b2_k: "Klipper 3D Printing:",
+                p2_b2_v: "Raspberry Pi-driven Ender-3 printing structural mounts & ducts.",
+                p2_b3_k: "Mechatronics:",
+                p2_b3_v: "Pan-tilt servo mechanisms & 3D-printable Delta kinematics.",
+                p3_title: "Applied AI & Edge Vision",
+                p3_lead: "Real-time vision pipelines and tool-connected AI agents.",
+                p3_b1_k: "TARS AI Robot:",
+                p3_b1_v: "Dual-axis OpenCV face tracking & voice interaction on gpt-oss 120B.",
+                p3_b2_k: "Edge Vehicle Detection:",
+                p3_b2_v: "160° wide-angle Raspberry Pi pipeline using YOLO11 Nano NCNN.",
+                p4_title: "Linux Infra & LoRa Mesh RF",
+                p4_lead: "Self-hosted Docker services and off-grid 868 MHz telemetry.",
+                p4_b1_k: "Debian Home Server:",
+                p4_b1_v: "CasaOS, Docker, FastAPI microservices, WireGuard VPN & Pi-hole.",
+                p4_b2_k: "Hermes AI Agent:",
+                p4_b2_v: "Custom automation tools bridged to EduPage & Klipper printer APIs.",
+                p4_b3_k: "Rooftop Meshtastic:",
+                p4_b3_v: "Solar-assisted 868 MHz LoRa node (#004c) on the TaMesh network.",
+                ed_sec2_k: "Capabilities",
+                ed_sec2_t: "Technical Stack",
+                f_all: "All",
+                f_hw: "Hardware & RF",
+                f_ai: "AI & Vision",
+                f_sw: "Software & Linux",
+                tag_hw: "Hardware",
+                tag_rf: "RF Mesh",
+                tag_ai: "AI / CV",
+                tag_sw: "Software",
+                sk_pcb_t: "PCB Designing & SMD Rework",
+                sk_pcb: "Custom schematic design, PCB layout, and fine-pitch hot-air soldering.",
+                sk_mcu: "Embedded C++/MicroPython firmware, PWM, I2C & telemetry sensors.",
+                sk_fpv: "Custom 75mm 1S tinywhoop assembly, Betaflight tuning & ELRS links.",
+                sk_3dp: "Raspberry Pi Klipper kinematics, custom ducts & mechanical parts.",
+                sk_lora: "Solar rooftop node #004c deployment & directional antenna tuning.",
+                sk_cv: "Real-time OpenCV tracking & YOLO11 Nano NCNN inference on Pi.",
+                sk_dl_t: "Deep Learning & Neural Networks",
+                sk_dl: "PyTorch model training and computer vision inference pipelines.",
+                sk_agent: "Hermes & TARS agents wired to local hardware, printers & school APIs.",
+                sk_linux: "24/7 home server administration, Docker stacks, DNS & WireGuard VPN.",
+                sk_py: "Async REST microservices, hardware bridges & automation scripts.",
+                sk_web: "Procedural WebGL scenes, custom shaders & responsive web interfaces.",
+                sk_pwr: "Buck converters, Li-ion 18650 packs & digital current/voltage sensing.",
+                ed_sec3_k: "Engineering Log",
+                ed_sec3_t: "Selected Builds",
+                ed_sec3_n: "Click any row to inspect hardware & stack specs.",
+                b1_brief: "3D-printed tracking robot with OpenCV & gpt-oss 120B.",
+                b2_name: "Custom PCB Designing",
+                b2_brief: "Custom schematic design, multi-layer PCB layout, and embedded board assembly.",
+                b2_pill: "PCB Designing",
+                b3_name: "Real-Time Edge Vehicle Detection",
+                b3_brief: "160° wide-angle Raspberry Pi vision system with YOLO11.",
+                b4_name: "Digital Variable Bench Power Supply",
+                b4_brief: "Programmable 1V–17.5V PSU with real-time voltage & current telemetry.",
+                b5_brief: "Self-hosted Linux stack with custom EduPage & printer tools.",
+                b6_brief: "Rooftop 868 MHz TaMesh node & custom 1S FPV micro-quads.",
+                ed_sec4_k: "Recognition",
+                ed_sec4_t: "Competition Awards",
+                ed_foot_sub: "Click any email to copy directly to clipboard.",
                 copied: "Copied"
             },
             tr: {
@@ -1123,6 +2474,88 @@
                 nav_4: "Çatı Düğümü",
                 nav_5: "Ödüller",
                 nav_6: "İletişim",
+                nav_skills: "Yetenekler ↓",
+                nav_back_3d: "3D Oda",
+                s6_continue: "Yetenekler ve Projeler için kaydırın",
+                ed_eyebrow: "İzmir, Türkiye • Bahçeşehir Koleji 50. Yıl Fen ve Teknoloji Lisesi",
+                ed_title: "Donanım, Gömülü Sistemler & Uygulamalı AI.",
+                ed_sub: "Özel PCB devreler tasarlıyor, 1S FPV tinywhoop dronlar üretiyor ve uçta görüntü işleme ile Linux sunucu altyapıları kuruyorum.",
+                ed_m1: "Ulusal & FLL Robotik Ödülü",
+                ed_m2: "Meshtastic Düğümü #004c (TaMesh)",
+                ed_m4: "Debian / CasaOS Ev Sunucusu",
+                ed_sec1_k: "Uzmanlık Alanları",
+                ed_sec1_t: "Neler Yapıyorum",
+                ed_sec1_n: "Tezgâhtan sahaya dört temel mühendislik alanı.",
+                p1_title: "Gömülü Sistemler & Özel PCB",
+                p1_lead: "Devre tasarımı, güç elektroniği ve SMD kart dizgisi.",
+                p1_b1_k: "PCB Tasarımı:",
+                p1_b1_v: "Özel şematik çizimi, PCB tasarımı ve gömülü donanım prototipleme.",
+                p1_b2_k: "Dijital Ayarlı Güç Kaynağı:",
+                p1_b2_v: "Canlı voltaj ve akım telemetrili programlanabilir 1V–17.5V dijital güç kaynağı.",
+                p1_b3_k: "SMD Lehimleme:",
+                p1_b3_v: "İnce bacaklı lehimleme, sıcak hava istasyonu ve sensör entegrasyonu.",
+                p2_title: "FPV Dronlar & 3D Üretim",
+                p2_lead: "Özel yapım 1S mikro-dronlar ve Klipper kalibrasyonlu mekanik prototipler.",
+                p2_b1_k: "1S Özel Tinywhoop:",
+                p2_b1_v: "ELRS alıcılı, el yapımı 75mm kapalı/teknik uçuş mikro-dronları.",
+                p2_b2_k: "Klipper 3D Baskı:",
+                p2_b2_v: "Raspberry Pi destekli Ender-3 ile özel parça ve soğutma kanalları.",
+                p2_b3_k: "Mekatronik:",
+                p2_b3_v: "Pan-tilt servo mekanizmaları ve 3D baskı Delta robot kinematiği.",
+                p3_title: "Uygulamalı AI & Görüntü İşleme",
+                p3_lead: "Gömülü cihazlarda gerçek zamanlı çıkarım ve araç bağlantılı AI ajanları.",
+                p3_b1_k: "TARS AI Robotu:",
+                p3_b1_v: "OpenCV yüz takibi ve gpt-oss 120B tabanlı sesli etkileşim.",
+                p3_b2_k: "Uçta Araç Tespiti:",
+                p3_b2_v: "160° geniş açılı Raspberry Pi üzerinde YOLO11 Nano NCNN.",
+                p4_title: "Linux Altyapı & LoRa Mesh RF",
+                p4_lead: "Kendi barındırdığım Docker servisleri ve şebekeden bağımsız 868 MHz telemetri.",
+                p4_b1_k: "Debian Ev Sunucusu:",
+                p4_b1_v: "CasaOS, Docker, FastAPI mikroservisleri, WireGuard VPN & Pi-hole.",
+                p4_b2_k: "Hermes AI Ajanı:",
+                p4_b2_v: "EduPage ve Klipper 3D yazıcı API'lerine bağlı özel araçlar.",
+                p4_b3_k: "Çatı Meshtastic:",
+                p4_b3_v: "TaMesh ağına bağlı güneş destekli 868 MHz LoRa düğümü (#004c).",
+                ed_sec2_k: "Yetkinlikler",
+                ed_sec2_t: "Teknik Yığın",
+                f_all: "Tümü",
+                f_hw: "Donanım & RF",
+                f_ai: "AI & Görüntü",
+                f_sw: "Yazılım & Linux",
+                tag_hw: "Donanım",
+                tag_rf: "RF Mesh",
+                tag_ai: "AI / CV",
+                tag_sw: "Yazılım",
+                sk_pcb_t: "PCB Tasarımı & SMD Lehimleme",
+                sk_pcb: "Özel şematik çizimi, PCB tasarımı ve sıcak hava SMD lehimleme.",
+                sk_mcu: "Gömülü C++/MicroPython yazılımı, PWM, I2C ve telemetri sensörleri.",
+                sk_fpv: "Özel 75mm 1S tinywhoop montajı, Betaflight ayarı ve ELRS bağlantısı.",
+                sk_3dp: "Raspberry Pi Klipper kinematiği, özel hava kanalları ve mekanik parçalar.",
+                sk_lora: "Güneş destekli çatı düğümü #004c kurulumu ve yönlü anten ayarı.",
+                sk_cv: "Pi üzerinde gerçek zamanlı OpenCV takibi ve YOLO11 Nano NCNN çıkarımı.",
+                sk_dl_t: "Derin Öğrenme & Sinir Ağları",
+                sk_dl: "PyTorch model eğitimi ve bilgisayarlı görü çıkarım hatları.",
+                sk_agent: "Donanım, 3D yazıcı ve okul sistemlerine bağlı Hermes & TARS ajanları.",
+                sk_linux: "7/24 ev sunucusu yönetimi, Docker konteynerleri, DNS ve WireGuard VPN.",
+                sk_py: "Asenkron REST mikroservisleri, donanım köprüleri ve otomasyon.",
+                sk_web: "Prosedürel WebGL sahneleri, özel gölgelendiriciler ve modern arayüzler.",
+                sk_pwr: "Düşürücü konvertörler, 18650 Li-ion paketler ve dijital akım/voltaj ölçümü.",
+                ed_sec3_k: "Mühendislik Kaydı",
+                ed_sec3_t: "Seçili Projeler",
+                ed_sec3_n: "Donanım ve yazılım detayları için satırlara tıklayın.",
+                b1_brief: "OpenCV ve gpt-oss 120B destekli 3D baskı takip robotu.",
+                b2_name: "Özel PCB Tasarımı",
+                b2_brief: "Özel şematik çizimi, çok katmanlı PCB tasarımı ve gömülü kart dizgisi.",
+                b2_pill: "PCB Tasarımı",
+                b3_name: "Gerçek Zamanlı Uçta Araç Tespiti",
+                b3_brief: "YOLO11 çalışan 160° geniş açılı Raspberry Pi görüntü sistemi.",
+                b4_name: "Dijital Ayarlı Tezgâh Güç Kaynağı",
+                b4_brief: "Gerçek zamanlı voltaj ve akım telemetrili programlanabilir 1V–17.5V PSU.",
+                b5_brief: "Özel EduPage ve 3D yazıcı araçlarına sahip Linux sunucu yığını.",
+                b6_brief: "Çatı 868 MHz TaMesh düğümü ve özel yapım 1S FPV mikro-dronlar.",
+                ed_sec4_k: "Başarılar",
+                ed_sec4_t: "Yarışma Ödülleri",
+                ed_foot_sub: "Panoya kopyalamak için e-posta adresine tıklayın.",
                 copied: "Kopyalandı"
             }
         };
@@ -1537,8 +2970,8 @@
         // ==========================================
         const container = document.getElementById('canvas-container');
         const scene = new THREE.Scene();
-        scene.background = new THREE.Color(0x1b2230);
-        scene.fog = new THREE.FogExp2(0x1b2230, 0.0046);
+        scene.background = new THREE.Color(0x0c1426);
+        scene.fog = new THREE.FogExp2(0x0c1426, 0.0046);
 
         const camera = new THREE.PerspectiveCamera(42, window.innerWidth / window.innerHeight, 0.015, 320);
 
@@ -1548,16 +2981,23 @@
         renderer.shadowMap.enabled = true;
         renderer.shadowMap.type = THREE.PCFSoftShadowMap;
         renderer.toneMapping = THREE.ACESFilmicToneMapping;
-        renderer.toneMappingExposure = 1.12;
+        renderer.toneMappingExposure = 1.06;
         container.appendChild(renderer.domElement);
 
         scene.environment = createCozyEnvMap(renderer);
 
-        // Dynamic Celestial Sky Dome (Morning / Noon / Day / Night / Midnight)
+        // Permanent Starry Night Sky Dome
         const skyCanvas = document.createElement('canvas');
         skyCanvas.width = 32;
         skyCanvas.height = 256;
         const skyCtx = skyCanvas.getContext('2d');
+        const skyGrad = skyCtx.createLinearGradient(0, 0, 0, 256);
+        skyGrad.addColorStop(0.0, '#060b19');
+        skyGrad.addColorStop(0.36, '#0d1830');
+        skyGrad.addColorStop(0.54, '#172747');
+        skyGrad.addColorStop(1.0, '#0c1426');
+        skyCtx.fillStyle = skyGrad;
+        skyCtx.fillRect(0, 0, 32, 256);
         const skyDomeTex = new THREE.CanvasTexture(skyCanvas);
         const skyDome = new THREE.Mesh(
             new THREE.SphereGeometry(155, 32, 24),
@@ -1565,28 +3005,9 @@
         );
         scene.add(skyDome);
 
-        // 3D Sun with Soft Corona
-        const sunGroup = new THREE.Group();
-        const sunCore = new THREE.Mesh(
-            new THREE.SphereGeometry(3.4, 24, 24),
-            new THREE.MeshBasicMaterial({ color: 0xfffbeb, fog: false })
-        );
-        sunGroup.add(sunCore);
-
-        const sunHaloMat = new THREE.SpriteMaterial({
-            map: createRadialGlowTexture('rgba(255, 248, 214, 0.95)', 'rgba(253, 186, 116, 0.42)', 'rgba(253, 186, 116, 0)'),
-            transparent: true,
-            blending: THREE.AdditiveBlending,
-            depthWrite: false,
-            fog: false
-        });
-        const sunHalo = new THREE.Sprite(sunHaloMat);
-        sunHalo.scale.set(26, 26, 1);
-        sunGroup.add(sunHalo);
-        scene.add(sunGroup);
-
         // 3D Moon with Craters & Soft Silver Halo
         const moonGroup = new THREE.Group();
+        moonGroup.position.set(-18.0, 20.5, -62.0);
         const moonMesh = new THREE.Mesh(
             new THREE.SphereGeometry(2.5, 28, 28),
             new THREE.MeshBasicMaterial({ map: createMoonTexture(), color: 0xf1f5f9, fog: false })
@@ -1596,6 +3017,7 @@
         const moonHaloMat = new THREE.SpriteMaterial({
             map: createRadialGlowTexture('rgba(219, 234, 254, 0.75)', 'rgba(147, 197, 253, 0.25)', 'rgba(147, 197, 253, 0)'),
             transparent: true,
+            opacity: 0.85,
             blending: THREE.AdditiveBlending,
             depthWrite: false,
             fog: false
@@ -1631,32 +3053,32 @@
             size: 0.95,
             vertexColors: true,
             transparent: true,
-            opacity: 0,
+            opacity: 0.92,
             fog: false,
             depthWrite: false
         });
         const starField = new THREE.Points(starGeo, starMat);
         scene.add(starField);
 
-        // Primary Scene Lights (Modulated Automatically by Turkey Time)
-        const hemiLight = new THREE.HemisphereLight(0xffdfb0, 0x3b2d22, 0.58);
+        // Primary Night Scene Lights (Moonlight & Ambient Sky)
+        const hemiLight = new THREE.HemisphereLight(0x364d7a, 0x1c1714, 0.34);
         hemiLight.position.set(0, 45, 0);
         scene.add(hemiLight);
 
-        const goldenSunLight = new THREE.DirectionalLight(0xffbe73, 0.92);
-        goldenSunLight.position.set(22, 26, 26);
-        goldenSunLight.castShadow = true;
-        goldenSunLight.shadow.mapSize.width = 2048;
-        goldenSunLight.shadow.mapSize.height = 2048;
-        goldenSunLight.shadow.camera.near = 2;
-        goldenSunLight.shadow.camera.far = 110;
+        const moonLight = new THREE.DirectionalLight(0x95b8ed, 0.38);
+        moonLight.position.set(-12, 24, 22);
+        moonLight.castShadow = true;
+        moonLight.shadow.mapSize.width = 2048;
+        moonLight.shadow.mapSize.height = 2048;
+        moonLight.shadow.camera.near = 2;
+        moonLight.shadow.camera.far = 110;
         const sd = 34;
-        goldenSunLight.shadow.camera.left = -sd;
-        goldenSunLight.shadow.camera.right = sd;
-        goldenSunLight.shadow.camera.top = sd;
-        goldenSunLight.shadow.camera.bottom = -sd;
-        goldenSunLight.shadow.bias = -0.0004;
-        scene.add(goldenSunLight);
+        moonLight.shadow.camera.left = -sd;
+        moonLight.shadow.camera.right = sd;
+        moonLight.shadow.camera.top = sd;
+        moonLight.shadow.camera.bottom = -sd;
+        moonLight.shadow.bias = -0.0004;
+        scene.add(moonLight);
 
         // Indoor Room Lights
         const roomCeilingLight = new THREE.PointLight(0xffc978, 1.55, 16, 1.35);
@@ -3899,168 +5321,6 @@
         scene.add(trophySpotLight);
 
         // ==========================================
-        // 11. TURKEY LOCAL TIME ATMOSPHERE ENGINE
-        //     (Morning / Noon / Day / Night / Midnight — Sun, Moon & Stars)
-        // ==========================================
-        function getTurkeyHours() {
-            try {
-                const now = new Date();
-                const parts = new Intl.DateTimeFormat('en-GB', {
-                    timeZone: 'Europe/Istanbul',
-                    hour: '2-digit',
-                    minute: '2-digit',
-                    second: '2-digit',
-                    hour12: false
-                }).formatToParts(now);
-                const h = parseInt(parts.find(p => p.type === 'hour').value, 10) % 24;
-                const m = parseInt(parts.find(p => p.type === 'minute').value, 10);
-                const s = parseInt(parts.find(p => p.type === 'second').value, 10);
-                return h + m / 60 + s / 3600;
-            } catch (e) {
-                const now = new Date();
-                const utcH = now.getUTCHours() + now.getUTCMinutes() / 60 + now.getUTCSeconds() / 3600;
-                return (utcH + 3) % 24;
-            }
-        }
-
-        const timeKeyframes = [
-            // Midnight (00:00)
-            { h: 0.0,  skyTop: '#03060e', skyMid: '#070d1c', skyBot: '#0d162b', fog: '#070c19', sun: 0, moon: 1, stars: 1.0,  dirCol: '#7da2d9', dirInt: 0.28, hemiSky: '#263859', hemiGnd: '#14110f', hemiInt: 0.25, indoor: 1.0,  street: 1.0,  exp: 1.02 },
-            // Late Midnight (03:30)
-            { h: 3.5,  skyTop: '#040812', skyMid: '#091124', skyBot: '#111c36', fog: '#091020', sun: 0, moon: 1, stars: 0.95, dirCol: '#85a9de', dirInt: 0.30, hemiSky: '#2a3e63', hemiGnd: '#171411', hemiInt: 0.28, indoor: 1.0,  street: 1.0,  exp: 1.03 },
-            // Dawn Transition (05:30)
-            { h: 5.5,  skyTop: '#1e3a6e', skyMid: '#7c6885', skyBot: '#f59e6c', fog: '#5c4b5e', sun: 1, moon: 0.15, stars: 0.12, dirCol: '#ffaa66', dirInt: 0.72, hemiSky: '#f7b279', hemiGnd: '#3d2e24', hemiInt: 0.48, indoor: 0.75, street: 0.35, exp: 1.08 },
-            // Morning (07:30)
-            { h: 7.5,  skyTop: '#2b6cb0', skyMid: '#63b3ed', skyBot: '#fbd38d', fog: '#8ebae5', sun: 1, moon: 0, stars: 0.0,  dirCol: '#ffd699', dirInt: 1.15, hemiSky: '#ffe4b5', hemiGnd: '#594636', hemiInt: 0.68, indoor: 0.35, street: 0.0,  exp: 1.14 },
-            // Late Morning -> Noon (10:30)
-            { h: 10.5, skyTop: '#1d6fa5', skyMid: '#56b4e9', skyBot: '#cdeafd', fog: '#9ad4f5', sun: 1, moon: 0, stars: 0.0,  dirCol: '#fff7e6', dirInt: 1.42, hemiSky: '#dff2fe', hemiGnd: '#6e5947', hemiInt: 0.82, indoor: 0.18, street: 0.0,  exp: 1.18 },
-            // Noon (12:30)
-            { h: 12.5, skyTop: '#19679e', skyMid: '#4eb2e8', skyBot: '#d6f0ff', fog: '#a6daf7', sun: 1, moon: 0, stars: 0.0,  dirCol: '#fffaf0', dirInt: 1.52, hemiSky: '#e6f5ff', hemiGnd: '#78624f', hemiInt: 0.88, indoor: 0.15, street: 0.0,  exp: 1.20 },
-            // Day / Afternoon (15:30)
-            { h: 15.5, skyTop: '#2563a6', skyMid: '#5ea5db', skyBot: '#e6cfa8', fog: '#8cb8db', sun: 1, moon: 0, stars: 0.0,  dirCol: '#ffe2ad', dirInt: 1.25, hemiSky: '#ffe9c4', hemiGnd: '#614d3c', hemiInt: 0.72, indoor: 0.30, street: 0.0,  exp: 1.15 },
-            // Late Day / Sunset (18:00)
-            { h: 18.0, skyTop: '#233963', skyMid: '#8c5c68', skyBot: '#f59b56', fog: '#4f4152', sun: 1, moon: 0.1, stars: 0.08, dirCol: '#ff9e54', dirInt: 0.88, hemiSky: '#ffc48c', hemiGnd: '#3d2e22', hemiInt: 0.52, indoor: 0.80, street: 0.65, exp: 1.10 },
-            // Night (19:30)
-            { h: 19.5, skyTop: '#0b1326', skyMid: '#15223d', skyBot: '#213254', fog: '#121c33', sun: 0, moon: 1, stars: 0.82, dirCol: '#9ec0f5', dirInt: 0.42, hemiSky: '#3b5280', hemiGnd: '#241d18', hemiInt: 0.38, indoor: 1.0,  street: 1.0,  exp: 1.08 },
-            // Late Night -> Midnight (22:30)
-            { h: 22.5, skyTop: '#050914', skyMid: '#0a1124', skyBot: '#121d38', fog: '#091021', sun: 0, moon: 1, stars: 0.96, dirCol: '#89aee6', dirInt: 0.32, hemiSky: '#2d4066', hemiGnd: '#181310', hemiInt: 0.28, indoor: 1.0,  street: 1.0,  exp: 1.04 },
-            // Midnight Wrap (24.0)
-            { h: 24.0, skyTop: '#03060e', skyMid: '#070d1c', skyBot: '#0d162b', fog: '#070c19', sun: 0, moon: 1, stars: 1.0,  dirCol: '#7da2d9', dirInt: 0.28, hemiSky: '#263859', hemiGnd: '#14110f', hemiInt: 0.25, indoor: 1.0,  street: 1.0,  exp: 1.02 }
-        ];
-
-        const _cA = new THREE.Color();
-        const _cB = new THREE.Color();
-        function lerpHex(hexA, hexB, t) {
-            _cA.set(hexA);
-            _cB.set(hexB);
-            return '#' + _cA.lerp(_cB, t).getHexString();
-        }
-
-        let lastSkyUpdateHour = -99;
-        function updateTurkeyAtmosphere(elapsedTime) {
-            const h = getTurkeyHours();
-
-            let kA = timeKeyframes[0];
-            let kB = timeKeyframes[1];
-            for (let i = 0; i < timeKeyframes.length - 1; i++) {
-                if (h >= timeKeyframes[i].h && h <= timeKeyframes[i + 1].h) {
-                    kA = timeKeyframes[i];
-                    kB = timeKeyframes[i + 1];
-                    break;
-                }
-            }
-            const span = Math.max(0.0001, kB.h - kA.h);
-            const t = (h - kA.h) / span;
-            const s = t * t * (3 - 2 * t);
-
-            const skyTopHex = lerpHex(kA.skyTop, kB.skyTop, s);
-            const skyMidHex = lerpHex(kA.skyMid, kB.skyMid, s);
-            const skyBotHex = lerpHex(kA.skyBot, kB.skyBot, s);
-            const fogHex = lerpHex(kA.fog, kB.fog, s);
-            const dirHex = lerpHex(kA.dirCol, kB.dirCol, s);
-            const hemiSkyHex = lerpHex(kA.hemiSky, kB.hemiSky, s);
-            const hemiGndHex = lerpHex(kA.hemiGnd, kB.hemiGnd, s);
-
-            const sunVis = kA.sun + (kB.sun - kA.sun) * s;
-            const moonVis = kA.moon + (kB.moon - kA.moon) * s;
-            const starsVis = kA.stars + (kB.stars - kA.stars) * s;
-            const dirInt = kA.dirInt + (kB.dirInt - kA.dirInt) * s;
-            const hemiInt = kA.hemiInt + (kB.hemiInt - kA.hemiInt) * s;
-            const indoorAmt = kA.indoor + (kB.indoor - kA.indoor) * s;
-            const streetAmt = kA.street + (kB.street - kA.street) * s;
-            const exposure = kA.exp + (kB.exp - kA.exp) * s;
-
-            if (Math.abs(h - lastSkyUpdateHour) > 0.005) {
-                lastSkyUpdateHour = h;
-                const grad = skyCtx.createLinearGradient(0, 0, 0, 256);
-                grad.addColorStop(0.0, skyTopHex);
-                grad.addColorStop(0.36, skyMidHex);
-                grad.addColorStop(0.54, skyBotHex);
-                grad.addColorStop(1.0, fogHex);
-                skyCtx.fillStyle = grad;
-                skyCtx.fillRect(0, 0, 32, 256);
-                skyDomeTex.needsUpdate = true;
-
-                scene.background.set(fogHex);
-                scene.fog.color.set(fogHex);
-            }
-
-            // Sun celestial trajectory (05:00 east -> 12:00 zenith -> 18:30 west)
-            const sunFrac = Math.min(1, Math.max(0, (h - 5.0) / 13.5));
-            const sunAngle = sunFrac * Math.PI;
-            const sunX = Math.cos(sunAngle) * 58;
-            const sunY = Math.sin(sunAngle) * 44 + 2;
-            const sunZ = -68 + Math.sin(sunAngle) * 14;
-            sunGroup.position.set(sunX, sunY, sunZ);
-            sunGroup.visible = sunVis > 0.02;
-            sunHaloMat.opacity = sunVis * 0.9;
-
-            // Moon celestial trajectory (18:00 east -> 00:00 zenith -> 06:00 west)
-            const nightElapsed = h >= 18.0 ? (h - 18.0) : (h + 6.0);
-            const moonFrac = Math.min(1, Math.max(0, nightElapsed / 12.0));
-            const moonAngle = moonFrac * Math.PI;
-            const moonX = Math.cos(moonAngle) * 52;
-            const moonY = Math.sin(moonAngle) * 38 + 4;
-            const moonZ = -66 + Math.sin(moonAngle) * 12;
-            moonGroup.position.set(moonX, moonY, moonZ);
-            moonGroup.visible = moonVis > 0.02;
-            moonHaloMat.opacity = moonVis * 0.85;
-
-            // Stars visibility & subtle twinkle
-            starField.visible = starsVis > 0.02;
-            starMat.opacity = starsVis * (0.86 + Math.sin(elapsedTime * 1.7) * 0.14);
-            starField.rotation.y = elapsedTime * 0.004;
-
-            // Directional light tracks Sun by day and Moon by night
-            goldenSunLight.color.set(dirHex);
-            goldenSunLight.intensity = dirInt;
-            if (sunVis >= moonVis) {
-                goldenSunLight.position.set(sunX * 0.45, Math.max(14, sunY * 0.75), 24);
-            } else {
-                goldenSunLight.position.set(moonX * 0.45, Math.max(16, moonY * 0.75), 22);
-            }
-
-            hemiLight.color.set(hemiSkyHex);
-            hemiLight.groundColor.set(hemiGndHex);
-            hemiLight.intensity = hemiInt;
-            renderer.toneMappingExposure = exposure;
-
-            // Indoor room lights & fixtures
-            roomCeilingLight.intensity = 1.55 * indoorAmt;
-            deskLampLight.intensity = 1.35 * indoorAmt;
-            workbenchWarmLight.intensity = 1.15 * indoorAmt;
-            bedsideGlow.intensity = 0.65 * indoorAmt;
-            drumShadeMat.emissiveIntensity = 0.42 * indoorAmt;
-            drumDiffuserMat.color.setHex(indoorAmt > 0.45 ? 0xffdf9e : 0xd6cfc2);
-            deskBulbMat.color.setHex(indoorAmt > 0.45 ? 0xffcf70 : 0xcbd5e1);
-
-            // Outdoor streetlamps & neighbor windows
-            matStreetLampGlow.emissiveIntensity = 1.45 * streetAmt;
-            matLitWindow.emissiveIntensity = 0.48 * streetAmt;
-            matLitWindow.color.setHex(streetAmt > 0.35 ? 0xffdf9e : 0x94a3b8);
-        }
-
-        // ==========================================
         // 12. 11-STAGE CAMERA CHOREOGRAPHY
         // ==========================================
         const waypoints = [
@@ -4112,39 +5372,46 @@
             dragging = false;
         });
 
-        window.addEventListener('wheel', (e) => {
-            e.preventDefault();
-            const clampedDelta = Math.sign(e.deltaY) * Math.min(Math.abs(e.deltaY), 100);
-            targetProgress += clampedDelta * 0.00013;
-            targetProgress = Math.max(0, Math.min(1, targetProgress));
-            hidePrompt();
-        }, { passive: false });
+        const spacerEl = document.getElementById('three-experience-spacer');
+        const stickyEl = document.getElementById('three-sticky-stage');
+        const editorialEl = document.getElementById('editorial-page');
+        const headerEl = document.querySelector('header');
+        const progressTrackEl = document.getElementById('progress-track');
 
-        let touchY0 = 0;
-        window.addEventListener('touchstart', (e) => {
-            if (e.touches.length === 1) touchY0 = e.touches[0].clientY;
-        }, { passive: true });
+        function getMax3DScroll() {
+            const stageH = stickyEl ? stickyEl.offsetHeight : window.innerHeight;
+            if (!spacerEl) return Math.max(1, stageH * 5);
+            return Math.max(1, spacerEl.offsetHeight - stageH);
+        }
 
-        window.addEventListener('touchmove', (e) => {
-            if (e.touches.length === 1) {
-                const dy = touchY0 - e.touches[0].clientY;
-                touchY0 = e.touches[0].clientY;
-                targetProgress += dy * 0.0005;
-                targetProgress = Math.max(0, Math.min(1, targetProgress));
-                hidePrompt();
-            }
-        }, { passive: true });
+        function syncProgressFromScroll() {
+            const max3D = getMax3DScroll();
+            const sy = window.scrollY || window.pageYOffset || 0;
+            targetProgress = Math.max(0, Math.min(1, sy / max3D));
+            if (targetProgress > 0.015) hidePrompt();
+        }
+
+        window.addEventListener('scroll', syncProgressFromScroll, { passive: true });
+        syncProgressFromScroll();
 
         window.addEventListener('keydown', (e) => {
+            const max3D = getMax3DScroll();
+            const sy = window.scrollY || window.pageYOffset || 0;
+            if (sy >= max3D - 16) return; // Normal keyboard scroll inside editorial UI
+
             if (e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === ' ') {
+                e.preventDefault();
                 if (smoothProgress < 0.035) {
                     enterRoomFromGreeting();
+                } else if (currentStage < NUM_STAGES - 1) {
+                    jumpToStage(currentStage + 1);
                 } else {
-                    jumpToStage(Math.min(NUM_STAGES - 1, currentStage + 1));
+                    scrollToEditorial();
                 }
             } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+                e.preventDefault();
                 if (currentStage === 0 && smoothProgress >= 0.035) {
-                    targetProgress = 0;
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
                 } else {
                     jumpToStage(Math.max(0, currentStage - 1));
                 }
@@ -4157,17 +5424,44 @@
         }
 
         function enterRoomFromGreeting() {
-            targetProgress = 0.046;
+            const max3D = getMax3DScroll();
+            window.scrollTo({ top: 0.046 * max3D, behavior: 'smooth' });
             orbitYaw = 0;
             orbitPitch = 0;
             hidePrompt();
         }
 
         function jumpToStage(idx) {
-            targetProgress = idx === 0 ? 0.046 : idx / (NUM_STAGES - 1);
+            const max3D = getMax3DScroll();
+            const prog = idx === 0 ? 0.046 : idx / (NUM_STAGES - 1);
+            window.scrollTo({ top: prog * max3D, behavior: 'smooth' });
             orbitYaw = 0;
             orbitPitch = 0;
             hidePrompt();
+        }
+
+        function scrollToEditorial() {
+            if (!editorialEl) return;
+            const top = editorialEl.getBoundingClientRect().top + (window.scrollY || window.pageYOffset || 0) + 2;
+            window.scrollTo({ top, behavior: 'smooth' });
+        }
+
+        function scrollToTop3D() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function filterSkills(category, btnEl) {
+            document.querySelectorAll('.sb-filter-btn').forEach(b => b.classList.remove('active'));
+            if (btnEl) btnEl.classList.add('active');
+            document.querySelectorAll('.sb-skill-item').forEach(item => {
+                const cat = item.getAttribute('data-cat');
+                item.classList.toggle('hidden', category !== 'all' && cat !== category);
+            });
+        }
+
+        function toggleBuildRow(triggerBtn) {
+            const row = triggerBtn.closest('.sb-build-row');
+            if (row) row.classList.toggle('open');
         }
 
         function setActiveStage(idx) {
@@ -4207,10 +5501,22 @@
             requestAnimationFrame(animate);
             const t = clock.getElapsedTime();
 
-            updateTurkeyAtmosphere(t);
+            const edRect = editorialEl ? editorialEl.getBoundingClientRect() : { top: 9999 };
+            const isEditorialInView = edRect.top <= 52;
+            if (headerEl) headerEl.classList.toggle('light-theme', isEditorialInView);
+            if (progressTrackEl) progressTrackEl.classList.toggle('light-theme', isEditorialInView);
 
-            smoothProgress += (targetProgress - smoothProgress) * 0.055;
-            document.getElementById('progress-fill').style.width = (smoothProgress * 100).toFixed(2) + '%';
+            const docMaxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+            const docProgress = Math.max(0, Math.min(1, (window.scrollY || 0) / docMaxScroll));
+            document.getElementById('progress-fill').style.width = (docProgress * 100).toFixed(2) + '%';
+
+            // Skip heavy 3D scene rendering when the sunburnt-white page completely covers the viewport
+            if (edRect.top <= 0) return;
+
+            starMat.opacity = 0.84 + Math.sin(t * 1.7) * 0.14;
+            starField.rotation.y = t * 0.004;
+
+            smoothProgress += (targetProgress - smoothProgress) * 0.085;
 
             // Full-screen transparent greeting dissolves smoothly during initial scroll (0 -> 0.042)
             const greetEl = document.getElementById('intro-greeting');
@@ -4402,6 +5708,7 @@
             camera.aspect = window.innerWidth / window.innerHeight;
             camera.updateProjectionMatrix();
             renderer.setSize(window.innerWidth, window.innerHeight);
+            syncProgressFromScroll();
         });
     </script>
 </body>
